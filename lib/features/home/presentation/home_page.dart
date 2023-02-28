@@ -1,9 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:parking_app/core/presentation/theme/app_color.dart';
 import 'package:parking_app/core/presentation/theme/text_style.dart';
 import 'package:parking_app/features/home/presentation/widgets/divider_text.dart';
 import 'package:parking_app/features/home/presentation/widgets/drawer.dart';
+import 'package:parking_app/features/home/presentation/widgets/explore_list.dart';
 import 'package:parking_app/features/home/presentation/widgets/parking_list.dart';
 import 'package:parking_app/features/home/presentation/widgets/search_bar.dart';
 
@@ -74,6 +76,17 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             DividerText(text: 'EXPLORE'),
+            Row(
+              children: [
+                ListView(
+                  children: [
+                    ExploreList(
+                        imageData:
+                            'https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg')
+                  ],
+                )
+              ],
+            )
           ],
         ),
       ),
