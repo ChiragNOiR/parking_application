@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parking_app/core/presentation/theme/app_color.dart';
-import 'package:parking_app/features/bookings/presentation/bookings.dart';
+import 'package:parking_app/features/reservation/presentation/bookings.dart';
 import 'package:parking_app/features/home/presentation/home_page.dart';
 import 'package:parking_app/features/profile/presentation/profile.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';

@@ -4,6 +4,7 @@ import 'package:parking_app/core/presentation/theme/app_color.dart';
 import 'package:parking_app/core/presentation/theme/text_style.dart';
 import 'package:parking_app/features/home/presentation/widgets/divider_text.dart';
 import 'package:parking_app/features/home/presentation/widgets/drawer.dart';
+import 'package:parking_app/features/home/presentation/widgets/parking_list.dart';
 import 'package:parking_app/features/home/presentation/widgets/search_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
 
   late String email;
+  late String title;
   @override
   void initState() {
     // TODO: implement initState
@@ -50,7 +52,28 @@ class _HomePageState extends State<HomePage> {
                 HomeSearchBar(),
               ],
             ),
-            DividerText(text: 'NEARBY')
+            DividerText(text: 'NEARBY'),
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: Container(
+                height: 200,
+                decoration: BoxDecoration(
+                  color: Color(0xFF11D195),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: ListView(
+                  children: <Widget>[
+                    ParkingListTile(
+                      image: Image.asset('assets/images/parking_logo.png'),
+                      title: 'Park Hero',
+                      subtitle: '00 Slots Available',
+                      trailing: '500 m',
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            DividerText(text: 'EXPLORE'),
           ],
         ),
       ),
