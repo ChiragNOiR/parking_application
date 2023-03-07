@@ -27,6 +27,7 @@ class DrawerHeaderSlider extends StatelessWidget {
                 radius: 35,
               ),
             ),
+            Text('Chirag Pokharel')
           ],
         ),
       ),

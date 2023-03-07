@@ -13,17 +13,63 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
+  var padding = EdgeInsets.symmetric(horizontal: 18, vertical: 5);
+  double gap = 10;
+
+  int _index = 0;
+  List<Color> colors = [Colors.purple, Colors.pink, Colors.grey, Colors.teal];
+
+  List<Text> text = [
+    Text(
+      'Home',
+    ),
+    Text(
+      'Like',
+    ),
+    Text(
+      'Search',
+    ),
+  ];
+  PageController controller = PageController();
+  final List pages = const [
+    HomePage(),
+    Bookings(),
+    ProfileScreen(),
+  ];
   @override
   Widget build(BuildContext context) {
-    List pages = const [
-      HomePage(),
-      Bookings(),
-      Profile(),
-    ];
+    // return Scaffold(
+    //   body: PageView.builder(
+    //     itemCount: 3,
+    //     controller: controller,
+    //     onPageChanged: (value) {
+    //       setState(() {
+    //         _index = value;
+    //       });
+    //     },
+    //     itemBuilder: (context, index) {
+    //       return Container(
+    //         color: colors[index],
+    //         child: Center(
+    //           child: text[index],
+    //         ),
+    //       );
+    //     },
+    //   ),
+    //   bottomNavigationBar: SafeArea(),
+    // );
+
     return Scaffold(
-      body: pages[0],
+      body: Center(
+        child: pages.elementAt(_index),
+      ),
       bottomNavigationBar: GNav(
-        onTabChange: (index) {},
+        selectedIndex: _index,
+        onTabChange: (index) {
+          setState(() {
+            _index = index;
+          });
+        },
         color: AppColor.black,
         backgroundColor: AppColor.primary,
         activeColor: AppColor.black,

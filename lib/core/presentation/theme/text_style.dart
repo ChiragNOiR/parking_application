@@ -55,4 +55,10 @@ class AppStyle {
     fontWeight: FontWeight.w500,
     letterSpacing: 0.1,
   );
+
+  static TextStyle profileHeading = GoogleFonts.roboto(
+    color: AppColor.black,
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+  );
 }

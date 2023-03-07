@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:go_router/go_router.dart';
 import 'package:parking_app/core/presentation/theme/app_color.dart';
 import 'package:parking_app/core/presentation/theme/text_style.dart';
 import 'package:parking_app/features/auth/presentation/login_page.dart';
 import 'package:parking_app/features/home/presentation/widgets/components/drawer_header_slider.dart';
 import 'package:parking_app/features/home/presentation/widgets/components/drawer_list.dart';
+import 'package:parking_app/features/profile/presentation/profile.dart';
 
 class NavDrawer extends StatelessWidget {
   const NavDrawer({super.key});
@@ -20,7 +22,13 @@ class NavDrawer extends StatelessWidget {
           DrawerListTile(
             leading: Icons.home,
             title: 'Home',
-            onPressed: () {},
+            onPressed: () {
+              return Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ProfileScreen(),
+                  ));
+            },
           ),
           DrawerListTile(
             leading: Icons.history,
@@ -70,7 +78,7 @@ class NavDrawer extends StatelessWidget {
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => LoginPage(),
+                        builder: (context) => ProfileScreen(),
                       ));
                 },
               ),

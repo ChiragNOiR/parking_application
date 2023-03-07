@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:parking_app/core/presentation/theme/text_style.dart';
 
 class DividerText extends StatelessWidget {
@@ -10,12 +8,9 @@ class DividerText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
-      child: Text(
-        text,
-        style: AppStyle.homePageDivider,
-      ),
+    return Text(
+      text,
+      style: AppStyle.homePageDivider,
     );
   }
 }

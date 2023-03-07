@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:parking_app/core/presentation/theme/app_color.dart';
 import 'package:parking_app/core/presentation/theme/text_style.dart';
-import 'package:parking_app/features/home/presentation/widgets/divider_text.dart';
 import 'package:parking_app/features/home/presentation/widgets/drawer.dart';
 import 'package:parking_app/features/home/presentation/widgets/explore_list.dart';
-import 'package:parking_app/features/home/presentation/widgets/parking_list.dart';
 import 'package:parking_app/features/home/presentation/widgets/search_bar.dart';
+
+import '../../../core/shared/divider_text.dart';
+import '../../../core/shared/parking_list.dart';
 
 class HomePage extends StatefulWidget {
   final token;
@@ -36,58 +37,81 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         key: _key,
         drawer: NavDrawer(),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              children: [
-                IconButton(
-                  onPressed: () => _key.currentState?.openDrawer(),
-                  icon: Icon(
-                    Icons.menu,
-                    color: AppColor.black,
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: () => _key.currentState?.openDrawer(),
+                    icon: Icon(
+                      Icons.menu,
+                      color: AppColor.black,
+                    ),
+                  ),
+                  HomeSearchBar(),
+                ],
+              ),
+              DividerText(text: 'NEARBY'),
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: Container(
+                  height: 200,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF11D195),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: ListView.builder(
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return Column(
+                        children: <Widget>[
+                          ParkingListTile(
+                            image:
+                                Image.asset('assets/images/parking_logo.png'),
+                            title: 'Park Hero',
+                            subtitle: '00 Slots Available',
+                            trailing: '500 m',
+                          ),
+                        ],
+                      );
+                    },
                   ),
                 ),
-                HomeSearchBar(),
-              ],
-            ),
-            DividerText(text: 'NEARBY'),
-            Padding(
-              padding: const EdgeInsets.all(8),
-              child: Container(
-                height: 200,
-                decoration: BoxDecoration(
-                  color: Color(0xFF11D195),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: ListView(
-                  children: <Widget>[
-                    ParkingListTile(
-                      image: Image.asset('assets/images/parking_logo.png'),
-                      title: 'Park Hero',
-                      subtitle: '00 Slots Available',
-                      trailing: '500 m',
-                    ),
-                  ],
+              ),
+              DividerText(text: 'EXPLORE'),
+              Container(
+                height: 500,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                  child: ListView.builder(
+                    // shrinkWrap: true,
+                    itemCount: 10,
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (context, index) {
+                      return Row(
+                        children: [
+                          ExploreList(
+                            imageData:
+                                'https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg',
+                          ),
+                          ExploreList(
+                            imageData:
+                                'https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg',
+                          )
+                        ],
+                      );
+                    },
+                  ),
                 ),
               ),
-            ),
-            DividerText(text: 'EXPLORE'),
-            Row(
-              children: [
-                ListView(
-                  children: [
-                    ExploreList(
-                        imageData:
-                            'https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg')
-                  ],
-                )
-              ],
-            )
-          ],
+            ],
+          ),
         ),
       ),
     );
