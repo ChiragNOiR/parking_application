@@ -36,33 +36,33 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Scaffold(
         key: _key,
-        drawer: NavDrawer(),
+        drawer: const NavDrawer(),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Row(
                 children: [
                   IconButton(
                     onPressed: () => _key.currentState?.openDrawer(),
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.menu,
                       color: AppColor.black,
                     ),
                   ),
-                  HomeSearchBar(),
+                  const HomeSearchBar(),
                 ],
               ),
-              DividerText(text: 'NEARBY'),
+              const DividerText(text: 'NEARBY'),
               Padding(
                 padding: const EdgeInsets.all(8),
                 child: Container(
                   height: 200,
                   decoration: BoxDecoration(
-                    color: Color(0xFF11D195),
+                    color: const Color(0xFF11D195),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: ListView.builder(
@@ -83,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              DividerText(text: 'EXPLORE'),
+              const DividerText(text: 'EXPLORE'),
               Container(
                 height: 500,
                 child: Padding(
@@ -96,11 +96,11 @@ class _HomePageState extends State<HomePage> {
                     itemBuilder: (context, index) {
                       return Row(
                         children: [
-                          ExploreList(
+                          const ExploreList(
                             imageData:
                                 'https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg',
                           ),
-                          ExploreList(
+                          const ExploreList(
                             imageData:
                                 'https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg',
                           )

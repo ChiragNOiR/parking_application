@@ -13,20 +13,20 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
-  var padding = EdgeInsets.symmetric(horizontal: 18, vertical: 5);
+  var padding = const EdgeInsets.symmetric(horizontal: 18, vertical: 5);
   double gap = 10;
 
   int _index = 0;
   List<Color> colors = [Colors.purple, Colors.pink, Colors.grey, Colors.teal];
 
   List<Text> text = [
-    Text(
+    const Text(
       'Home',
     ),
-    Text(
+    const Text(
       'Like',
     ),
-    Text(
+    const Text(
       'Search',
     ),
   ];

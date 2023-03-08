@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -6,16 +8,19 @@ class ProfileDetail extends StatelessWidget {
       {super.key,
       required this.icon,
       required this.title,
-      required this.sub_title});
+      required this.sub_title,
+      this.onTap});
   final IconData icon;
   final String title;
   final String sub_title;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: ListTile(
+        onTap: onTap,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Icon(

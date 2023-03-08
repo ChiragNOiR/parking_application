@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:go_router/go_router.dart';
-import 'package:parking_app/core/presentation/theme/app_color.dart';
 import 'package:parking_app/core/presentation/theme/text_style.dart';
 import 'package:parking_app/features/auth/presentation/login_page.dart';
 import 'package:parking_app/features/home/presentation/widgets/components/drawer_header_slider.dart';
@@ -18,17 +14,16 @@ class NavDrawer extends StatelessWidget {
       backgroundColor: Colors.black,
       child: ListView(
         children: [
-          DrawerHeaderSlider(),
+          const DrawerHeaderSlider(),
           DrawerListTile(
             leading: Icons.home,
             title: 'Home',
-            onPressed: () {
-              return Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ProfileScreen(),
-                  ));
-            },
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ProfileScreen(),
+              ),
+            ),
           ),
           DrawerListTile(
             leading: Icons.history,
@@ -45,7 +40,7 @@ class NavDrawer extends StatelessWidget {
             title: 'Notifications',
             onPressed: () {},
           ),
-          Divider(
+          const Divider(
             color: Colors.white,
           ),
           DrawerListTile(
@@ -58,7 +53,7 @@ class NavDrawer extends StatelessWidget {
             title: 'Settings',
             onPressed: () {},
           ),
-          SizedBox(
+          const SizedBox(
             height: 130,
           ),
           Padding(
@@ -73,12 +68,12 @@ class NavDrawer extends StatelessWidget {
                   'Logout',
                   style: AppStyle.loginTexts,
                 ),
-                leading: Icon(Icons.logout_outlined),
+                leading: const Icon(Icons.logout_outlined),
                 onTap: () {
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ProfileScreen(),
+                        builder: (context) => const LoginPage(),
                       ));
                 },
               ),

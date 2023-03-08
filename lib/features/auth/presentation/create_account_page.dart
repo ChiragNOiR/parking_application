@@ -6,8 +6,6 @@ import 'package:http/http.dart' as http;
 
 import 'package:parking_app/core/presentation/theme/app_color.dart';
 import 'package:parking_app/core/presentation/theme/text_style.dart';
-import 'package:parking_app/core/shared/toast.dart';
-import 'package:parking_app/features/auth/presentation/login_page.dart';
 import 'package:parking_app/features/auth/presentation/widgets/auth_button.dart';
 import 'package:parking_app/features/auth/presentation/widgets/text_field.dart';
 
@@ -21,7 +19,8 @@ class CreateAccountPage extends StatefulWidget {
 }
 
 class _CreateAccountPageState extends State<CreateAccountPage> {
-  final _formKey = new GlobalKey<FormState>();
+  // ignore: unused_field
+  final _formKey = GlobalKey<FormState>();
   TextEditingController fullNameController = TextEditingController();
   TextEditingController createUsernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -62,6 +61,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
       print(jsonResponse['success']);
 
       if (jsonResponse['status']) {
+        // ignore: use_build_context_synchronously
         Navigator.pop(context);
         // alertDialog(context, 'Registered Successfully');
       } else {

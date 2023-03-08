@@ -5,8 +5,8 @@ class ProfilePicture extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 25),
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 25),
       child: CircleAvatar(
         radius: 50,
       ),
