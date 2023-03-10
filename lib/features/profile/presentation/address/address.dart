@@ -3,14 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../core/presentation/theme/text_style.dart';
 
-class MyVehicle extends StatefulWidget {
-  const MyVehicle({super.key});
+class Address extends StatefulWidget {
+  const Address({super.key});
 
   @override
-  State<MyVehicle> createState() => _MyVehicleState();
+  State<Address> createState() => _AddressState();
 }
 
-class _MyVehicleState extends State<MyVehicle> {
+class _AddressState extends State<Address> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -42,7 +42,7 @@ class _MyVehicleState extends State<MyVehicle> {
                             height: 15,
                           ),
                           Text(
-                            'Vehicle Details',
+                            'Address',
                             style: GoogleFonts.roboto(
                               fontSize: 20,
                               color: const Color(0xFF726666),

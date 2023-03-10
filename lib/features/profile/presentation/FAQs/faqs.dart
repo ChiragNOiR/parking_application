@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:parking_app/features/profile/presentation/FAQs/widgets/question_panel.dart';
+import 'package:parking_app/features/profile/presentation/support/support.dart';
 
+import '../../../../core/presentation/theme/app_color.dart';
 import '../../../../core/presentation/theme/text_style.dart';
 
-class MyVehicle extends StatefulWidget {
-  const MyVehicle({super.key});
+class FAQs extends StatefulWidget {
+  const FAQs({super.key});
 
   @override
-  State<MyVehicle> createState() => _MyVehicleState();
+  State<FAQs> createState() => _FAQsState();
 }
 
-class _MyVehicleState extends State<MyVehicle> {
+class _FAQsState extends State<FAQs> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -42,7 +45,7 @@ class _MyVehicleState extends State<MyVehicle> {
                             height: 15,
                           ),
                           Text(
-                            'Vehicle Details',
+                            'Frequently Asked Questions',
                             style: GoogleFonts.roboto(
                               fontSize: 20,
                               color: const Color(0xFF726666),
@@ -55,14 +58,14 @@ class _MyVehicleState extends State<MyVehicle> {
                             height: 35,
                             child: FloatingActionButton.extended(
                               onPressed: () {
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //       builder: (context) => const MyDetails(),
-                                //     ));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const Support(),
+                                    ));
                               },
                               backgroundColor: const Color(0xFF11D195),
-                              label: const Text('Update'),
+                              label: const Text('Contact Support'),
                             ),
                           )
                         ],
@@ -84,6 +87,31 @@ class _MyVehicleState extends State<MyVehicle> {
                 ),
                 width: 395,
                 height: 600,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'General Questions',
+                        style: GoogleFonts.poppins(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: AppColor.primary,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      QuestionPanel(text: 'How to use Pick&Park ?'),
+                      QuestionPanel(text: 'Offers'),
+                      QuestionPanel(text: 'Vehicle Details'),
+                      QuestionPanel(text: 'Loyalty & Rewards'),
+                      QuestionPanel(text: 'How to park your vehicle?')
+                    ],
+                  ),
+                ),
               ),
             ),
           ],
