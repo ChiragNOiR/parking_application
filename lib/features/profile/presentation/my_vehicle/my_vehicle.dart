@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:parking_app/core/presentation/theme/app_color.dart';
+import 'package:parking_app/features/profile/presentation/my_vehicle/widgets/vehicle_textfield.dart';
 
 import '../../../../core/presentation/theme/text_style.dart';
 
@@ -17,7 +19,7 @@ class _MyVehicleState extends State<MyVehicle> {
       child: Scaffold(
         body: Stack(
           children: [
-            Container(
+            SizedBox(
               width: double.infinity,
               height: double.infinity,
             ),
@@ -62,7 +64,7 @@ class _MyVehicleState extends State<MyVehicle> {
                                 //     ));
                               },
                               backgroundColor: const Color(0xFF11D195),
-                              label: const Text('Update'),
+                              label: const Text('Add'),
                             ),
                           )
                         ],
@@ -84,6 +86,76 @@ class _MyVehicleState extends State<MyVehicle> {
                 ),
                 width: 395,
                 height: 600,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Details -',
+                          style: GoogleFonts.poppins(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: AppColor.primary,
+                          ),
+                        ),
+                        VehicleTextField(
+                          labelText: 'Company',
+                          helperText: 'Example. Honda/Suzuki/Audi',
+                          maxLength: 10,
+                        ),
+                        VehicleTextField(
+                          labelText: 'Model Name',
+                          helperText: 'Example. SX67HDD321',
+                          maxLength: 10,
+                        ),
+                        VehicleTextField(
+                          labelText: 'Year',
+                          helperText: 'Example. 2022',
+                          maxLength: 4,
+                        ),
+                        VehicleTextField(
+                          labelText: 'Color',
+                          helperText: 'Example. Red, White, Grey',
+                          maxLength: 10,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Divider(
+                          thickness: 2,
+                          color: AppColor.black,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'Primary Details -',
+                          style: GoogleFonts.poppins(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: AppColor.primary,
+                          ),
+                        ),
+                        VehicleTextField(
+                          labelText: 'License Number',
+                          helperText: 'Example. 34 PAA 0333',
+                          maxLength: 20,
+                        ),
+                        VehicleTextField(
+                          labelText: 'State Of Registration',
+                          helperText: 'Example. Bagmati, Narayani',
+                          maxLength: 10,
+                        ),
+                        SizedBox(
+                          height: 20,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ),
           ],
