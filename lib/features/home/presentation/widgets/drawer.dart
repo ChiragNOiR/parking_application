@@ -21,7 +21,7 @@ class NavDrawer extends StatelessWidget {
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const ProfileScreen(),
+                builder: (context) => ProfileScreen(),
               ),
             ),
           ),

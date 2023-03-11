@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Scaffold(
         key: _key,
-        drawer: const NavDrawer(),
+        drawer: NavDrawer(),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

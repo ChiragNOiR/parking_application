@@ -22,16 +22,18 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   // ignore: unused_field
   final _formKey = GlobalKey<FormState>();
   TextEditingController fullNameController = TextEditingController();
-  TextEditingController createUsernameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
+  TextEditingController contactController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
   bool _isNotValidate = false;
 
   // signUp() {
   //   print('Test');
   //   // String uid = _conUserId.text;
   //   String uName = fullNameController.text;
-  //   String uEmail = createUsernameController.text;
+  //   String uEmail = emailController.text;
   //   String uPassword = passwordController.text;
   //   String uConfirmPassword = confirmPasswordController.text;
 
@@ -44,11 +46,17 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   //   }
   // }
   void registerUser() async {
-    if (createUsernameController.text.isNotEmpty &&
-        passwordController.text.isNotEmpty) {
+    if (emailController.text.isNotEmpty &&
+        passwordController.text.isNotEmpty &&
+        fullNameController.text.isNotEmpty &&
+        contactController.text.isNotEmpty &&
+        addressController.text.isNotEmpty) {
       var regBody = {
-        "email": createUsernameController.text,
+        "fullName": fullNameController.text,
+        "email": emailController.text,
         "password": passwordController.text,
+        "contact": contactController.text,
+        "address": addressController.text,
       };
       var response = await http.post(
         Uri.parse(registration),
@@ -96,15 +104,19 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               alignment: Alignment.center,
               children: <Widget>[
                 const SizedBox(
-                  height: 700,
+                  height: 850,
                   width: double.infinity,
                 ),
-                SizedBox(
-                  width: 400,
-                  child: Image.asset('assets/images/create.png'),
+                Positioned(
+                  top: 40,
+                  child: SizedBox(
+                    width: 400,
+                    // height: 400,
+                    child: Image.asset('assets/images/create.png'),
+                  ),
                 ),
                 Positioned(
-                  top: 50,
+                  top: 20,
                   left: 20,
                   child: Text(
                     'Create\nAccount :)',
@@ -112,7 +124,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   ),
                 ),
                 Positioned(
-                  top: 170,
+                  top: 120,
                   left: 20,
                   child: AuthTextField(
                     text: 'Full Name',
@@ -123,18 +135,18 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   ),
                 ),
                 Positioned(
-                  top: 270,
+                  top: 220,
                   left: 20,
                   child: AuthTextField(
-                    text: 'Create Username',
+                    text: 'Email Address',
                     keyboardType: TextInputType.emailAddress,
-                    controller: createUsernameController,
+                    controller: emailController,
                     errorText:
                         _isNotValidate ? "Enter Proper Information" : null,
                   ),
                 ),
                 Positioned(
-                  top: 370,
+                  top: 320,
                   left: 20,
                   child: AuthTextField(
                     text: 'Create Password',
@@ -146,7 +158,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   ),
                 ),
                 Positioned(
-                  top: 470,
+                  top: 420,
                   left: 20,
                   child: AuthTextField(
                     text: 'Confirm Password',
@@ -158,7 +170,28 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   ),
                 ),
                 Positioned(
-                  bottom: 75,
+                  top: 520,
+                  left: 20,
+                  child: AuthTextField(
+                    text: 'Contact Number',
+                    controller: contactController,
+                    keyboardType: TextInputType.phone,
+                    errorText:
+                        _isNotValidate ? "Enter Proper Information" : null,
+                  ),
+                ),
+                Positioned(
+                  top: 620,
+                  left: 20,
+                  child: AuthTextField(
+                    text: 'Address',
+                    controller: addressController,
+                    errorText:
+                        _isNotValidate ? "Enter Proper Information" : null,
+                  ),
+                ),
+                Positioned(
+                  bottom: 50,
                   child: AuthButton(
                     text: 'Sign Up',
                     onTap: () => {registerUser()},

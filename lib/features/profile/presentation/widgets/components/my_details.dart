@@ -3,15 +3,32 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:parking_app/features/profile/application/user_provider.dart';
+import 'package:parking_app/features/profile/domain/user_model.dart';
 import 'package:parking_app/features/profile/presentation/widgets/components/widgets/profile_detail_template.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../core/presentation/theme/text_style.dart';
 import '../profile_detail.dart';
 import '../profile_picture.dart';
 import '../wallet.dart';
 
-class MyDetails extends StatelessWidget {
-  const MyDetails({super.key});
+class MyDetails extends StatefulWidget {
+  MyDetails(this.user, {Key? key}) : super(key: key);
+  UserModel user;
+
+  @override
+  State<MyDetails> createState() => _MyDetailsState();
+}
+
+class _MyDetailsState extends State<MyDetails> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Provider.of<UserProvider>(context, listen: false).getAllUserDetails();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,26 +92,26 @@ class MyDetails extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       TitleTextTemplate(
                         title: 'Full Name',
-                        text: 'User',
+                        text: widget.user.fullName!,
                       ),
                       TitleTextTemplate(
                         title: 'Email Address',
-                        text: 'user@gmail.com',
+                        text: widget.user.email!,
                       ),
                       TitleTextTemplate(
                         title: 'Phone Number',
-                        text: '9807849902',
+                        text: widget.user.phone!,
                       ),
                       TitleTextTemplate(
                         title: 'Address',
-                        text: 'Baneshwor',
+                        text: widget.user.address!,
                       ),
                       TitleTextTemplate(
                         title: 'City',
-                        text: 'Kathmandu',
+                        text: widget.user.address!,
                       ),
                     ],
                   ),
