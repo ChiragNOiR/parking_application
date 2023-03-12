@@ -16,9 +16,6 @@ import 'package:parking_app/features/profile/presentation/widgets/wallet.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
-  ProfileScreen(this.user, {Key? key}) : super(key: key);
-  UserModel user;
-
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
@@ -70,8 +67,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) =>
-                                              MyDetails(widget.user)));
+                                          builder: (context) => MyDetails()));
                                 },
                                 backgroundColor: const Color(0xFF11D195),
                                 label: const Text('Profile'),

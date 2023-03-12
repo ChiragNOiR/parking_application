@@ -8,12 +8,10 @@ import 'package:parking_app/features/splash_screen/splash_screen.dart';
 class MyApp extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
   final token;
-  final UserService userService;
 
   const MyApp({
     @required this.token,
     Key? key,
-    required this.userService,
   }) : super(key: key);
 
   @override

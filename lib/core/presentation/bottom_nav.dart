@@ -31,7 +31,7 @@ class _NavBarState extends State<NavBar> {
     ),
   ];
   PageController controller = PageController();
-  final List pages = const [
+  final List pages = [
     HomePage(),
     Bookings(),
     ProfileScreen(),
