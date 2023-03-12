@@ -36,118 +36,92 @@ class _MyDetailsState extends State<MyDetails> {
     // final provider = Provider.of<UserProvider>(context);
     return SafeArea(
       child: Scaffold(
-        body: ChangeNotifierProvider(
-            create: (context) => UserModel(),
-            builder: (context, child) {
-              final model = Provider.of<UserModel>(context);
-              if (model.homeState == HomeState.Loading) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-              if (model.homeState == HomeState.Error) {
-                return Center(
-                  child: Text('error'),
-                );
-              }
-              final users = model.users;
-              return ListView.builder(
-                  itemCount: users.length,
-                  itemBuilder: (context, index) {
-                    final user = users[index];
-                    return ListTile(
-                      title: Text(user.fullName!),
-                      subtitle: Text(user.email!),
-                    );
-                    // return Stack(
-                    //   children: [
-                    //     Container(
-                    //       width: double.infinity,
-                    //       height: double.infinity,
-                    //     ),
-                    //     Positioned(
-                    //       child: Container(
-                    //         width: double.infinity,
-                    //         height: 180,
-                    //         color: Color(0xFFE8F4F9),
-                    //         child: Row(
-                    //           crossAxisAlignment: CrossAxisAlignment.start,
-                    //           children: [
-                    //             Padding(
-                    //               padding: const EdgeInsets.all(20.0),
-                    //               child: Column(
-                    //                 crossAxisAlignment: CrossAxisAlignment.start,
-                    //                 children: [
-                    //                   GestureDetector(
-                    //                     onTap: () => Navigator.pop(context),
-                    //                     child: Icon(
-                    //                       Icons.arrow_back,
-                    //                     ),
-                    //                   ),
-                    //                   SizedBox(height: 20),
-                    //                   Text(
-                    //                     'My Profile',
-                    //                     style: AppStyle.profileHeading,
-                    //                   ),
-                    //                 ],
-                    //               ),
-                    //             ),
-                    //             SizedBox(
-                    //               width: 100,
-                    //             ),
-                    //             ProfilePicture(),
-                    //           ],
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     Positioned(
-                    //       top: 150,
-                    //       child: Container(
-                    //         decoration: const BoxDecoration(
-                    //           borderRadius: BorderRadius.only(
-                    //             topRight: Radius.circular(40),
-                    //             topLeft: Radius.circular(40),
-                    //           ),
-                    //           color: Colors.white,
-                    //         ),
-                    //         width: 395,
-                    //         height: 600,
-                    //         child: Padding(
-                    //           padding: const EdgeInsets.symmetric(
-                    //               horizontal: 25, vertical: 25),
-                    //           child: Column(
-                    //             crossAxisAlignment: CrossAxisAlignment.start,
-                    //             children: [
-                    //               TitleTextTemplate(
-                    //                 title: 'Full Name',
-                    //                 text: item.fullName!,
-                    //               ),
-                    //               // TitleTextTemplate(
-                    //               //   title: 'Email Address',
-                    //               //   text: widget.user.email!,
-                    //               // ),
-                    //               // TitleTextTemplate(
-                    //               //   title: 'Phone Number',
-                    //               //   text: widget.user.phone!,
-                    //               // ),
-                    //               // TitleTextTemplate(
-                    //               //   title: 'Address',
-                    //               //   text: widget.user.address!,
-                    //               // ),
-                    //               // TitleTextTemplate(
-                    //               //   title: 'City',
-                    //               //   text: widget.user.address!,
-                    //               // ),
-                    //             ],
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // );
-                  });
-            }),
-      ),
+          body: Stack(
+        children: [
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+          ),
+          Positioned(
+            child: Container(
+              width: double.infinity,
+              height: 180,
+              color: Color(0xFFE8F4F9),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        GestureDetector(
+                          onTap: () => Navigator.pop(context),
+                          child: Icon(
+                            Icons.arrow_back,
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        Text(
+                          'My Profile',
+                          style: AppStyle.profileHeading,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: 100,
+                  ),
+                  ProfilePicture(),
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            top: 150,
+            child: Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(40),
+                  topLeft: Radius.circular(40),
+                ),
+                color: Colors.white,
+              ),
+              width: 395,
+              height: 600,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TitleTextTemplate(
+                      title: 'Full Name',
+                      text: Provider.of<CurrentUser>(context).user.fullName,
+                    ),
+                    // TitleTextTemplate(
+                    //   title: 'Email Address',
+                    //   text: widget.user.email!,
+                    // ),
+                    // TitleTextTemplate(
+                    //   title: 'Phone Number',
+                    //   text: widget.user.phone!,
+                    // ),
+                    // TitleTextTemplate(
+                    //   title: 'Address',
+                    //   text: widget.user.address!,
+                    // ),
+                    // TitleTextTemplate(
+                    //   title: 'City',
+                    //   text: widget.user.address!,
+                    // ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      )),
     );
   }
 }

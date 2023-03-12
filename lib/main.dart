@@ -7,7 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'app.dart';
 
 void main() async {
-  // final UserService userService = UserService();
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   // runApp(
@@ -24,15 +23,15 @@ void main() async {
   //   ),
   // );
   runApp(
-    // MultiProvider(
-    //   providers: [
-    //     ChangeNotifierProvider(
-    //       create: (context) => UserProvider(userService: userService),
-    //     )
-    //   ],
-    MyApp(
-      token: prefs.getString('token'),
-      // userService: userService,
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => CurrentUser(),
+        )
+      ],
+      child: MyApp(
+        token: prefs.getString('token'),
+      ),
     ),
   );
 }

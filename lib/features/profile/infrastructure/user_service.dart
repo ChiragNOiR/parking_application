@@ -73,25 +73,25 @@ import '../domain/user.dart';
 //   }
 // }
 
-class UserApi {
-  static late UserApi _instance;
+// class UserApi {
+//   static late UserApi _instance;
 
-  UserApi._();
+//   UserApi._();
 
-  static UserApi get instance {
-    if (_instance == null) {
-      _instance = UserApi._();
-    }
-    return _instance;
-  }
+//   static UserApi get instance {
+//     if (_instance == null) {
+//       _instance = UserApi._();
+//     }
+//     return _instance;
+//   }
 
-  Future<List<User>> getAllUser() async {
-    final getUser = await http
-        .get(Uri.parse("http://10.0.2.2:3000/getUserDetails"), headers: {
-      'Content-type': 'application/json',
-      'Accept': 'application/json',
-    });
-    final List responseBody = jsonDecode(getUser.body);
-    return responseBody.map((e) => User.fromJson(e)).toList();
-  }
-}
+//   Future<List<User>> getAllUser() async {
+//     final getUser = await http
+//         .get(Uri.parse("http://10.0.2.2:3000/getUserDetails"), headers: {
+//       'Content-type': 'application/json',
+//       'Accept': 'application/json',
+//     });
+//     final List responseBody = jsonDecode(getUser.body);
+//     return responseBody.map((e) => User.fromJson(e)).toList();
+//   }
+// }

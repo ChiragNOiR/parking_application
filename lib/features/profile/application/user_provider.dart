@@ -22,3 +22,18 @@
 //     notifyListeners();
 //   }
 // }
+
+import 'package:flutter/material.dart';
+
+import '../domain/user.dart';
+
+class CurrentUser extends ChangeNotifier {
+  User _currentUser = User('', '', '', '', '', '', '');
+
+  User get user => _currentUser;
+
+  void setUser(User user) {
+    _currentUser = user;
+    notifyListeners();
+  }
+}
