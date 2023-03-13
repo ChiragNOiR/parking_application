@@ -3,7 +3,10 @@ import 'package:parking_app/core/presentation/theme/text_style.dart';
 import 'package:parking_app/features/auth/presentation/login_page.dart';
 import 'package:parking_app/features/home/presentation/widgets/components/drawer_header_slider.dart';
 import 'package:parking_app/features/home/presentation/widgets/components/drawer_list.dart';
+import 'package:parking_app/features/profile/application/user_provider.dart';
+import 'package:parking_app/features/profile/infrastructure/user_service.dart';
 import 'package:parking_app/features/profile/presentation/profile.dart';
+import 'package:provider/provider.dart';
 
 class NavDrawer extends StatelessWidget {
   const NavDrawer({super.key});
@@ -69,7 +72,14 @@ class NavDrawer extends StatelessWidget {
                   style: AppStyle.loginTexts,
                 ),
                 leading: const Icon(Icons.logout_outlined),
-                onTap: () {
+                onTap: () async {
+                  // Navigator.pushReplacement(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) => const LoginPage(),
+                  //     ));
+                  await UserService().logOut(context);
+                  context.read<CurrentUser>().logout();
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(

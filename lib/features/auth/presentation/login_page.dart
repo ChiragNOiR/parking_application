@@ -3,6 +3,9 @@ import 'dart:convert';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:parking_app/features/profile/domain/user.dart';
+import 'package:parking_app/features/profile/infrastructure/user_service.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:parking_app/core/presentation/bottom_nav.dart';
@@ -13,6 +16,7 @@ import 'package:parking_app/features/auth/presentation/widgets/text_field.dart';
 import 'package:parking_app/features/home/presentation/home_page.dart';
 
 import '../../../core/shared/config.dart';
+import '../../profile/application/user_provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -26,45 +30,55 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController passwordController = TextEditingController();
   final bool _isNotValidate = false;
   late SharedPreferences prefs;
-
+  final UserService userService = UserService();
   @override
-  void initState() {
-    initSharedPref();
-    super.initState();
-  }
+  // void initState() {
+  //   initSharedPref();
+  //   super.initState();
+  // }
 
-  void initSharedPref() async {
-    // SharedPreferences.setMockInitialValues({});
-    prefs = await SharedPreferences.getInstance();
-  }
+  // void initSharedPref() async {
+  //   // SharedPreferences.setMockInitialValues({});
+  //   prefs = await SharedPreferences.getInstance();
+  // }
 
-  void loginUser() async {
-    if (nameController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-      var regBody = {
-        "email": nameController.text,
-        "password": passwordController.text,
-      };
+  // void loginUser() async {
+  //   if (nameController.text.isNotEmpty && passwordController.text.isNotEmpty) {
+  //     var regBody = {
+  //       "email": nameController.text,
+  //       "password": passwordController.text,
+  //     };
 
-      var response = await http.post(
-        Uri.parse(login),
-        headers: {"Content-Type": "application/json"},
-        body: jsonEncode(regBody),
-      );
-      var jsonResponse = jsonDecode(response.body);
-      if (jsonResponse['status']) {
-        var myToken = jsonResponse['token'];
-        prefs.setString('token', myToken);
-        // ignore: use_build_context_synchronously
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => HomePage(token: myToken),
-          ),
-        );
-      } else {
-        print('Something went wrong');
-      }
-    }
+  //     var response = await http.post(
+  //       Uri.parse(login),
+  //       headers: {"Content-Type": "application/json"},
+  //       body: jsonEncode(regBody),
+  //     );
+  //     var jsonResponse = jsonDecode(response.body);
+  //     if (jsonResponse['status']) {
+  //       var myToken = jsonResponse['token'];
+  //       prefs.setString('token', myToken);
+
+  //       var userProvider = Provider.of<CurrentUser>(context, listen: false);
+  //       userProvider.setUser(jsonResponse);
+
+  //       // ignore: use_build_context_synchronously
+  //       Navigator.push(
+  //         context,
+  //         MaterialPageRoute(
+  //           builder: (context) => HomePage(token: myToken),
+  //         ),
+  //       );
+  //     } else {
+  //       print('Something went wrong');
+  //     }
+  //   }
+  // }
+  void loginUser() {
+    userService.loginUser(
+        context: context,
+        userEmail: nameController.text,
+        userPassword: passwordController.text);
   }
 
   @override

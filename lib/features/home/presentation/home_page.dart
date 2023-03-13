@@ -11,8 +11,8 @@ import '../../../core/shared/divider_text.dart';
 import '../../../core/shared/parking_list.dart';
 
 class HomePage extends StatefulWidget {
-  final token;
-  const HomePage({super.key, @required this.token});
+  // final token;
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -24,12 +24,12 @@ class _HomePageState extends State<HomePage> {
   late String email;
   late String title;
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    Map<String, dynamic> jwtDecodedToken = JwtDecoder.decode(widget.token);
-    email = jwtDecodedToken['email'];
-  }
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   Map<String, dynamic> jwtDecodedToken = JwtDecoder.decode(widget.token);
+  //   email = jwtDecodedToken['email'];
+  // }
 
   @override
   Widget build(BuildContext context) {
