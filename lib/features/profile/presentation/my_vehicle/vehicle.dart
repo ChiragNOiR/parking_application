@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:parking_app/features/profile/presentation/address/add_address.dart';
+import 'package:parking_app/features/profile/presentation/my_vehicle/my_vehicle.dart';
+import 'package:parking_app/features/profile/presentation/my_vehicle/widgets/vehicle_detail_template.dart';
 
-import '../../../../core/presentation/theme/text_style.dart';
-
-class Address extends StatefulWidget {
-  const Address({super.key});
+class Vehicle extends StatefulWidget {
+  const Vehicle({super.key});
 
   @override
-  State<Address> createState() => _AddressState();
+  State<Vehicle> createState() => _VehicleState();
 }
 
-class _AddressState extends State<Address> {
+class _VehicleState extends State<Vehicle> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         body: Stack(
           children: [
-            Container(
+            SizedBox(
               width: double.infinity,
               height: double.infinity,
             ),
@@ -43,7 +42,7 @@ class _AddressState extends State<Address> {
                             height: 15,
                           ),
                           Text(
-                            'Address',
+                            'Vehicle Details',
                             style: GoogleFonts.roboto(
                               fontSize: 20,
                               color: const Color(0xFF726666),
@@ -59,11 +58,11 @@ class _AddressState extends State<Address> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => const AddAddress(),
+                                      builder: (context) => MyVehicle(),
                                     ));
                               },
                               backgroundColor: const Color(0xFF11D195),
-                              label: const Text('Update Address'),
+                              label: const Text('Add Vehicle'),
                             ),
                           )
                         ],
@@ -85,6 +84,41 @@ class _AddressState extends State<Address> {
                 ),
                 width: 395,
                 height: 600,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        VehicleDetailTemplate(
+                          title: 'Company',
+                          text: '',
+                        ),
+                        VehicleDetailTemplate(
+                          title: 'Model',
+                          text: '',
+                        ),
+                        VehicleDetailTemplate(
+                          title: 'Year',
+                          text: '',
+                        ),
+                        VehicleDetailTemplate(
+                          title: 'Color',
+                          text: '',
+                        ),
+                        VehicleDetailTemplate(
+                          title: 'License Number',
+                          text: '',
+                        ),
+                        VehicleDetailTemplate(
+                          title: 'Registered State / Zone',
+                          text: '',
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ),
           ],

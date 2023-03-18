@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:parking_app/core/presentation/theme/text_style.dart';
 import 'package:parking_app/core/shared/divider_text.dart';
-import 'package:parking_app/features/profile/domain/user_model.dart';
 import 'package:parking_app/features/profile/presentation/FAQs/faqs.dart';
 import 'package:parking_app/features/profile/presentation/address/address.dart';
 import 'package:parking_app/features/profile/presentation/my_vehicle/my_vehicle.dart';
+import 'package:parking_app/features/profile/presentation/my_vehicle/vehicle.dart';
 import 'package:parking_app/features/profile/presentation/privacy_policy/privacy_policy.dart';
 import 'package:parking_app/features/profile/presentation/coupon/coupon.dart';
 import 'package:parking_app/features/profile/presentation/support/support.dart';
@@ -113,13 +113,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ProfileDetail(
                         icon: Icons.car_crash,
                         title: 'My Vehicle',
-                        sub_title: 'Add Vehicle Information',
+                        sub_title: 'View Vehicle Information',
                         onTap: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const MyVehicle(),
-                              ));
+                                  builder: (context) => const Vehicle()));
                         },
                       ),
                       ProfileDetail(

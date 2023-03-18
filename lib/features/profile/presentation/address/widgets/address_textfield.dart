@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/presentation/theme/app_color.dart';
 
-class VehicleTextField extends StatelessWidget {
-  const VehicleTextField(
+class AddressTextField extends StatelessWidget {
+  const AddressTextField(
       {super.key,
       required this.labelText,
       this.helperText,

@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:parking_app/core/presentation/theme/app_color.dart';
 import 'package:parking_app/features/profile/presentation/my_vehicle/widgets/vehicle_textfield.dart';
 
 import '../../../../core/presentation/theme/text_style.dart';
+import 'package:http/http.dart' as http;
+import '../../../../core/shared/config.dart';
 
 class MyVehicle extends StatefulWidget {
   const MyVehicle({super.key});
@@ -13,6 +17,62 @@ class MyVehicle extends StatefulWidget {
 }
 
 class _MyVehicleState extends State<MyVehicle> {
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController companyController = TextEditingController();
+  TextEditingController modelController = TextEditingController();
+  TextEditingController yearController = TextEditingController();
+  TextEditingController colorController = TextEditingController();
+  TextEditingController licenseNumberController = TextEditingController();
+  TextEditingController stateController = TextEditingController();
+  bool _isNotValidate = false;
+
+  @override
+  void dispose() {
+    companyController.dispose();
+    modelController.dispose();
+    yearController.dispose();
+    colorController.dispose();
+    licenseNumberController.dispose();
+    stateController.dispose();
+    super.dispose();
+  }
+
+  void registerVehicle() async {
+    if (companyController.text.isNotEmpty &&
+        modelController.text.isNotEmpty &&
+        yearController.text.isNotEmpty &&
+        colorController.text.isNotEmpty &&
+        licenseNumberController.text.isNotEmpty &&
+        stateController.text.isNotEmpty) {
+      var regBody = {
+        "company": companyController.text,
+        "model": modelController.text,
+        "year": yearController.text,
+        "color": colorController.text,
+        "licenseNumber": licenseNumberController.text,
+        "stateOfRegistration": stateController.text,
+      };
+
+      var response = await http.post(
+        Uri.parse(registerVehicleUrl),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode(regBody),
+      );
+
+      var jsonResponse = jsonDecode(response.body);
+
+      if (jsonResponse['status']) {
+        Navigator.pop(context);
+      } else {
+        print('OOPS');
+      }
+    } else {
+      setState(() {
+        _isNotValidate = true;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -57,11 +117,7 @@ class _MyVehicleState extends State<MyVehicle> {
                             height: 35,
                             child: FloatingActionButton.extended(
                               onPressed: () {
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //       builder: (context) => const MyDetails(),
-                                //     ));
+                                registerVehicle();
                               },
                               backgroundColor: const Color(0xFF11D195),
                               label: const Text('Add'),
@@ -94,7 +150,7 @@ class _MyVehicleState extends State<MyVehicle> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Details -',
+                          'Fill up the details - ',
                           style: GoogleFonts.poppins(
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
@@ -105,21 +161,25 @@ class _MyVehicleState extends State<MyVehicle> {
                           labelText: 'Company',
                           helperText: 'Example. Honda/Suzuki/Audi',
                           maxLength: 10,
+                          controller: companyController,
                         ),
                         VehicleTextField(
                           labelText: 'Model Name',
                           helperText: 'Example. SX67HDD321',
                           maxLength: 10,
+                          controller: modelController,
                         ),
                         VehicleTextField(
                           labelText: 'Year',
                           helperText: 'Example. 2022',
                           maxLength: 4,
+                          controller: yearController,
                         ),
                         VehicleTextField(
                           labelText: 'Color',
                           helperText: 'Example. Red, White, Grey',
                           maxLength: 10,
+                          controller: colorController,
                         ),
                         SizedBox(
                           height: 10,
@@ -143,11 +203,13 @@ class _MyVehicleState extends State<MyVehicle> {
                           labelText: 'License Number',
                           helperText: 'Example. 34 PAA 0333',
                           maxLength: 20,
+                          controller: licenseNumberController,
                         ),
                         VehicleTextField(
                           labelText: 'State Of Registration',
                           helperText: 'Example. Bagmati, Narayani',
                           maxLength: 10,
+                          controller: stateController,
                         ),
                         SizedBox(
                           height: 20,

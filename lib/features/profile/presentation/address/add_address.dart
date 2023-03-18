@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:parking_app/features/profile/presentation/address/add_address.dart';
+import 'package:parking_app/features/profile/presentation/address/widgets/address_textfield.dart';
 
 import '../../../../core/presentation/theme/text_style.dart';
 
-class Address extends StatefulWidget {
-  const Address({super.key});
+class AddAddress extends StatefulWidget {
+  const AddAddress({super.key});
 
   @override
-  State<Address> createState() => _AddressState();
+  State<AddAddress> createState() => _AddAddressState();
 }
 
-class _AddressState extends State<Address> {
+class _AddAddressState extends State<AddAddress> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -43,7 +43,7 @@ class _AddressState extends State<Address> {
                             height: 15,
                           ),
                           Text(
-                            'Address',
+                            'Add/Update your address',
                             style: GoogleFonts.roboto(
                               fontSize: 20,
                               color: const Color(0xFF726666),
@@ -56,14 +56,14 @@ class _AddressState extends State<Address> {
                             height: 35,
                             child: FloatingActionButton.extended(
                               onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const AddAddress(),
-                                    ));
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //       builder: (context) => const MyDetails(),
+                                //     ));
                               },
                               backgroundColor: const Color(0xFF11D195),
-                              label: const Text('Update Address'),
+                              label: const Text('Update'),
                             ),
                           )
                         ],
@@ -85,6 +85,17 @@ class _AddressState extends State<Address> {
                 ),
                 width: 395,
                 height: 600,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AddressTextField(
+                      labelText: 'Company',
+                      helperText: 'Example. Honda/Suzuki/Audi',
+                      maxLength: 10,
+                      // controller: companyController,
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

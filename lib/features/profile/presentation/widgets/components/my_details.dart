@@ -4,7 +4,6 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:parking_app/features/profile/application/user_provider.dart';
-import 'package:parking_app/features/profile/domain/user_model.dart';
 import 'package:parking_app/features/profile/presentation/widgets/components/widgets/profile_detail_template.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +32,7 @@ class _MyDetailsState extends State<MyDetails> {
 
   @override
   Widget build(BuildContext context) {
-    // final provider = Provider.of<UserProvider>(context);
+    final provider = Provider.of<CurrentUser>(context);
     return SafeArea(
       child: Scaffold(
           body: Stack(
@@ -97,24 +96,24 @@ class _MyDetailsState extends State<MyDetails> {
                   children: [
                     TitleTextTemplate(
                       title: 'Full Name',
-                      text: Provider.of<CurrentUser>(context).user.fullName,
+                      text: provider.user.fullName,
                     ),
-                    // TitleTextTemplate(
-                    //   title: 'Email Address',
-                    //   text: widget.user.email!,
-                    // ),
-                    // TitleTextTemplate(
-                    //   title: 'Phone Number',
-                    //   text: widget.user.phone!,
-                    // ),
-                    // TitleTextTemplate(
-                    //   title: 'Address',
-                    //   text: widget.user.address!,
-                    // ),
-                    // TitleTextTemplate(
-                    //   title: 'City',
-                    //   text: widget.user.address!,
-                    // ),
+                    TitleTextTemplate(
+                      title: 'Email Address',
+                      text: provider.user.userEmail,
+                    ),
+                    TitleTextTemplate(
+                      title: 'Phone Number',
+                      text: provider.user.userContact,
+                    ),
+                    TitleTextTemplate(
+                      title: 'Address',
+                      text: provider.user.userAddress,
+                    ),
+                    TitleTextTemplate(
+                      title: 'City',
+                      text: provider.user.userAddress,
+                    ),
                   ],
                 ),
               ),

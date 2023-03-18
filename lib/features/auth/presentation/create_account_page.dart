@@ -96,110 +96,159 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          textDirection: TextDirection.ltr,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              alignment: Alignment.center,
-              children: <Widget>[
-                const SizedBox(
-                  height: 850,
-                  width: double.infinity,
-                ),
-                Positioned(
-                  top: 40,
-                  child: SizedBox(
-                    width: 400,
-                    // height: 400,
-                    child: Image.asset('assets/images/create.png'),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            textDirection: TextDirection.ltr,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(
+                alignment: Alignment.center,
+                children: <Widget>[
+                  const SizedBox(
+                    height: 850,
+                    width: double.infinity,
                   ),
-                ),
-                Positioned(
-                  top: 20,
-                  left: 20,
-                  child: Text(
-                    'Create\nAccount :)',
-                    style: AppStyle.loginpageh1,
+                  Positioned(
+                    top: 40,
+                    child: SizedBox(
+                      width: 400,
+                      // height: 400,
+                      child: Image.asset('assets/images/create.png'),
+                    ),
                   ),
-                ),
-                Positioned(
-                  top: 120,
-                  left: 20,
-                  child: AuthTextField(
-                    text: 'Full Name',
-                    keyboardType: TextInputType.name,
-                    controller: fullNameController,
-                    errorText:
-                        _isNotValidate ? "Enter Proper Information" : null,
+                  Positioned(
+                    top: 20,
+                    left: 20,
+                    child: Text(
+                      'Create\nAccount :)',
+                      style: AppStyle.loginpageh1,
+                    ),
                   ),
-                ),
-                Positioned(
-                  top: 220,
-                  left: 20,
-                  child: AuthTextField(
-                    text: 'Email Address',
-                    keyboardType: TextInputType.emailAddress,
-                    controller: emailController,
-                    errorText:
-                        _isNotValidate ? "Enter Proper Information" : null,
+                  Positioned(
+                    top: 110,
+                    left: 20,
+                    child: AuthTextField(
+                      text: 'Full Name',
+                      keyboardType: TextInputType.name,
+                      controller: fullNameController,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Full Name is required';
+                        }
+
+                        return null;
+                      },
+                    ),
                   ),
-                ),
-                Positioned(
-                  top: 320,
-                  left: 20,
-                  child: AuthTextField(
-                    text: 'Create Password',
-                    // keyboardType: TextInputType.visiblePassword,
-                    obscureText: true,
-                    controller: passwordController,
-                    errorText:
-                        _isNotValidate ? "Enter Proper Information" : null,
+                  Positioned(
+                    top: 220,
+                    left: 20,
+                    child: AuthTextField(
+                      text: 'Email Address',
+                      keyboardType: TextInputType.emailAddress,
+                      controller: emailController,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Email is required';
+                        }
+                        if (!value.contains('@') || !value.contains('.com')) {
+                          return 'Invalid email format! Please use google mail only';
+                        }
+                        return null;
+                      },
+                    ),
                   ),
-                ),
-                Positioned(
-                  top: 420,
-                  left: 20,
-                  child: AuthTextField(
-                    text: 'Confirm Password',
-                    // keyboardType: TextInputType.visiblePassword,
-                    obscureText: true,
-                    controller: confirmPasswordController,
-                    errorText:
-                        _isNotValidate ? "Enter Proper Information" : null,
+                  Positioned(
+                    top: 330,
+                    left: 20,
+                    child: AuthTextField(
+                      text: 'Create Password',
+                      // keyboardType: TextInputType.visiblePassword,
+                      obscureText: true,
+                      icon: Icons.visibility,
+                      controller: passwordController,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Password is required';
+                        }
+                        if (value.length < 8) {
+                          return 'Password must be at least 8 characters long';
+                        }
+                        return null;
+                      },
+                    ),
                   ),
-                ),
-                Positioned(
-                  top: 520,
-                  left: 20,
-                  child: AuthTextField(
-                    text: 'Contact Number',
-                    controller: contactController,
-                    keyboardType: TextInputType.phone,
-                    errorText:
-                        _isNotValidate ? "Enter Proper Information" : null,
+                  Positioned(
+                    top: 430,
+                    left: 20,
+                    child: AuthTextField(
+                      text: 'Confirm Password',
+                      // keyboardType: TextInputType.visiblePassword,
+                      obscureText: true,
+                      icon: Icons.visibility,
+                      controller: confirmPasswordController,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Confirm Password is required';
+                        }
+                        if (value != passwordController.text) {
+                          return 'Passwords do not match';
+                        }
+                        return null;
+                      },
+                    ),
                   ),
-                ),
-                Positioned(
-                  top: 620,
-                  left: 20,
-                  child: AuthTextField(
-                    text: 'Address',
-                    controller: addressController,
-                    errorText:
-                        _isNotValidate ? "Enter Proper Information" : null,
+                  Positioned(
+                    top: 540,
+                    left: 20,
+                    child: AuthTextField(
+                      text: 'Contact Number',
+                      controller: contactController,
+                      keyboardType: TextInputType.phone,
+                      maxLength: 10,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Contact details is required';
+                        }
+                        if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                          return 'Contact details should contain only numbers';
+                        }
+                        if (value.length != 10) {
+                          return 'Contact details should contain exactly 10 numbers';
+                        }
+                        return null;
+                      },
+                    ),
                   ),
-                ),
-                Positioned(
-                  bottom: 50,
-                  child: AuthButton(
-                    text: 'Sign Up',
-                    onTap: () => {registerUser()},
+                  Positioned(
+                    top: 650,
+                    left: 20,
+                    child: AuthTextField(
+                      text: 'Address',
+                      controller: addressController,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Address is required';
+                        }
+
+                        return null;
+                      },
+                    ),
                   ),
-                )
-              ],
-            )
-          ],
+                  Positioned(
+                    bottom: 30,
+                    child: AuthButton(
+                      text: 'Sign Up',
+                      onTap: () => {
+                        if (_formKey.currentState!.validate()) {registerUser()}
+                      },
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

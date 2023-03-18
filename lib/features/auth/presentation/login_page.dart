@@ -26,54 +26,13 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  final bool _isNotValidate = false;
+
   late SharedPreferences prefs;
   final UserService userService = UserService();
-  @override
-  // void initState() {
-  //   initSharedPref();
-  //   super.initState();
-  // }
 
-  // void initSharedPref() async {
-  //   // SharedPreferences.setMockInitialValues({});
-  //   prefs = await SharedPreferences.getInstance();
-  // }
-
-  // void loginUser() async {
-  //   if (nameController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-  //     var regBody = {
-  //       "email": nameController.text,
-  //       "password": passwordController.text,
-  //     };
-
-  //     var response = await http.post(
-  //       Uri.parse(login),
-  //       headers: {"Content-Type": "application/json"},
-  //       body: jsonEncode(regBody),
-  //     );
-  //     var jsonResponse = jsonDecode(response.body);
-  //     if (jsonResponse['status']) {
-  //       var myToken = jsonResponse['token'];
-  //       prefs.setString('token', myToken);
-
-  //       var userProvider = Provider.of<CurrentUser>(context, listen: false);
-  //       userProvider.setUser(jsonResponse);
-
-  //       // ignore: use_build_context_synchronously
-  //       Navigator.push(
-  //         context,
-  //         MaterialPageRoute(
-  //           builder: (context) => HomePage(token: myToken),
-  //         ),
-  //       );
-  //     } else {
-  //       print('Something went wrong');
-  //     }
-  //   }
-  // }
   void loginUser() {
     userService.loginUser(
         context: context,
@@ -85,107 +44,134 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(
-              height: 120,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Text.rich(
-                TextSpan(
-                  text: 'Welcome Back!\n',
-                  style: AppStyle.loginpageh1,
-                  children: <InlineSpan>[
-                    TextSpan(
-                        text: 'Enter Your Username & Password',
-                        style: AppStyle.loginpageh2)
-                  ],
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(
+                height: 120,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Text.rich(
+                  TextSpan(
+                    text: 'Welcome Back!\n',
+                    style: AppStyle.loginpageh1,
+                    children: <InlineSpan>[
+                      TextSpan(
+                          text: 'Enter Your Username & Password',
+                          style: AppStyle.loginpageh2)
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Stack(
-              alignment: Alignment.topLeft,
-              children: [
-                Container(
-                  height: 624.9,
-                  color: Colors.white,
-                ),
-                Positioned(
-                  height: 600,
-                  bottom: 0,
-                  child: Image.asset('assets/images/Union.png'),
-                ),
-                Positioned(
-                  top: 120,
-                  left: 20,
-                  child: AuthTextField(
-                    controller: nameController,
-                    text: 'Username',
+              Stack(
+                alignment: Alignment.topLeft,
+                children: [
+                  Container(
+                    height: 624.9,
+                    color: Colors.white,
                   ),
-                ),
-                Positioned(
-                  top: 240,
-                  left: 20,
-                  child: AuthTextField(
-                    obscureText: true,
-                    controller: passwordController,
-                    text: 'Password',
+                  Positioned(
+                    height: 600,
+                    bottom: 0,
+                    child: Image.asset('assets/images/Union.png'),
                   ),
-                ),
-                Positioned(
-                  bottom: 210,
-                  left: 80,
-                  child: AuthButton(
-                    text: 'LOGIN',
-                    onTap: () {
-                      loginUser();
-                    },
-                  ),
-                ),
-                Positioned(
-                  bottom: 100,
-                  left: 110,
-                  child: Text.rich(
-                    textAlign: TextAlign.center,
-                    TextSpan(
-                      text: 'Forgotten Password?\n',
-                      style: AppStyle.loginpageh3,
-                      children: <InlineSpan>[
-                        const WidgetSpan(
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 15),
-                          ),
-                        ),
-                        TextSpan(
-                          text: 'OR\n',
-                          style: AppStyle.loginpageh3,
-                        ),
-                        const WidgetSpan(
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 15),
-                          ),
-                        ),
-                        TextSpan(
-                          text: 'Create a New Account',
-                          style: AppStyle.loginpageh3,
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const CreateAccountPage(),
-                                  ),
-                                ),
-                        ),
-                      ],
+                  Positioned(
+                    top: 120,
+                    left: 20,
+                    child: AuthTextField(
+                      controller: nameController,
+                      text: 'Username',
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your username';
+                        }
+                        if (!value.contains('@') || !value.contains('.')) {
+                          return 'Check if you are using correct email format';
+                        }
+                        if (!value.contains('gmail') ||
+                            !value.endsWith('.com')) {
+                          return 'Incorrect Email';
+                        }
+                        return null;
+                      },
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                  Positioned(
+                    top: 240,
+                    left: 20,
+                    child: AuthTextField(
+                      obscureText: true,
+                      controller: passwordController,
+                      text: 'Password',
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your password';
+                        }
+                        if (value.length < 4) {
+                          return 'Incorrect Password';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 210,
+                    left: 80,
+                    child: AuthButton(
+                      text: 'LOGIN',
+                      onTap: () {
+                        if (_formKey.currentState!.validate()) {
+                          loginUser();
+                        }
+                      },
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 100,
+                    left: 110,
+                    child: Text.rich(
+                      textAlign: TextAlign.center,
+                      TextSpan(
+                        text: 'Forgotten Password?\n',
+                        style: AppStyle.loginpageh3,
+                        children: <InlineSpan>[
+                          const WidgetSpan(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 15),
+                            ),
+                          ),
+                          TextSpan(
+                            text: 'OR\n',
+                            style: AppStyle.loginpageh3,
+                          ),
+                          const WidgetSpan(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 15),
+                            ),
+                          ),
+                          TextSpan(
+                            text: 'Create a New Account',
+                            style: AppStyle.loginpageh3,
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const CreateAccountPage(),
+                                    ),
+                                  ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
