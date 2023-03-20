@@ -3,9 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:parking_app/core/presentation/theme/app_color.dart';
 import 'package:parking_app/core/presentation/theme/text_style.dart';
+import 'package:parking_app/features/explore/presentation/explore_screen.dart';
+import 'package:parking_app/features/explore/presentation/explore_screens/explore_adventure.dart';
+import 'package:parking_app/features/explore/presentation/explore_screens/explore_mall.dart';
+import 'package:parking_app/features/explore/presentation/explore_screens/explore_schools.dart';
+import 'package:parking_app/features/explore/presentation/explore_screens/explore_temple.dart';
+import 'package:parking_app/features/home/application/explore_image_provider.dart';
+import 'package:parking_app/features/home/domain/explore_model.dart';
 import 'package:parking_app/features/home/presentation/widgets/drawer.dart';
 import 'package:parking_app/features/home/presentation/widgets/explore_list.dart';
 import 'package:parking_app/features/home/presentation/widgets/search_bar.dart';
+import 'package:provider/provider.dart';
 
 import '../../../core/shared/divider_text.dart';
 import '../../../core/shared/parking_list.dart';
@@ -56,7 +64,13 @@ class _HomePageState extends State<HomePage> {
                   const HomeSearchBar(),
                 ],
               ),
-              const DividerText(text: 'NEARBY'),
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: const DividerText(text: 'NEARBY'),
+              ),
               Padding(
                 padding: const EdgeInsets.all(8),
                 child: Container(
@@ -83,28 +97,101 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              const DividerText(text: 'EXPLORE'),
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: const DividerText(text: 'EXPLORE'),
+              ),
               Container(
-                height: 500,
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                  child: ListView.builder(
-                    // shrinkWrap: true,
-                    itemCount: 10,
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: (context, index) {
-                      return Row(
-                        children: [
-                          const ExploreList(
-                            imageData:
-                                'https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg',
+                height: 410,
+                // child: ListView.builder(
+                //   // shrinkWrap: true,
+                //   itemCount: 4,
+                //   scrollDirection: Axis.vertical,
+                //   itemBuilder: (context, index) {
+                //     return Row(
+                //       children: [
+                //         SizedBox(
+                //           width: 20,
+                //         ),
+                //         const ExploreList(
+                //           imageData:
+                //               'https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg',
+                //         ),
+                //         SizedBox(
+                //           width: 20,
+                //         ),
+                //         const ExploreList(
+                //           imageData:
+                //               'https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg',
+                //         )
+                //       ],
+                //     );
+                //   },
+                // ),
+                child: GridView.count(
+                  crossAxisCount: 2,
+                  children: List.generate(
+                    Provider.of<ExploreImageProvider>(context).imageLength,
+                    (index) {
+                      final explore = Provider.of<ExploreImageProvider>(context)
+                          .exploreArea[index];
+                      return ClipRRect(
+                        borderRadius: BorderRadius.circular(70),
+                        child: GestureDetector(
+                          onTap: () {
+                            switch (index) {
+                              case 0:
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ExploreTemple(),
+                                  ),
+                                );
+                                break;
+                              case 1:
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ExploreMall(),
+                                  ),
+                                );
+                                break;
+                              case 2:
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ExploreAdventure(),
+                                  ),
+                                );
+                                break;
+                              case 3:
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ExploreSchool(),
+                                  ),
+                                );
+                                break;
+                              default:
+                                break;
+                            }
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey.shade300),
+                            ),
+                            margin: EdgeInsets.all(15),
+                            child: Image.network(
+                              explore.imageUrl,
+                              height: 150,
+                              width: 150,
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                          const ExploreList(
-                            imageData:
-                                'https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg',
-                          )
-                        ],
+                        ),
                       );
                     },
                   ),

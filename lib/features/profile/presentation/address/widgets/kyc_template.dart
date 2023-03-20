@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AddressTemplate extends StatelessWidget {
-  const AddressTemplate({super.key, required this.title, required this.text});
+class KYCTemplate extends StatelessWidget {
+  const KYCTemplate({super.key, required this.title, required this.text});
   final String title, text;
 
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:parking_app/features/profile/presentation/address/widgets/address_textfield.dart';
+import 'package:parking_app/features/profile/presentation/address/widgets/kyc_textfield.dart';
 
 import '../../../../core/presentation/theme/text_style.dart';
 
@@ -88,7 +88,7 @@ class _AddAddressState extends State<AddAddress> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AddressTextField(
+                    KYCTextField(
                       labelText: 'Company',
                       helperText: 'Example. Honda/Suzuki/Audi',
                       maxLength: 10,

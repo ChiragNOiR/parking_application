@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:parking_app/features/profile/presentation/address/add_address.dart';
+import 'package:parking_app/features/profile/presentation/address/widgets/kyc_template.dart';
 
 import '../../../../core/presentation/theme/text_style.dart';
 
-class Address extends StatefulWidget {
-  const Address({super.key});
+class KYC extends StatefulWidget {
+  const KYC({super.key});
 
   @override
-  State<Address> createState() => _AddressState();
+  State<KYC> createState() => _KYCState();
 }
 
-class _AddressState extends State<Address> {
+class _KYCState extends State<KYC> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -43,7 +44,7 @@ class _AddressState extends State<Address> {
                             height: 15,
                           ),
                           Text(
-                            'Address',
+                            'KYC',
                             style: GoogleFonts.roboto(
                               fontSize: 20,
                               color: const Color(0xFF726666),
@@ -63,7 +64,7 @@ class _AddressState extends State<Address> {
                                     ));
                               },
                               backgroundColor: const Color(0xFF11D195),
-                              label: const Text('Update Address'),
+                              label: const Text('Update KYC'),
                             ),
                           )
                         ],
@@ -85,6 +86,69 @@ class _AddressState extends State<Address> {
                 ),
                 width: 395,
                 height: 600,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Personal Details'),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      SizedBox(
+                        width: 350,
+                        height: 318,
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            side: BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                          ),
+                          elevation: 1,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                KYCTemplate(
+                                  title: 'Name',
+                                  text: '',
+                                ),
+                                KYCTemplate(
+                                  title: 'Address',
+                                  text: '',
+                                ),
+                                KYCTemplate(
+                                  title: 'D.O.B',
+                                  text: '',
+                                ),
+                                KYCTemplate(
+                                  title: 'F/H Name',
+                                  text: '',
+                                ),
+                                KYCTemplate(
+                                  title: 'Citizenship No.',
+                                  text: '',
+                                ),
+                                KYCTemplate(
+                                  title: 'Phone No',
+                                  text: '99',
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text('Document Details'),
+                    ],
+                  ),
+                ),
               ),
             ),
           ],

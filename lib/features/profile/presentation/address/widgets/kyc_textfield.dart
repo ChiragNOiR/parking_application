@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/presentation/theme/app_color.dart';
 
-class AddressTextField extends StatelessWidget {
-  const AddressTextField(
+class KYCTextField extends StatelessWidget {
+  const KYCTextField(
       {super.key,
       required this.labelText,
       this.helperText,
