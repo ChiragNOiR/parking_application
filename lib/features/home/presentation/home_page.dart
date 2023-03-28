@@ -31,6 +31,7 @@ class _HomePageState extends State<HomePage> {
 
   late String email;
   late String title;
+
   @override
   // void initState() {
   //   // TODO: implement initState
@@ -61,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                       color: AppColor.black,
                     ),
                   ),
-                  const HomeSearchBar(),
+                  HomeSearchBar(),
                 ],
               ),
               SizedBox(

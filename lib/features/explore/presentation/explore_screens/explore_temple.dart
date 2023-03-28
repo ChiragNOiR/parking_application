@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:parking_app/core/presentation/theme/app_color.dart';
 import 'package:parking_app/core/shared/divider_text.dart';
 import 'package:parking_app/features/home/application/explore_image_provider.dart';
 import 'package:parking_app/features/home/application/temple_image_provider.dart';
@@ -34,14 +35,23 @@ class _ExploreTempleState extends State<ExploreTemple> {
                     'https://thehimalayantimes.com/uploads/imported_images/wp-content/uploads/2017/12/Pashupatinath-temple.jpg',
                     width: 600,
                   ),
-                  IconButton(
-                    visualDensity: VisualDensity.comfortable,
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(
-                      Icons.arrow_back,
-                      size: 30,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.5),
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      child: IconButton(
+                        visualDensity: VisualDensity.comfortable,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(
+                          Icons.arrow_back,
+                          size: 30,
+                        ),
+                      ),
                     ),
                   )
                 ],
