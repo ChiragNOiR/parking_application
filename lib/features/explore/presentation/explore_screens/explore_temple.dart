@@ -12,8 +12,8 @@ import 'package:http/http.dart' as http;
 
 import '../../../../core/shared/config.dart';
 import '../../../../core/shared/parking_list.dart';
-import '../../../reservation/domain/location_model.dart';
 import '../../../reservation/presentation/populat_list_page.dart';
+import '../../domain/location_model.dart';
 
 class ExploreTemple extends StatefulWidget {
   const ExploreTemple({super.key});
@@ -87,35 +87,45 @@ class _ExploreTempleState extends State<ExploreTemple> {
                 child: DividerText(
                   text: 'POPULAR',
                 )),
-            Container(
-              height: 200,
-              child: ListView.builder(
-                itemCount:
-                    Provider.of<TempleImageProvider>(context).tempImg.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  final img =
-                      Provider.of<TempleImageProvider>(context).tempImg[index];
-                  return Row(
-                    children: [
-                      SizedBox(
-                        width: 10,
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: SizedBox(
-                          width: 160,
-                          height: 250,
-                          child: Image.asset(
-                            fit: BoxFit.cover,
-                            img.image,
-                          ),
-                        ),
-                      ),
-                    ],
+            FutureBuilder<List<LocationModel>>(
+              future: getTemple(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('Error: ${snapshot.error}'));
+                } else {
+                  final list = snapshot.data!;
+                  return Container(
+                    height: 200,
+                    child: ListView.builder(
+                      itemCount: list.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        LocationModel location = list[index];
+                        // final img = Provider.of<TempleImageProvider>(context)
+                        //     .tempImg[index];
+                        return Row(
+                          children: [
+                            SizedBox(
+                              width: 10,
+                            ),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: SizedBox(
+                                width: 160,
+                                height: 250,
+                                child: Image.asset(
+                                    fit: BoxFit.cover, location.image),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
                   );
-                },
-              ),
+                }
+              },
             ),
             Padding(
               padding: const EdgeInsets.symmetric(

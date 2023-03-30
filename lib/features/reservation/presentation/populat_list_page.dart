@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:parking_app/features/reservation/domain/location_model.dart';
+import 'package:parking_app/features/explore/domain/location_model.dart';
 
 class PopularListPage extends StatefulWidget {
   const PopularListPage({super.key, required this.location});

@@ -7,10 +7,10 @@ import '../domain/temple_image_model.dart';
 class TempleImageProvider extends ChangeNotifier {
   final List<TempleImageModel> _templeImage = [
     TempleImageModel(
-      image: 'assets/temple/pashupati.jpg',
+      image: 'assets/temple/chandragiri.jpg',
     ),
     TempleImageModel(
-      image: 'assets/temple/chandragiri.jpg',
+      image: 'assets/temple/pashupati.jpg',
     ),
     TempleImageModel(
       image: 'assets/temple/bhaktapur.jpg',

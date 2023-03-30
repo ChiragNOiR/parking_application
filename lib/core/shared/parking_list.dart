@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class ParkingListTile extends StatelessWidget {
@@ -21,7 +20,7 @@ class ParkingListTile extends StatelessWidget {
       width: 350,
       child: ListTile(
         leading: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(vertical: 8),
           child: image,
         ),
         title: Text(title),

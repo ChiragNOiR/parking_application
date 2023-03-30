@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 class LocationModel {
   String id;
   String title;
@@ -5,6 +6,7 @@ class LocationModel {
   String distance;
   String area;
   String slots;
+  String image;
 
   LocationModel(
     this.id,
@@ -13,6 +15,7 @@ class LocationModel {
     this.distance,
     this.area,
     this.slots,
+    this.image,
   );
 
   factory LocationModel.fromJson(Map<String, dynamic> json) {
@@ -23,6 +26,7 @@ class LocationModel {
       (json['distance']),
       (json['area']),
       (json['slots']),
+      (json['image']),
     );
   }
 
@@ -33,5 +37,6 @@ class LocationModel {
         'distance': distance,
         'area': area,
         'slots': slots,
+        'image': image,
       };
 }

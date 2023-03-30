@@ -6,7 +6,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:parking_app/core/shared/config.dart';
 import 'package:parking_app/core/shared/divider_text.dart';
 import 'package:parking_app/features/home/application/explore_image_provider.dart';
-import 'package:parking_app/features/reservation/domain/location_model.dart';
+import 'package:parking_app/features/explore/domain/location_model.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 

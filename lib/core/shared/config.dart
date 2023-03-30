@@ -4,3 +4,6 @@ const registration = "$url/registration";
 const login = '$url/login';
 const registerVehicleUrl = '$url/createVehicleDetail';
 const getTempleList = '$url/getTempleList';
+const getSchoolList = '$url/getTempleList';
+const getMallList = '$url/getTempleList';
+const getTrekList = '$url/getTempleList';
