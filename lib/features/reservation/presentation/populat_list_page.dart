@@ -18,10 +18,52 @@ class _PopularListPageState extends State<PopularListPage> {
     _loc = widget.location;
   }
 
+  TimeOfDay selectedTime = TimeOfDay.now();
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(child: Text(_loc.title)),
+    return SafeArea(
+      child: Scaffold(
+          body: Center(
+        child: Column(
+          children: [
+            Text(_loc.title),
+            Text(_loc.description),
+            Text(_loc.area),
+            Text(_loc.slots),
+            SizedBox(
+              height: 100,
+            ),
+            Text('Set Start Time'),
+            Text(
+                "${selectedTime.hour}:${selectedTime.minute} ${selectedTime.period}"),
+            ElevatedButton(
+              onPressed: () {
+                _selectTime(context);
+              },
+              child: Text('set start time'),
+            ),
+            Text('Set End Time'),
+            ElevatedButton(
+              onPressed: () {},
+              child: Text('set end time'),
+            ),
+          ],
+        ),
+      )),
     );
+  }
+
+  _selectTime(BuildContext context) async {
+    final TimeOfDay? timeOfDay = await showTimePicker(
+      context: context,
+      initialTime: selectedTime,
+      initialEntryMode: TimePickerEntryMode.dial,
+    );
+    if (timeOfDay != null && timeOfDay != selectedTime) {
+      setState(() {
+        selectedTime = timeOfDay;
+      });
+    }
   }
 }

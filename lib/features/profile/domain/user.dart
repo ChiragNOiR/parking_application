@@ -9,7 +9,7 @@ class User {
   String userContact;
   String token;
   String userAddress;
-  // String? userProfile;
+  String? userProfile;
 
   User({
     required this.userId,
@@ -19,7 +19,7 @@ class User {
     required this.userContact,
     required this.userAddress,
     required this.token,
-    // this.userProfile,
+    this.userProfile,
   });
 
   static User empty() {
@@ -31,6 +31,7 @@ class User {
       userContact: '',
       userAddress: '',
       token: '',
+      userProfile: '',
     );
   }
 
@@ -43,6 +44,7 @@ class User {
       'contact': userContact,
       'address': userAddress,
       'token': token,
+      'profile': userProfile,
     };
   }
 
@@ -55,6 +57,7 @@ class User {
       userContact: map['contact'] ?? '',
       userAddress: map['address'] ?? '',
       token: map['token'] ?? '',
+      userProfile: map['profile'] ?? '',
     );
   }
   String toJson() => json.encode(toMap());

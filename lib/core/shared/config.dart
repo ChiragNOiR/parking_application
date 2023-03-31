@@ -7,3 +7,5 @@ const getTempleList = '$url/getTempleList';
 const getSchoolList = '$url/getTempleList';
 const getMallList = '$url/getTempleList';
 const getTrekList = '$url/getTempleList';
+const uploadProfile = '$url/uploadProfile';
+const setReservation = '$url/reservation';

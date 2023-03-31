@@ -45,6 +45,8 @@ dependencies:
   provider: ^6.0.5
   http: ^0.13.5
   flutter_tts: ^3.6.3
+  cloudinary_public: ^0.20.0
+  image_picker:
 
 dev_dependencies:
   flutter_test:

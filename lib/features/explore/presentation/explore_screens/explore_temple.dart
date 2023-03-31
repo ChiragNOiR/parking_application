@@ -110,13 +110,21 @@ class _ExploreTempleState extends State<ExploreTemple> {
                             SizedBox(
                               width: 10,
                             ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(20),
-                              child: SizedBox(
-                                width: 160,
-                                height: 250,
-                                child: Image.asset(
-                                    fit: BoxFit.cover, location.image),
+                            GestureDetector(
+                              onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        PopularListPage(location: location),
+                                  )),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: SizedBox(
+                                  width: 160,
+                                  height: 250,
+                                  child: Image.network(
+                                      fit: BoxFit.cover, location.image),
+                                ),
                               ),
                             ),
                           ],
