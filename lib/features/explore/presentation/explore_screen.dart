@@ -29,10 +29,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
         final List<dynamic> jsonList = jsonDecode(response.body);
         return jsonList.map((json) => LocationModel.fromJson(json)).toList();
       } else {
-        throw Exception('Failed to load pandits');
+        throw Exception('Failed to load Temple Data');
       }
     } catch (e) {
-      throw Exception('Failed to load pandits: $e');
+      throw Exception('Failed to load Temple Data: $e');
     }
   }
 

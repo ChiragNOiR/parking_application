@@ -15,6 +15,8 @@ import 'package:parking_app/features/profile/presentation/widgets/profile_pictur
 import 'package:parking_app/features/profile/presentation/widgets/wallet.dart';
 import 'package:provider/provider.dart';
 
+import '../application/user_provider.dart';
+
 class ProfileScreen extends StatefulWidget {
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -54,7 +56,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                             const SizedBox(height: 20),
                             Text(
-                              'Abhishek Raj Jaiswal',
+                              Provider.of<CurrentUser>(context).user.fullName,
                               style: AppStyle.profileHeading,
                             ),
                             const SizedBox(
@@ -76,7 +78,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ],
                         ),
                       ),
-                      const ProfilePicture(),
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 30, vertical: 25),
+                        child: Container(
+                          height: 110,
+                          width: 100,
+                          child: Center(
+                              child: CircleAvatar(
+                            radius: 50,
+                            backgroundImage: NetworkImage(
+                              Provider.of<CurrentUser>(context, listen: false)
+                                  .user
+                                  .userProfile!,
+                            ),
+                          )),
+                        ),
+                      )
                     ],
                   ),
                 ),

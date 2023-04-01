@@ -69,7 +69,7 @@ class _MyDetailsState extends State<MyDetails> {
                     ),
                   ),
                   SizedBox(
-                    width: 100,
+                    width: 90,
                   ),
                   ProfilePicture(),
                 ],
@@ -104,7 +104,7 @@ class _MyDetailsState extends State<MyDetails> {
                     ),
                     TitleTextTemplate(
                       title: 'Phone Number',
-                      text: provider.user.userContact,
+                      text: provider.user.userId,
                     ),
                     TitleTextTemplate(
                       title: 'Address',

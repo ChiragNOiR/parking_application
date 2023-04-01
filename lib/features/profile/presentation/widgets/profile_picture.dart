@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:parking_app/core/presentation/theme/app_color.dart';
 import 'package:parking_app/core/shared/config.dart';
 import 'package:parking_app/features/profile/application/user_provider.dart';
 import 'package:provider/provider.dart';
@@ -54,32 +55,44 @@ class _ProfilePictureState extends State<ProfilePicture> {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 25),
       child: Container(
-        height: 120,
-        width: 102,
-        child: Stack(
-          children: [
-            CircleAvatar(
-              radius: 50,
-              // backgroundColor: Colors.transparent,
-              backgroundImage: NetworkImage(
-                Provider.of<CurrentUser>(context, listen: false)
-                    .user
-                    .userProfile!,
-              ),
-            ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: IconButton(
-                onPressed: () async {
-                  await _pickImage(ImageSource.gallery);
-                },
-                icon: Icon(
-                  Icons.add_a_photo,
+        // color: Colors.grey,
+        height: 110,
+        width: 110,
+        child: Center(
+          child: Stack(
+            children: [
+              CircleAvatar(
+                radius: 50,
+                // backgroundColor: Colors.transparent,
+                backgroundImage: NetworkImage(
+                  Provider.of<CurrentUser>(context, listen: false)
+                      .user
+                      .userProfile!,
                 ),
               ),
-            ),
-          ],
+              Positioned(
+                bottom: 5,
+                left: 0,
+                child: Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                    color: AppColor.primary,
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: IconButton(
+                    color: Colors.white,
+                    onPressed: () async {
+                      await _pickImage(ImageSource.gallery);
+                    },
+                    icon: Icon(
+                      Icons.add_a_photo,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

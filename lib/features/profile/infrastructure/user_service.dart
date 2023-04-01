@@ -62,6 +62,8 @@ class UserService {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? token = prefs.getString('x-auth-token');
 
+      print(token);
+
       if (token == null) {
         prefs.setString('x-auth-token', '');
       }

@@ -2,7 +2,7 @@ class ReservationModel {
   String id;
   String userName;
   String address;
-  String company;
+  String? company;
   String contact;
   String location;
   String price;
