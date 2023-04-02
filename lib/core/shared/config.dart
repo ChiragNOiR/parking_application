@@ -14,4 +14,4 @@ const getMallList = '$url/getMallList';
 const getTrekList = '$url/getTrekList';
 const uploadProfile = '$url/uploadProfile';
 const setReservation = '$url/reservation';
-const getVehicleData = '$url/getVehicleData/642813de5d1e0917ed7a9c29';
+const getVehicleData = '$url/getVehicleData';

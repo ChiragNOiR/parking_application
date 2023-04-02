@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:parking_app/core/presentation/theme/app_color.dart';
+import 'package:parking_app/features/profile/application/user_provider.dart';
 import 'package:parking_app/features/profile/presentation/my_vehicle/widgets/vehicle_textfield.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/presentation/theme/text_style.dart';
 import 'package:http/http.dart' as http;
@@ -45,6 +47,10 @@ class _MyVehicleState extends State<MyVehicle> {
         licenseNumberController.text.isNotEmpty &&
         stateController.text.isNotEmpty) {
       var regBody = {
+        "userId": Provider.of<CurrentUser>(context, listen: false)
+            .user
+            .userId
+            .toString(),
         "company": companyController.text,
         "model": modelController.text,
         "year": yearController.text,

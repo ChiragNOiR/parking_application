@@ -104,7 +104,7 @@ class _MyDetailsState extends State<MyDetails> {
                     ),
                     TitleTextTemplate(
                       title: 'Phone Number',
-                      text: provider.user.userId,
+                      text: provider.user.userContact,
                     ),
                     TitleTextTemplate(
                       title: 'Address',
