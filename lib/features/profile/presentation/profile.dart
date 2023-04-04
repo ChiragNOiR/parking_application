@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:parking_app/core/presentation/theme/text_style.dart';
 import 'package:parking_app/core/shared/divider_text.dart';
 import 'package:parking_app/features/profile/presentation/FAQs/faqs.dart';
-import 'package:parking_app/features/profile/presentation/address/kyc.dart';
+import 'package:parking_app/features/profile/presentation/kyc/kyc.dart';
 import 'package:parking_app/features/profile/presentation/my_vehicle/my_vehicle.dart';
 import 'package:parking_app/features/profile/presentation/my_vehicle/vehicle.dart';
 import 'package:parking_app/features/profile/presentation/privacy_policy/privacy_policy.dart';

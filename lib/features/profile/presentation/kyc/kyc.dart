@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:parking_app/features/profile/presentation/address/add_address.dart';
-import 'package:parking_app/features/profile/presentation/address/widgets/kyc_template.dart';
+import 'package:parking_app/features/profile/presentation/kyc/add_kyc.dart';
+import 'package:parking_app/features/profile/presentation/kyc/widgets/kyc_template.dart';
 
 import '../../../../core/presentation/theme/text_style.dart';
 
@@ -60,7 +60,7 @@ class _KYCState extends State<KYC> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => const AddAddress(),
+                                      builder: (context) => const AddKYC(),
                                     ));
                               },
                               backgroundColor: const Color(0xFF11D195),

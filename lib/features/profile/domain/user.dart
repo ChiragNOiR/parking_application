@@ -10,6 +10,7 @@ class User {
   String token;
   String userAddress;
   String? userProfile;
+  String role;
 
   User({
     required this.userId,
@@ -17,9 +18,10 @@ class User {
     required this.userEmail,
     required this.userPassword,
     required this.userContact,
-    required this.userAddress,
     required this.token,
+    required this.userAddress,
     this.userProfile,
+    required this.role,
   });
 
   static User empty() {
@@ -32,6 +34,7 @@ class User {
       userAddress: '',
       token: '',
       userProfile: '',
+      role: '',
     );
   }
 
@@ -45,6 +48,7 @@ class User {
       'address': userAddress,
       'token': token,
       'profile': userProfile,
+      'role': role,
     };
   }
 
@@ -58,6 +62,7 @@ class User {
       userAddress: map['address'] ?? '',
       token: map['token'] ?? '',
       userProfile: map['profile'] ?? '',
+      role: map['role'] ?? '',
     );
   }
   String toJson() => json.encode(toMap());

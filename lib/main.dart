@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:parking_app/features/home/application/explore_image_provider.dart';
 import 'package:parking_app/features/home/application/temple_image_provider.dart';
+import 'package:parking_app/features/profile/application/kyc_provider.dart';
 import 'package:parking_app/features/profile/application/user_provider.dart';
 import 'package:parking_app/features/profile/application/vehicle_provider.dart';
 import 'package:parking_app/features/profile/infrastructure/user_service.dart';
@@ -28,7 +29,10 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (context) => ReservationProvider(),
-        )
+        ),
+        // ChangeNotifierProvider(
+        //   create: (context) => KycProvider(),
+        // )
       ],
       child: MyApp(),
     ),

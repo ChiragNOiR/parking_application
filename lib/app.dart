@@ -7,6 +7,8 @@ import 'package:parking_app/features/profile/infrastructure/user_service.dart';
 import 'package:parking_app/features/splash_screen/splash_screen.dart';
 import 'package:provider/provider.dart';
 
+import 'features/admin/presentation/admin_home.dart';
+
 class MyApp extends StatefulWidget {
   // ignore: prefer_typing_uninitialized_variables
   final token;
@@ -44,8 +46,16 @@ class _MyAppState extends State<MyApp> {
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
               ))),
+      // home: Provider.of<CurrentUser>(context).user.token.isNotEmpty
+      //     ? const HomePage()
+      //     : const SplashScreen(),
+
       home: Provider.of<CurrentUser>(context).user.token.isNotEmpty
-          ? const HomePage()
+          ? (Provider.of<CurrentUser>(context).user.role == "user"
+              ? const HomePage()
+              : Provider.of<CurrentUser>(context).user.role == "admin"
+                  ? const AdminHome()
+                  : SplashScreen())
           : const SplashScreen(),
     );
   }

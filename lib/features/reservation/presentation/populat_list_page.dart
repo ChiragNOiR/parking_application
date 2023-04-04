@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:parking_app/core/shared/config.dart';
 import 'package:parking_app/features/explore/domain/location_model.dart';
 import 'package:http/http.dart' as http;
@@ -69,48 +70,67 @@ class _PopularListPageState extends State<PopularListPage> {
       }
     }
 
+    // return SafeArea(
+    //   child: Scaffold(
+    //       body: Center(
+    //     child: Column(
+    //       children: [
+    //         Text(_loc.title),
+    //         Text(_loc.description),
+    //         Text(_loc.area),
+    //         Text(_loc.slots),
+    //         SizedBox(
+    //           height: 100,
+    //         ),
+    //         Text('Set Start Time'),
+    //         Text(
+    //             "${selectedStartTime.hour}:${selectedStartTime.minute} ${selectedStartTime.period}"),
+    //         ElevatedButton(
+    //           onPressed: () {
+    //             _selectStartTime(context);
+    //           },
+    //           child: Text('set start time'),
+    //         ),
+    //         Text('Set End Time'),
+    //         Text(
+    //             "${selectedEndTime.hour}:${selectedEndTime.minute} ${selectedEndTime.period}"),
+    //         ElevatedButton(
+    //           onPressed: () {
+    //             _selectEndTime(context);
+    //           },
+    //           child: Text('set end time'),
+    //         ),
+    //         SizedBox(
+    //           height: 50,
+    //         ),
+    //         FloatingActionButton.extended(
+    //           onPressed: () {
+    //             reserveParking();
+    //           },
+    //           label: Text('Testing Stuff'),
+    //         )
+    //       ],
+    //     ),
+    //   )),
+    // );
     return SafeArea(
       child: Scaffold(
-          body: Center(
-        child: Column(
-          children: [
-            Text(_loc.title),
-            Text(_loc.description),
-            Text(_loc.area),
-            Text(_loc.slots),
-            SizedBox(
-              height: 100,
+        appBar: AppBar(
+          backgroundColor: Colors.grey,
+          title: Text(_loc.title),
+          elevation: 1,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back,
             ),
-            Text('Set Start Time'),
-            Text(
-                "${selectedStartTime.hour}:${selectedStartTime.minute} ${selectedStartTime.period}"),
-            ElevatedButton(
-              onPressed: () {
-                _selectStartTime(context);
-              },
-              child: Text('set start time'),
-            ),
-            Text('Set End Time'),
-            Text(
-                "${selectedEndTime.hour}:${selectedEndTime.minute} ${selectedEndTime.period}"),
-            ElevatedButton(
-              onPressed: () {
-                _selectEndTime(context);
-              },
-              child: Text('set end time'),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            FloatingActionButton.extended(
-              onPressed: () {
-                reserveParking();
-              },
-              label: Text('Testing Stuff'),
-            )
-          ],
+            color: Colors.black,
+          ),
         ),
-      )),
+        body: Column(),
+      ),
     );
   }
 

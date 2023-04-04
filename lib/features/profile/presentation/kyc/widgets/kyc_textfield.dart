@@ -8,24 +8,30 @@ class KYCTextField extends StatelessWidget {
       required this.labelText,
       this.helperText,
       this.maxLength,
-      this.controller});
+      this.controller,
+      this.onTap,
+      this.validate,
+      this.focusNode,
+      this.textInputAction});
   final String labelText;
   final String? helperText;
   final int? maxLength;
   final TextEditingController? controller;
+  final Function()? onTap;
+  final String? Function(String?)? validate;
+  final FocusNode? focusNode;
+  final TextInputAction? textInputAction;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         TextFormField(
+          focusNode: focusNode,
+          textInputAction: textInputAction,
+          onTap: onTap,
           controller: controller,
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please fill up all details';
-            }
-            return null;
-          },
+          validator: validate,
           cursorColor: AppColor.primary,
           // initialValue: '',
           maxLength: maxLength,
