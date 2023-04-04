@@ -3,8 +3,10 @@ import 'package:parking_app/core/presentation/theme/app_color.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
 class HomeSearchBar extends StatefulWidget {
-  const HomeSearchBar({Key? key, this.searchController}) : super(key: key);
+  const HomeSearchBar({Key? key, this.searchController, this.onSubmitted})
+      : super(key: key);
   final TextEditingController? searchController;
+  final onSubmitted;
 
   @override
   State<HomeSearchBar> createState() => _HomeSearchBarState();
@@ -13,55 +15,6 @@ class HomeSearchBar extends StatefulWidget {
 enum TtsState { playing, stopped }
 
 class _HomeSearchBarState extends State<HomeSearchBar> {
-  late FlutterTts _flutterTts;
-  TtsState _ttsState = TtsState.stopped;
-
-  @override
-  void initState() {
-    super.initState();
-    _initializeTts();
-  }
-
-  Future<void> _initializeTts() async {
-    _flutterTts = FlutterTts();
-    // await _flutterTts.setLanguage("en-US");
-    // await _flutterTts.setSpeechRate(1.0);
-    // await _flutterTts.setPitch(1.0);
-
-    _flutterTts.setStartHandler(() {
-      setState(() {
-        _ttsState = TtsState.playing;
-      });
-    });
-
-    _flutterTts.setCompletionHandler(() {
-      setState(() {
-        _ttsState = TtsState.stopped;
-      });
-    });
-
-    _flutterTts.setCancelHandler(() {
-      setState(() {
-        _ttsState = TtsState.stopped;
-      });
-    });
-
-    _flutterTts.setErrorHandler((message) {
-      setState(() {
-        _ttsState = TtsState.stopped;
-      });
-    });
-  }
-
-  // Method to start or stop text-to-speech
-  Future<void> _toggleTts(String text) async {
-    if (_ttsState == TtsState.stopped) {
-      await _flutterTts.speak(text);
-    } else {
-      await _flutterTts.stop();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final FocusNode searchFocusNode = FocusNode();
@@ -84,35 +37,16 @@ class _HomeSearchBarState extends State<HomeSearchBar> {
         borderRadius: BorderRadius.circular(25),
       ),
       child: TextField(
+        onSubmitted: widget.onSubmitted,
         focusNode: searchFocusNode,
         controller: widget.searchController,
-        onChanged: (text) {
-          if (_ttsState == TtsState.stopped) {
-            _toggleTts(text);
-          } else {
-            _flutterTts.setCompletionHandler(() {
-              _toggleTts(text);
-            });
-          }
-        },
+        onChanged: (text) {},
         decoration: InputDecoration(
           hintText: 'Search Your Destination',
           border: InputBorder.none,
           prefixIcon: Icon(
             Icons.search,
             color: AppColor.black,
-          ),
-          suffixIcon: IconButton(
-            icon: _ttsState == TtsState.playing
-                ? Icon(Icons.stop, color: AppColor.searchIcon)
-                : Icon(Icons.mic, color: AppColor.searchIcon),
-            onPressed: () {
-              if (_ttsState == TtsState.playing) {
-                _toggleTts("");
-              } else {
-                _toggleTts(widget.searchController!.text);
-              }
-            },
           ),
         ),
       ),

@@ -83,6 +83,7 @@ class _MyVehicleState extends State<MyVehicle> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: true,
         body: Stack(
           children: [
             SizedBox(

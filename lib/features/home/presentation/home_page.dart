@@ -10,6 +10,7 @@ import 'package:parking_app/features/explore/presentation/explore_screens/explor
 import 'package:parking_app/features/explore/presentation/explore_screens/explore_temple.dart';
 import 'package:parking_app/features/home/application/explore_image_provider.dart';
 import 'package:parking_app/features/home/domain/explore_model.dart';
+import 'package:parking_app/features/home/presentation/search_page.dart';
 import 'package:parking_app/features/home/presentation/widgets/drawer.dart';
 import 'package:parking_app/features/home/presentation/widgets/explore_list.dart';
 import 'package:parking_app/features/home/presentation/widgets/search_bar.dart';
@@ -62,7 +63,17 @@ class _HomePageState extends State<HomePage> {
                       color: AppColor.black,
                     ),
                   ),
-                  HomeSearchBar(),
+                  // HomeSearchBar(),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SearchScreen(),
+                          ),
+                        );
+                      },
+                      child: Text('Search'))
                 ],
               ),
               SizedBox(

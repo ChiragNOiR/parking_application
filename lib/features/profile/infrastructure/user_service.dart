@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:parking_app/core/shared/config.dart';
+import 'package:parking_app/features/admin/presentation/admin_home.dart';
 import 'package:parking_app/features/home/presentation/home_page.dart';
 import 'package:parking_app/features/profile/application/user_provider.dart';
 import 'package:provider/provider.dart';
@@ -32,24 +33,33 @@ class UserService {
       );
       // ignore: use_build_context_synchronously
       httpErrorHandle(
-        response: res,
-        context: context,
-        onSuccess: () async {
-          SharedPreferences prefs = await SharedPreferences.getInstance();
-          Provider.of<CurrentUser>(context, listen: false).setUser(res.body);
-          await prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
+          response: res,
+          context: context,
+          onSuccess: () async {
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            Provider.of<CurrentUser>(context, listen: false).setUser(res.body);
+            await prefs.setString(
+                'x-auth-token', jsonDecode(res.body)['token']);
 
-          final user = context.read<CurrentUser>().user;
+            final user = context.read<CurrentUser>().user;
 
-          // context.read<NavigationProvider>().selectedIndex = 0;
-          Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => HomePage(),
-              ));
-        },
-        //onSuccess: () {},
-      );
+            // context.read<NavigationProvider>().selectedIndex = 0;
+            if (user.role == "admin") {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AdminHome(),
+                  ));
+            } else {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomePage(),
+                  ));
+            }
+          }
+          //onSuccess: () {},
+          );
     } catch (e) {
       // showSnackBar(context, e.toString());
     }
