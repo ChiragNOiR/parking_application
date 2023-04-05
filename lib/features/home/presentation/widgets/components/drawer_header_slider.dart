@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:parking_app/core/presentation/theme/text_style.dart';
+import 'package:parking_app/features/profile/application/user_provider.dart';
+import 'package:provider/provider.dart';
 
 class DrawerHeaderSlider extends StatelessWidget {
   const DrawerHeaderSlider({super.key});
@@ -19,15 +22,21 @@ class DrawerHeaderSlider extends StatelessWidget {
           ),
         ),
         child: Column(
-          children: const [
+          children: [
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 15),
+              padding: EdgeInsets.symmetric(vertical: 10),
               child: CircleAvatar(
                 backgroundColor: Colors.grey,
-                radius: 35,
+                radius: 40,
+                backgroundImage: NetworkImage(
+                  Provider.of<CurrentUser>(context).user.userProfile!,
+                ),
               ),
             ),
-            Text('Chirag Pokharel')
+            Text(
+              Provider.of<CurrentUser>(context).user.fullName,
+              style: AppStyle.splashscreenbutton,
+            )
           ],
         ),
       ),

@@ -8,6 +8,8 @@ class LocationModel {
   String slots;
   String image;
   String price;
+  String? cover;
+  String? des;
 
   LocationModel(
     this.id,
@@ -18,6 +20,8 @@ class LocationModel {
     this.slots,
     this.image,
     this.price,
+    this.cover,
+    this.des,
   );
 
   factory LocationModel.fromJson(Map<String, dynamic> json) {
@@ -30,6 +34,8 @@ class LocationModel {
       (json['slots']),
       (json['image']),
       (json['price']),
+      (json['cover']),
+      (json['des']),
     );
   }
 
@@ -42,5 +48,7 @@ class LocationModel {
         'slots': slots,
         'image': image,
         'price': price,
+        'cover': cover,
+        'des': des,
       };
 }

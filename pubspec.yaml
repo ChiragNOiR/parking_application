@@ -47,6 +47,8 @@ dependencies:
   flutter_tts: ^3.6.3
   cloudinary_public: ^0.20.0
   image_picker:
+  intl: ^0.18.0
+  timezone: ^0.9.1
 
 dev_dependencies:
   flutter_test:

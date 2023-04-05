@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:parking_app/core/presentation/theme/app_color.dart';
 
 import '../../../core/shared/config.dart';
 import '../../explore/domain/location_model.dart';
@@ -46,11 +47,28 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: TextField(
-          controller: _searchController,
-          onSubmitted: _search,
-          decoration: InputDecoration(
-            hintText: 'Search',
+        elevation: 0,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Icon(
+            Icons.arrow_back,
+            color: AppColor.black,
+          ),
+        ),
+        title: Container(
+          height: 50,
+          child: TextField(
+            controller: _searchController,
+            onSubmitted: _search,
+            decoration: InputDecoration(
+              hintText: 'Search',
+              prefixIcon: Icon(Icons.search),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(35),
+              ),
+            ),
           ),
         ),
       ),

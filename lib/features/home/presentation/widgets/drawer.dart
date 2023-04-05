@@ -6,6 +6,7 @@ import 'package:parking_app/features/home/presentation/widgets/components/drawer
 import 'package:parking_app/features/profile/application/user_provider.dart';
 import 'package:parking_app/features/profile/infrastructure/user_service.dart';
 import 'package:parking_app/features/profile/presentation/profile.dart';
+import 'package:parking_app/features/res_history/presentation/history.dart';
 import 'package:provider/provider.dart';
 
 class NavDrawer extends StatelessWidget {
@@ -31,7 +32,12 @@ class NavDrawer extends StatelessWidget {
           DrawerListTile(
             leading: Icons.history,
             title: 'History',
-            onPressed: () {},
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => History(),
+              ),
+            ),
           ),
           DrawerListTile(
             leading: Icons.policy,

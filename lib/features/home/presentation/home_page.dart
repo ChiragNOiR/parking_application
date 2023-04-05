@@ -34,14 +34,6 @@ class _HomePageState extends State<HomePage> {
   late String title;
 
   @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   Map<String, dynamic> jwtDecodedToken = JwtDecoder.decode(widget.token);
-  //   email = jwtDecodedToken['email'];
-  // }
-
-  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -63,17 +55,41 @@ class _HomePageState extends State<HomePage> {
                       color: AppColor.black,
                     ),
                   ),
-                  // HomeSearchBar(),
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SearchScreen(),
-                          ),
-                        );
-                      },
-                      child: Text('Search'))
+                  SizedBox(
+                    width: 7,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SearchScreen(),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      height: 45,
+                      width: 310,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFE1F2ED),
+                        // border: Border.all(width: 1.8),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 7, horizontal: 10),
+                        child: Row(
+                          children: [
+                            Icon(Icons.search),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text('Search'),
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
                 ],
               ),
               SizedBox(

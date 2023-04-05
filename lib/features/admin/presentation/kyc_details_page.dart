@@ -1,27 +1,95 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+
 import 'package:parking_app/core/presentation/theme/app_color.dart';
 import 'package:parking_app/core/presentation/theme/text_style.dart';
+import 'package:parking_app/core/shared/config.dart';
 import 'package:parking_app/features/admin/presentation/widgets/kyc_detail_text.dart';
+import 'package:parking_app/features/profile/application/user_provider.dart';
 import 'package:parking_app/features/profile/domain/kyc_model.dart';
 
-class PendingDetailsPage extends StatefulWidget {
-  const PendingDetailsPage({super.key, required this.kycModel});
+class KycDetailPage extends StatefulWidget {
+  const KycDetailPage({
+    Key? key,
+    required this.kycModel,
+    required this.heading,
+  }) : super(key: key);
   final KYCModel kycModel;
+  final String heading;
 
   @override
-  State<PendingDetailsPage> createState() => _PendingDetailsPageState();
+  State<KycDetailPage> createState() => _KycDetailPageState();
 }
 
-class _PendingDetailsPageState extends State<PendingDetailsPage> {
+class _KycDetailPageState extends State<KycDetailPage> {
   late KYCModel _kyc;
+
+  final TextEditingController statusController = TextEditingController();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _kyc = widget.kycModel;
+  }
+
+  Future<void> approved() async {
+    var regBody = {
+      "status": "approved",
+    };
+    final id = Provider.of<CurrentUser>(context, listen: false).user.userId;
+    var response = await http.post(
+      Uri.parse('$statusKyc/$id/approved'),
+      headers: {"Content-Type": "application/json"},
+      body: jsonEncode(regBody),
+    );
+    var jsonResponse = jsonDecode(response.body);
+    print(jsonResponse['success']);
+
+    if (jsonResponse['status']) {
+      // ignore: use_build_context_synchronously
+      Navigator.pop(context);
+      // alertDialog(context, 'Registered Successfully');
+    } else {
+      // alertDialog(context, 'Something went wrong');
+    }
+    // if (jsonResponse['status'] != null && jsonResponse['status']) {
+    //   setState(() {
+    //     _kyc.status = statusController.text;
+    //   });
+    //   Navigator.pop(context);
+    // } else {
+    //   print('error');
+    // }
+  }
+
+  Future<void> rejected() async {
+    var regBody = {
+      "status": "rejected",
+    };
+    final id = Provider.of<CurrentUser>(context, listen: false).user.userId;
+    var response = await http.post(
+      Uri.parse('$statusKyc/$id/rejected'),
+      headers: {"Content-Type": "application/json"},
+      body: jsonEncode(regBody),
+    );
+    var jsonResponse = jsonDecode(response.body);
+
+    print(jsonResponse['success']);
+
+    if (jsonResponse['status']) {
+      // ignore: use_build_context_synchronously
+      Navigator.pop(context);
+      // alertDialog(context, 'Registered Successfully');
+    } else {
+      // alertDialog(context, 'Something went wrong');
+    }
   }
 
   @override
@@ -42,7 +110,7 @@ class _PendingDetailsPageState extends State<PendingDetailsPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Pending KYC Verification',
+              widget.heading,
               style: AppStyle.profileHeading,
             ),
             SizedBox(
@@ -105,7 +173,9 @@ class _PendingDetailsPageState extends State<PendingDetailsPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    await approved();
+                  },
                   child: Text('Approve'),
                   style: ButtonStyle(
                     backgroundColor:
@@ -124,7 +194,9 @@ class _PendingDetailsPageState extends State<PendingDetailsPage> {
                   width: 50,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    await rejected();
+                  },
                   child: Text('Reject'),
                   style: ButtonStyle(
                     backgroundColor:
