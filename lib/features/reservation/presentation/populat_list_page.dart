@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:parking_app/features/reservation/presentation/bookings_confrim_page.dart';
 import 'package:timezone/timezone.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -287,9 +288,24 @@ class _PopularListPageState extends State<PopularListPage> {
                       child: SizedBox(
                         width: 300,
                         child: FloatingActionButton.extended(
-                          label: Text('Proceed'),
+                          label: Text(
+                            'Proceed',
+                            style: GoogleFonts.poppins(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w800,
+                              fontSize: 12,
+                            ),
+                          ),
                           backgroundColor: AppColor.primary,
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    BookingConfirmPage(location: _loc),
+                              ),
+                            );
+                          },
                         ),
                       ),
                     )
