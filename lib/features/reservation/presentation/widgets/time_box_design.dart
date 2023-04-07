@@ -1,11 +1,15 @@
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter/material.dart';
 
 class TimeBox extends StatelessWidget {
   const TimeBox({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container(
+      height: 10,
+      width: 10,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50), color: Color(0xFFD9D9D9)),
+    );
   }
 }

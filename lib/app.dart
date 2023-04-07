@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:parking_app/core/presentation/bottom_nav.dart';
 import 'package:parking_app/features/home/presentation/home_page.dart';
 import 'package:parking_app/features/profile/application/user_provider.dart';
 import 'package:parking_app/features/profile/infrastructure/user_service.dart';
@@ -52,7 +53,7 @@ class _MyAppState extends State<MyApp> {
 
       home: Provider.of<CurrentUser>(context).user.token.isNotEmpty
           ? (Provider.of<CurrentUser>(context).user.role == "user"
-              ? const HomePage()
+              ? const NavBar()
               : Provider.of<CurrentUser>(context).user.role == "admin"
                   ? const AdminHome()
                   : SplashScreen())

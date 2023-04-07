@@ -20,3 +20,4 @@ const getKycDetails = '$url/getKYC';
 const getKycById = '$url/getKycById';
 const searchLocationAPI = '$url/search';
 const statusKyc = '$url/kycStatus';
+const getBookingDetails = '$url/getReservation';

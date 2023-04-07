@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:parking_app/core/presentation/theme/app_color.dart';
-import 'package:flutter_tts/flutter_tts.dart';
 
 class HomeSearchBar extends StatefulWidget {
   const HomeSearchBar({Key? key, this.searchController, this.onSubmitted})

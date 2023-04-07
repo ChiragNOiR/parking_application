@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:parking_app/features/reservation/presentation/widgets/time_box_design.dart';
 import 'package:provider/provider.dart';
 
 import 'package:parking_app/core/presentation/theme/app_color.dart';
@@ -34,7 +35,6 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
   late LocationModel _loc;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _loc = widget.location;
 
@@ -48,15 +48,13 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
           Provider.of<CurrentUser>(context, listen: false).user.fullName,
       "email":
           Provider.of<CurrentUser>(context, listen: false).user.userAddress,
-      // "company":
-      //     // Provider.of<ReservationModel>(context, listen: false).company,
-      //     '',
       "contact":
           Provider.of<CurrentUser>(context, listen: false).user.userContact,
       "location": _loc.title,
       "price": _loc.price,
       "startTime": selectedStartTime.toString(),
       "endTime": selectedEndTime.toString(),
+      "date": _selectedDate.toString(),
     };
     print(regBody);
     try {
@@ -125,50 +123,53 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _selectedDate = DateTime.now();
-                        });
-                      },
-                      child: Text(
-                        'Clear',
-                        style: GoogleFonts.poppins(
-                          color: Colors.blue.shade400,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     setState(() {
+                    //       _selectedDate = DateTime.now();
+                    //     });
+                    //   },
+                    //   child: Text(
+                    //     'Clear',
+                    //     style: GoogleFonts.poppins(
+                    //       color: Colors.blue.shade400,
+                    //       fontWeight: FontWeight.w400,
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
-              SizedBox(
-                height: 30,
+              const SizedBox(
+                height: 20,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text(
-                    'Select Date: ',
-                    style: GoogleFonts.poppins(
-                      color: AppColor.primary,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: 1,
-                    ),
-                  ),
+                  // Text(
+                  //   'Select Date: ',
+                  //   style: GoogleFonts.poppins(
+                  //     color: AppColor.primary,
+                  //     fontSize: 16,
+                  //     fontWeight: FontWeight.w500,
+                  //     letterSpacing: 1,
+                  //   ),
+                  // ),
                   GestureDetector(
-                    onTap: () => _selectDate(context),
+                    // onTap: () => _selectDate(context),
+
                     child: Text(
                       formatter.format(_selectedDate!),
                       style: GoogleFonts.poppins(
                         fontSize: 25,
+                        fontWeight: FontWeight.w600,
+                        color: AppColor.primary,
                       ),
                     ),
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               Text(
@@ -178,10 +179,10 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Container(
+              SizedBox(
                 height: 300,
                 width: 400,
                 child: GoogleMap(
@@ -192,7 +193,7 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
                   initialCameraPosition: _kGooglePlex,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Text(
@@ -204,7 +205,7 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
                   letterSpacing: 1,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Padding(
@@ -225,7 +226,8 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => SetTimePage()),
+                        MaterialPageRoute(
+                            builder: (context) => SetTimePage(context)),
                       );
                     },
                   ),
@@ -269,7 +271,8 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime.now(),
-      lastDate: DateTime(DateTime.now().year, DateTime.now().month + 1, 0),
+      // lastDate: DateTime(DateTime.now().year, DateTime.now().month + 1, 0),
+      lastDate: DateTime.now(),
     );
     if (selected != null && selected != _selectedDate) {
       setState(() {
@@ -284,8 +287,23 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
   );
 
   // ignore: non_constant_identifier_names
-  SetTimePage() {
-    final DateFormat formatter = DateFormat('yyyy-MM-dd');
+  SetTimePage(BuildContext context) {
+    // ignore: no_leading_underscores_for_local_identifiers
+    String _getDaySuffix(int day) {
+      switch (day % 10) {
+        case 1:
+          return 'st';
+        case 2:
+          return 'nd';
+        case 3:
+          return 'rd';
+        default:
+          return 'th';
+      }
+    }
+
+    final DateFormat formatter =
+        DateFormat('EEEEEEEE, d\'${_getDaySuffix(DateTime.now().day)}\' MMMM');
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -333,23 +351,196 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
                 ],
               ),
               SizedBox(
-                height: 30,
-              ),
-              Container(
                 height: 300,
                 width: double.infinity,
-                color: Colors.grey,
                 child: Stack(
                   children: [
-                    Text('Enter'),
-                    Container(
-                      height: 10,
-                      width: 10,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          color: Colors.white),
+                    Positioned(
+                      top: 50,
+                      left: 30,
+                      child: Text(
+                        'ENTER',
+                        style: GoogleFonts.roboto(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 80,
+                      left: 20,
+                      child: FloatingActionButton.extended(
+                        heroTag: "enter",
+                        label: Text(
+                          "${selectedStartTime.hour}:${selectedStartTime.minute} ${selectedStartTime.hour < 12 ? "AM" : "PM"}",
+                          style: GoogleFonts.poppins(
+                            color: AppColor.danger,
+                          ),
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _selectStartTime(context);
+                          });
+                        },
+                        backgroundColor: const Color(0xFFF8EFEF),
+                      ),
+                    ),
+                    const Positioned(
+                      top: 58,
+                      left: 100,
+                      child: TimeBox(),
+                    ),
+                    const Positioned(
+                      top: 58,
+                      left: 130,
+                      child: TimeBox(),
+                    ),
+                    const Positioned(
+                      top: 58,
+                      left: 160,
+                      child: TimeBox(),
+                    ),
+                    const Positioned(
+                      top: 58,
+                      left: 190,
+                      child: TimeBox(),
+                    ),
+                    const Positioned(
+                      top: 90,
+                      left: 190,
+                      child: TimeBox(),
+                    ),
+                    const Positioned(
+                      top: 123,
+                      left: 190,
+                      child: TimeBox(),
+                    ),
+                    const Positioned(
+                      top: 153,
+                      left: 190,
+                      child: TimeBox(),
+                    ),
+                    const Positioned(
+                      top: 183,
+                      left: 190,
+                      child: TimeBox(),
+                    ),
+                    const Positioned(
+                      top: 183,
+                      left: 220,
+                      child: TimeBox(),
+                    ),
+                    const Positioned(
+                      top: 183,
+                      left: 250,
+                      child: TimeBox(),
+                    ),
+                    const Positioned(
+                      top: 183,
+                      left: 280,
+                      child: TimeBox(),
+                    ),
+                    Positioned(
+                      top: 177,
+                      left: 300,
+                      child: Text(
+                        'EXIT',
+                        style: GoogleFonts.roboto(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 210,
+                      left: 270,
+                      child: FloatingActionButton.extended(
+                        heroTag: "exit",
+                        label: Text(
+                          "${selectedEndTime.hour}:${selectedEndTime.minute} ${selectedEndTime.hour < 12 ? "AM" : "PM"}",
+                          style: GoogleFonts.poppins(
+                            color: AppColor.danger,
+                          ),
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _selectEndTime(context);
+                          });
+                        },
+                        backgroundColor: const Color(0xFFF8EFEF),
+                      ),
                     ),
                   ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 30,
+                  vertical: 10,
+                ),
+                child: RichText(
+                  text: TextSpan(
+                    text: 'Note:\n',
+                    style: GoogleFonts.roboto(
+                      color: AppColor.primary,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text:
+                            '1. Parking is not allowed in any place that is not specifically striped or signed for parking.\n',
+                        style: GoogleFonts.sourceCodePro(
+                          fontSize: 15,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                      TextSpan(
+                        text:
+                            '\n2. Please follow all the traffic rules and regulations.\n',
+                        style: GoogleFonts.sourceCodePro(
+                          fontSize: 15,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                      TextSpan(
+                        text:
+                            '\n3. The Electric Vehicle will be given seperated chargable spaces of Level II Electric Vehicle Charging Stations,',
+                        style: GoogleFonts.sourceCodePro(
+                          fontSize: 15,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                      TextSpan(
+                        text: 'Extra Charges Applied.',
+                        style: GoogleFonts.sourceCodePro(
+                          fontSize: 15,
+                          color: Colors.red.shade300,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 35, vertical: 15),
+                child: SizedBox(
+                  width: 300,
+                  child: FloatingActionButton.extended(
+                    label: Text(
+                      'RESERVE YOUR SPACE',
+                      style: GoogleFonts.poppins(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 12,
+                      ),
+                    ),
+                    backgroundColor: AppColor.primary,
+                    onPressed: () {
+                      reserveParking();
+                    },
+                  ),
                 ),
               )
             ],

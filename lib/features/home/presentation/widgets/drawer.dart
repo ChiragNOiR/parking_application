@@ -5,6 +5,7 @@ import 'package:parking_app/features/home/presentation/widgets/components/drawer
 import 'package:parking_app/features/home/presentation/widgets/components/drawer_list.dart';
 import 'package:parking_app/features/profile/application/user_provider.dart';
 import 'package:parking_app/features/profile/infrastructure/user_service.dart';
+import 'package:parking_app/features/profile/presentation/privacy_policy/privacy_policy.dart';
 import 'package:parking_app/features/profile/presentation/profile.dart';
 import 'package:parking_app/features/res_history/presentation/history.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,7 @@ class NavDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.black87,
       child: ListView(
         children: [
           const DrawerHeaderSlider(),
@@ -42,7 +43,14 @@ class NavDrawer extends StatelessWidget {
           DrawerListTile(
             leading: Icons.policy,
             title: 'Policy',
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PrivacyPolicy(),
+                ),
+              );
+            },
           ),
           DrawerListTile(
             leading: Icons.notification_important,
@@ -63,7 +71,7 @@ class NavDrawer extends StatelessWidget {
             onPressed: () {},
           ),
           const SizedBox(
-            height: 130,
+            height: 80,
           ),
           Padding(
             padding: const EdgeInsets.all(15.0),
@@ -79,13 +87,10 @@ class NavDrawer extends StatelessWidget {
                 ),
                 leading: const Icon(Icons.logout_outlined),
                 onTap: () async {
-                  // Navigator.pushReplacement(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => const LoginPage(),
-                  //     ));
                   await UserService().logOut(context);
+                  // ignore: use_build_context_synchronously
                   context.read<CurrentUser>().logout();
+                  // ignore: use_build_context_synchronously
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(

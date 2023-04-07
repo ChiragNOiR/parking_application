@@ -4,6 +4,8 @@ import 'package:parking_app/features/home/presentation/home_page.dart';
 import 'package:parking_app/features/profile/presentation/profile.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
+import '../../features/res_history/presentation/history.dart';
+
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
 
@@ -16,7 +18,7 @@ class _NavBarState extends State<NavBar> {
   double gap = 10;
 
   int _index = 0;
-  List<Color> colors = [Colors.purple, Colors.pink, Colors.grey, Colors.teal];
+  // List<Color> colors = [Colors.purple, Colors.pink, Colors.grey, Colors.teal];
 
   List<Text> text = [
     const Text(
@@ -32,7 +34,7 @@ class _NavBarState extends State<NavBar> {
   PageController controller = PageController();
   final List pages = [
     HomePage(),
-    // Bookings(),
+    History(),
     ProfileScreen(),
   ];
   @override
@@ -69,9 +71,9 @@ class _NavBarState extends State<NavBar> {
             _index = index;
           });
         },
-        color: AppColor.black,
-        backgroundColor: AppColor.primary,
-        activeColor: AppColor.black,
+        color: Colors.grey,
+        backgroundColor: Colors.black,
+        activeColor: Colors.white,
         gap: 8,
         padding: const EdgeInsets.all(16),
         haptic: true,

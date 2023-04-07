@@ -12,14 +12,7 @@ class DrawerHeaderSlider extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          gradient: LinearGradient(
-            colors: [
-              Colors.cyan.shade800,
-              Colors.cyan.shade400,
-            ],
-            begin: Alignment.bottomCenter,
-            end: Alignment.topCenter,
-          ),
+          color: Colors.black,
         ),
         child: Column(
           children: [
@@ -34,7 +27,7 @@ class DrawerHeaderSlider extends StatelessWidget {
               ),
             ),
             Text(
-              Provider.of<CurrentUser>(context).user.fullName,
+              Provider.of<CurrentUser>(context).user.fullName.toUpperCase(),
               style: AppStyle.splashscreenbutton,
             )
           ],
