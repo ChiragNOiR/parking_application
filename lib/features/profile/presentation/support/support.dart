@@ -3,8 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:parking_app/features/profile/presentation/support/widgets/support_list.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../core/presentation/theme/text_style.dart';
-
 class Support extends StatefulWidget {
   const Support({super.key});
 
@@ -28,7 +26,7 @@ class _SupportState extends State<Support> {
       child: Scaffold(
         body: Stack(
           children: [
-            Container(
+            const SizedBox(
               width: double.infinity,
               height: double.infinity,
             ),
@@ -46,10 +44,10 @@ class _SupportState extends State<Support> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           GestureDetector(
-                            child: Icon(Icons.arrow_back),
+                            child: const Icon(Icons.arrow_back),
                             onTap: () => Navigator.pop(context),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15,
                           ),
                           Text(
@@ -94,19 +92,19 @@ class _SupportState extends State<Support> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SupportList(
+                    const SupportList(
                       title: 'Facebook/Messenger',
                       subtitle: '(Chats Only)',
                       imageRadius: 11,
                       image: 'assets/icons/messenger.png',
                     ),
-                    SupportList(
+                    const SupportList(
                       title: '9861015731',
                       subtitle: '(WhatsApp - Chats Only)',
                       imageRadius: 11,
                       image: 'assets/icons/whatsapp.png',
                     ),
-                    SupportList(
+                    const SupportList(
                       title: '9861015731',
                       subtitle: '(Viber - Chats Only)',
                       imageRadius: 11,
@@ -130,13 +128,13 @@ class _SupportState extends State<Support> {
                         launchPhoneDialer('01-4330435');
                       },
                     ),
-                    SupportList(
+                    const SupportList(
                       title: 'support@pickpark.com.np',
                       subtitle: '(Email Address)',
                       imageRadius: 11,
                       image: 'assets/icons/email.png',
                     ),
-                    Divider(
+                    const Divider(
                       indent: 20,
                       endIndent: 20,
                     ),

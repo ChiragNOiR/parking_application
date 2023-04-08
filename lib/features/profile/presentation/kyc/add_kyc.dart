@@ -1,13 +1,13 @@
+// ignore_for_file: prefer_final_fields, unused_field, use_build_context_synchronously
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:parking_app/core/shared/config.dart';
-import 'package:parking_app/features/profile/domain/vehicle_model.dart';
 import 'package:parking_app/features/profile/presentation/kyc/widgets/kyc_textfield.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../core/presentation/theme/text_style.dart';
 import '../../application/user_provider.dart';
 import 'package:http/http.dart' as http;
 
@@ -97,7 +97,7 @@ class _AddKYCState extends State<AddKYC> {
           key: _formKey,
           child: Stack(
             children: [
-              Container(
+              const SizedBox(
                 width: double.infinity,
                 height: double.infinity,
               ),
@@ -115,10 +115,10 @@ class _AddKYCState extends State<AddKYC> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             GestureDetector(
-                              child: Icon(Icons.arrow_back),
+                              child: const Icon(Icons.arrow_back),
                               onTap: () => Navigator.pop(context),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 15,
                             ),
                             Text(
@@ -305,7 +305,7 @@ class _AddKYCState extends State<AddKYC> {
                             textInputAction: TextInputAction.none,
                           ),
                           DropdownButtonFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               labelText: 'License Office',
                             ),
                             value:

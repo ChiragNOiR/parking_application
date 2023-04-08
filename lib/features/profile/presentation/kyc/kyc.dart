@@ -6,9 +6,9 @@ import 'package:parking_app/core/shared/config.dart';
 import 'package:parking_app/features/profile/domain/kyc_model.dart';
 import 'package:parking_app/features/profile/presentation/kyc/add_kyc.dart';
 import 'package:parking_app/features/profile/presentation/kyc/widgets/kyc_template.dart';
+import 'package:parking_app/features/profile/presentation/support/support.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../core/presentation/theme/text_style.dart';
 import 'package:http/http.dart' as http;
 
 import '../../application/user_provider.dart';
@@ -44,7 +44,7 @@ class _KYCState extends State<KYC> {
       child: Scaffold(
         body: Stack(
           children: [
-            Container(
+            const SizedBox(
               width: double.infinity,
               height: double.infinity,
             ),
@@ -62,10 +62,10 @@ class _KYCState extends State<KYC> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           GestureDetector(
-                            child: Icon(Icons.arrow_back),
+                            child: const Icon(Icons.arrow_back),
                             onTap: () => Navigator.pop(context),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15,
                           ),
                           Text(
@@ -121,102 +121,164 @@ class _KYCState extends State<KYC> {
                     } else {
                       final kycMap = snapshot.data!;
                       return ListView.builder(
-                          itemCount: kycMap.length,
-                          itemBuilder: (context, index) {
-                            KYCModel kyc = kycMap[index];
-                            if (kyc.status == "pending") {
-                              return Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 20),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('Personal Details'),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    SizedBox(
-                                      width: 350,
-                                      height: 500,
-                                      child: Card(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          side: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1.0,
-                                          ),
+                        itemCount: kycMap.length,
+                        itemBuilder: (context, index) {
+                          KYCModel kyc = kycMap[index];
+                          if (kyc.status == "approved") {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 20),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text('Personal Details'),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  SizedBox(
+                                    width: 350,
+                                    height: 500,
+                                    child: Card(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                        side: const BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
                                         ),
-                                        elevation: 1,
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 10),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              KYCTemplate(
-                                                title: 'Name',
-                                                text: kyc.name,
-                                              ),
-                                              KYCTemplate(
-                                                title: 'Address',
-                                                text: kyc.address,
-                                              ),
-                                              KYCTemplate(
-                                                title: 'D.O.B',
-                                                text: kyc.dob,
-                                              ),
-                                              KYCTemplate(
-                                                title: 'License Office',
-                                                text: kyc.licenseOffice,
-                                              ),
-                                              KYCTemplate(
-                                                title: 'License No.',
-                                                text: kyc.licenseNumber,
-                                              ),
-                                              KYCTemplate(
-                                                title: 'Citizenship Number',
-                                                text: kyc.citizenNumber,
-                                              ),
-                                              KYCTemplate(
-                                                title: 'Category',
-                                                text: kyc.category,
-                                              ),
-                                              KYCTemplate(
-                                                title: 'Date of Issue',
-                                                text: kyc.doi,
-                                              ),
-                                              KYCTemplate(
-                                                title: 'Date of Expiry',
-                                                text: kyc.doe,
-                                              ),
-                                            ],
+                                      ),
+                                      elevation: 1,
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            KYCTemplate(
+                                              title: 'Name',
+                                              text: kyc.name,
+                                            ),
+                                            KYCTemplate(
+                                              title: 'Address',
+                                              text: kyc.address,
+                                            ),
+                                            KYCTemplate(
+                                              title: 'D.O.B',
+                                              text: kyc.dob,
+                                            ),
+                                            KYCTemplate(
+                                              title: 'License Office',
+                                              text: kyc.licenseOffice,
+                                            ),
+                                            KYCTemplate(
+                                              title: 'License No.',
+                                              text: kyc.licenseNumber,
+                                            ),
+                                            KYCTemplate(
+                                              title: 'Citizenship Number',
+                                              text: kyc.citizenNumber,
+                                            ),
+                                            KYCTemplate(
+                                              title: 'Category',
+                                              text: kyc.category,
+                                            ),
+                                            KYCTemplate(
+                                              title: 'Date of Issue',
+                                              text: kyc.doi,
+                                            ),
+                                            KYCTemplate(
+                                              title: 'Date of Expiry',
+                                              text: kyc.doe,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }
+                          if (kyc.status == "pending") {
+                            return Center(
+                                child: Column(
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 50),
+                                  child: SizedBox(
+                                      height: 200,
+                                      width: 200,
+                                      child: Image.asset(
+                                          'assets/images/pending.png')),
+                                ),
+                                Container(
+                                  height: 50,
+                                  width: 300,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.grey,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Verification going on......',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 20,
+                                        color: Colors.yellow,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ));
+                          } else {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 20),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Center(
+                                    child: SizedBox(
+                                      height: 200,
+                                      width: 200,
+                                      child: Image.asset(
+                                          'assets/images/connectionlost.png'),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 25),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const Support(),
+                                            ));
+                                      },
+                                      child: RichText(
+                                        text: TextSpan(
+                                          text:
+                                              'Please contact support to re-verify KYC\n ',
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 15,
+                                            color: Colors.blue.shade300,
+                                            fontWeight: FontWeight.w600,
+                                            decoration:
+                                                TextDecoration.underline,
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
-                              );
-                            }
-                            if (kyc.status == "approved") {
-                              return Center(
-                                child: Text('KYc is still on pending'),
-                              );
-                            } else {
-                              return Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 20),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('KYC Rejected'),
-                                  ],
-                                ),
-                              );
-                            }
-                          });
+                                  ),
+                                ],
+                              ),
+                            );
+                          }
+                        },
+                      );
                     }
                   },
                 ),

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:parking_app/core/presentation/bottom_nav.dart';
-import 'package:parking_app/features/home/presentation/home_page.dart';
 import 'package:parking_app/features/profile/application/user_provider.dart';
 import 'package:parking_app/features/profile/infrastructure/user_service.dart';
 import 'package:parking_app/features/splash_screen/splash_screen.dart';
@@ -24,8 +22,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     UserService().getUserData(context);
   }
@@ -56,7 +54,7 @@ class _MyAppState extends State<MyApp> {
               ? const NavBar()
               : Provider.of<CurrentUser>(context).user.role == "admin"
                   ? const AdminHome()
-                  : SplashScreen())
+                  : const SplashScreen())
           : const SplashScreen(),
     );
   }

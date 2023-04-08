@@ -3,13 +3,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:parking_app/core/shared/config.dart';
-import 'package:parking_app/features/explore/domain/location_model.dart';
-import 'package:parking_app/features/profile/application/vehicle_provider.dart';
 import 'package:parking_app/features/profile/presentation/my_vehicle/my_vehicle.dart';
 import 'package:parking_app/features/profile/presentation/my_vehicle/widgets/vehicle_detail_template.dart';
 import 'package:http/http.dart' as http;
 import '../../application/user_provider.dart';
-import '../../domain/user.dart';
 import '../../domain/vehicle_model.dart';
 import 'package:provider/provider.dart';
 
@@ -92,7 +89,7 @@ class _VehicleState extends State<Vehicle> {
       child: Scaffold(
         body: Stack(
           children: [
-            SizedBox(
+            const SizedBox(
               width: double.infinity,
               height: double.infinity,
             ),
@@ -110,10 +107,10 @@ class _VehicleState extends State<Vehicle> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           GestureDetector(
-                            child: Icon(Icons.arrow_back),
+                            child: const Icon(Icons.arrow_back),
                             onTap: () => Navigator.pop(context),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15,
                           ),
                           Text(
@@ -133,7 +130,7 @@ class _VehicleState extends State<Vehicle> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => MyVehicle(),
+                                      builder: (context) => const MyVehicle(),
                                     ));
                               },
                               backgroundColor: const Color(0xFF11D195),
@@ -173,7 +170,7 @@ class _VehicleState extends State<Vehicle> {
                           itemBuilder: (context, index) {
                             VehicleModel vehicle = vehicleMap[index];
                             return SingleChildScrollView(
-                              child: Container(
+                              child: SizedBox(
                                   height: 370,
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(

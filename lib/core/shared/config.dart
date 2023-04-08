@@ -1,8 +1,3 @@
-import 'package:parking_app/features/profile/domain/user.dart';
-import 'package:provider/provider.dart';
-
-import '../../features/profile/application/user_provider.dart';
-
 const url = 'http://10.0.2.2:3000';
 
 const registration = "$url/registration";

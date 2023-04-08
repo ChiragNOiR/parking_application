@@ -11,7 +11,6 @@ import 'package:parking_app/features/reservation/presentation/widgets/time_box_d
 import 'package:provider/provider.dart';
 
 import 'package:parking_app/core/presentation/theme/app_color.dart';
-import 'package:parking_app/core/presentation/theme/text_style.dart';
 
 import '../../../core/shared/config.dart';
 import '../../explore/domain/location_model.dart';
@@ -112,33 +111,31 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Date',
-                      style: GoogleFonts.poppins(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w600,
-                      ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Date',
+                    style: GoogleFonts.poppins(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600,
                     ),
-                    // GestureDetector(
-                    //   onTap: () {
-                    //     setState(() {
-                    //       _selectedDate = DateTime.now();
-                    //     });
-                    //   },
-                    //   child: Text(
-                    //     'Clear',
-                    //     style: GoogleFonts.poppins(
-                    //       color: Colors.blue.shade400,
-                    //       fontWeight: FontWeight.w400,
-                    //     ),
-                    //   ),
-                    // ),
-                  ],
-                ),
+                  ),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     setState(() {
+                  //       _selectedDate = DateTime.now();
+                  //     });
+                  //   },
+                  //   child: Text(
+                  //     'Clear',
+                  //     style: GoogleFonts.poppins(
+                  //       color: Colors.blue.shade400,
+                  //       fontWeight: FontWeight.w400,
+                  //     ),
+                  //   ),
+                  // ),
+                ],
               ),
               const SizedBox(
                 height: 20,

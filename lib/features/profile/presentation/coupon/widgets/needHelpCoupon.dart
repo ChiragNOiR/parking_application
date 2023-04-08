@@ -12,10 +12,10 @@ class HelpCoupon extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        color: Color(0xFFD3D3D3),
+        color: const Color(0xFFD3D3D3),
       ),
       child: ListTile(
-        leading: Icon(
+        leading: const Icon(
           Icons.support_agent,
           color: AppColor.black,
         ),
@@ -32,7 +32,7 @@ class HelpCoupon extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => Support(),
+                builder: (context) => const Support(),
               ),
             );
           },
@@ -47,7 +47,7 @@ class HelpCoupon extends StatelessWidget {
                   color: AppColor.primary,
                 ),
               ),
-              Icon(
+              const Icon(
                 Icons.arrow_forward_ios,
                 size: 15,
                 color: AppColor.primary,

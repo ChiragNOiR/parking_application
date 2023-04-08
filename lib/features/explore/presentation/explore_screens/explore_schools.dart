@@ -1,13 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:parking_app/core/presentation/theme/app_color.dart';
 import 'package:parking_app/core/shared/divider_text.dart';
-import 'package:parking_app/features/home/application/explore_image_provider.dart';
-import 'package:parking_app/features/home/application/temple_image_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../../core/shared/config.dart';
@@ -68,7 +62,7 @@ class _ExploreSchoolState extends State<ExploreSchool> {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.arrow_back,
                           size: 30,
                         ),
@@ -79,8 +73,8 @@ class _ExploreSchoolState extends State<ExploreSchool> {
               ),
             ),
             //Popular
-            Padding(
-                padding: const EdgeInsets.symmetric(
+            const Padding(
+                padding: EdgeInsets.symmetric(
                   horizontal: 10,
                   vertical: 20,
                 ),
@@ -96,7 +90,7 @@ class _ExploreSchoolState extends State<ExploreSchool> {
                   return Center(child: Text('Error: ${snapshot.error}'));
                 } else {
                   final list = snapshot.data!;
-                  return Container(
+                  return SizedBox(
                     height: 200,
                     child: ListView.builder(
                       itemCount: list.length,
@@ -107,7 +101,7 @@ class _ExploreSchoolState extends State<ExploreSchool> {
                         //     .tempImg[index];
                         return Row(
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             GestureDetector(
@@ -135,8 +129,8 @@ class _ExploreSchoolState extends State<ExploreSchool> {
                 }
               },
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
+            const Padding(
+              padding: EdgeInsets.symmetric(
                 horizontal: 10,
                 vertical: 20,
               ),
@@ -170,8 +164,8 @@ class _ExploreSchoolState extends State<ExploreSchool> {
                                 image: Image.asset(
                                     'assets/images/parking_logo.png'),
                                 title: location.title,
-                                subtitle: location.slots + ' Slots Available',
-                                trailing: location.distance + ' M',
+                                subtitle: '${location.slots} Slots Available',
+                                trailing: '${location.distance} M',
                               ),
                             ),
                           ],

@@ -1,14 +1,12 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../../core/presentation/theme/text_style.dart';
 import '../../../../core/shared/config.dart';
-import '../../../profile/application/user_provider.dart';
 import '../../../profile/domain/kyc_model.dart';
 import '../kyc_details_page.dart';
 import '../widgets/kyc_verification_panel.dart';
@@ -24,8 +22,6 @@ class _RejectedRequestState extends State<RejectedRequest> {
   late List<KYCModel> kyc = [];
   Future<List<KYCModel>> getKyc() async {
     try {
-      final id = Provider.of<CurrentUser>(context).user.userId;
-
       final response = await http.get(Uri.parse(getKycDetails));
       if (response.statusCode == 200) {
         final Map<String, dynamic> jsonResponse = jsonDecode(response.body);

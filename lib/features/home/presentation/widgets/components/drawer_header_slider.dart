@@ -17,7 +17,7 @@ class DrawerHeaderSlider extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
+              padding: const EdgeInsets.symmetric(vertical: 10),
               child: CircleAvatar(
                 backgroundColor: Colors.grey,
                 radius: 40,

@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field, use_build_context_synchronously
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -7,7 +9,6 @@ import 'package:parking_app/features/profile/application/user_provider.dart';
 import 'package:parking_app/features/profile/presentation/my_vehicle/widgets/vehicle_textfield.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../core/presentation/theme/text_style.dart';
 import 'package:http/http.dart' as http;
 import '../../../../core/shared/config.dart';
 
@@ -86,7 +87,7 @@ class _MyVehicleState extends State<MyVehicle> {
         resizeToAvoidBottomInset: true,
         body: Stack(
           children: [
-            SizedBox(
+            const SizedBox(
               width: double.infinity,
               height: double.infinity,
             ),
@@ -104,10 +105,10 @@ class _MyVehicleState extends State<MyVehicle> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           GestureDetector(
-                            child: Icon(Icons.arrow_back),
+                            child: const Icon(Icons.arrow_back),
                             onTap: () => Navigator.pop(context),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15,
                           ),
                           Text(
@@ -188,14 +189,14 @@ class _MyVehicleState extends State<MyVehicle> {
                           maxLength: 10,
                           controller: colorController,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
-                        Divider(
+                        const Divider(
                           thickness: 2,
                           color: AppColor.black,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Text(
@@ -218,7 +219,7 @@ class _MyVehicleState extends State<MyVehicle> {
                           maxLength: 10,
                           controller: stateController,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         )
                       ],

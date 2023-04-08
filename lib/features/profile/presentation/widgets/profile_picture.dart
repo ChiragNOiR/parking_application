@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, unused_local_variable
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -53,8 +55,8 @@ class _ProfilePictureState extends State<ProfilePicture> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 25),
-      child: Container(
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 25),
+      child: SizedBox(
         // color: Colors.grey,
         height: 110,
         width: 110,
@@ -85,7 +87,7 @@ class _ProfilePictureState extends State<ProfilePicture> {
                     onPressed: () async {
                       await _pickImage(ImageSource.gallery);
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.add_a_photo,
                     ),
                   ),

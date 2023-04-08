@@ -26,14 +26,14 @@ class ProfileDetail extends StatelessWidget {
           child: Icon(
             icon,
             size: 25,
-            color: Color(0xFF11D195),
+            color: const Color(0xFF11D195),
           ),
         ),
         title: Text(
           title,
           style: GoogleFonts.roboto(
             fontSize: 13,
-            color: Color(0xFF6B6464),
+            color: const Color(0xFF6B6464),
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -41,7 +41,7 @@ class ProfileDetail extends StatelessWidget {
           sub_title,
           style: GoogleFonts.roboto(
             fontSize: 10,
-            color: Color(0xFFA19999),
+            color: const Color(0xFFA19999),
             fontWeight: FontWeight.w500,
           ),
         ),

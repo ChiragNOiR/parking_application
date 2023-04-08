@@ -1,8 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:parking_app/core/shared/config.dart';
 import 'package:parking_app/core/shared/divider_text.dart';
 import 'package:parking_app/features/home/application/explore_image_provider.dart';
@@ -57,7 +55,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.arrow_back,
                     ),
                   )
@@ -65,15 +63,15 @@ class _ExploreScreenState extends State<ExploreScreen> {
               ),
             ),
             //Popular
-            Padding(
-                padding: const EdgeInsets.symmetric(
+            const Padding(
+                padding: EdgeInsets.symmetric(
                   horizontal: 10,
                   vertical: 20,
                 ),
                 child: DividerText(
                   text: 'POPULAR',
                 )),
-            Container(
+            SizedBox(
               height: 200,
               child: ListView.builder(
                 itemCount: Provider.of<ExploreImageProvider>(context)
@@ -97,8 +95,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
+            const Padding(
+              padding: EdgeInsets.symmetric(
                 horizontal: 10,
                 vertical: 20,
               ),

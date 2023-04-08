@@ -1,19 +1,12 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:parking_app/core/presentation/theme/app_color.dart';
-import 'package:parking_app/core/presentation/theme/text_style.dart';
-import 'package:parking_app/features/explore/presentation/explore_screen.dart';
 import 'package:parking_app/features/explore/presentation/explore_screens/explore_adventure.dart';
 import 'package:parking_app/features/explore/presentation/explore_screens/explore_mall.dart';
 import 'package:parking_app/features/explore/presentation/explore_screens/explore_schools.dart';
 import 'package:parking_app/features/explore/presentation/explore_screens/explore_temple.dart';
 import 'package:parking_app/features/home/application/explore_image_provider.dart';
-import 'package:parking_app/features/home/domain/explore_model.dart';
 import 'package:parking_app/features/home/presentation/search_page.dart';
 import 'package:parking_app/features/home/presentation/widgets/drawer.dart';
-import 'package:parking_app/features/home/presentation/widgets/explore_list.dart';
-import 'package:parking_app/features/home/presentation/widgets/search_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/shared/divider_text.dart';
@@ -38,7 +31,7 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Scaffold(
         key: _key,
-        drawer: NavDrawer(),
+        drawer: const NavDrawer(),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                       color: AppColor.black,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 7,
                   ),
                   GestureDetector(
@@ -63,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => SearchScreen(),
+                          builder: (context) => const SearchScreen(),
                         ),
                       );
                     },
@@ -71,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                       height: 45,
                       width: 310,
                       decoration: BoxDecoration(
-                        color: Color(0xFFE1F2ED),
+                        color: const Color(0xFFE1F2ED),
                         // border: Border.all(width: 1.8),
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -79,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.symmetric(
                             vertical: 7, horizontal: 10),
                         child: Row(
-                          children: [
+                          children: const [
                             Icon(Icons.search),
                             SizedBox(
                               width: 10,
@@ -92,12 +85,12 @@ class _HomePageState extends State<HomePage> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: const DividerText(text: 'NEARBY'),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: DividerText(text: 'NEARBY'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8),
@@ -125,14 +118,14 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: const DividerText(text: 'EXPLORE'),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: DividerText(text: 'EXPLORE'),
               ),
-              Container(
+              SizedBox(
                 height: 410,
                 // child: ListView.builder(
                 //   // shrinkWrap: true,
@@ -175,7 +168,7 @@ class _HomePageState extends State<HomePage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => ExploreTemple(),
+                                    builder: (context) => const ExploreTemple(),
                                   ),
                                 );
                                 break;
@@ -183,7 +176,7 @@ class _HomePageState extends State<HomePage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => ExploreMall(),
+                                    builder: (context) => const ExploreMall(),
                                   ),
                                 );
                                 break;
@@ -191,7 +184,8 @@ class _HomePageState extends State<HomePage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => ExploreAdventure(),
+                                    builder: (context) =>
+                                        const ExploreAdventure(),
                                   ),
                                 );
                                 break;
@@ -199,7 +193,7 @@ class _HomePageState extends State<HomePage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => ExploreSchool(),
+                                    builder: (context) => const ExploreSchool(),
                                   ),
                                 );
                                 break;
@@ -211,7 +205,7 @@ class _HomePageState extends State<HomePage> {
                             decoration: BoxDecoration(
                               border: Border.all(color: Colors.grey.shade300),
                             ),
-                            margin: EdgeInsets.all(15),
+                            margin: const EdgeInsets.all(15),
                             child: Image.network(
                               explore.imageUrl,
                               height: 150,

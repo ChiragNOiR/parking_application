@@ -2,8 +2,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
@@ -34,7 +32,6 @@ class _KycDetailPageState extends State<KycDetailPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _kyc = widget.kycModel;
   }
@@ -98,7 +95,7 @@ class _KycDetailPageState extends State<KycDetailPage> {
       appBar: AppBar(
         backgroundColor: AppColor.black,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
+          icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -113,7 +110,7 @@ class _KycDetailPageState extends State<KycDetailPage> {
               widget.heading,
               style: AppStyle.profileHeading,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Center(
@@ -166,7 +163,7 @@ class _KycDetailPageState extends State<KycDetailPage> {
               title: 'Date of Expiry',
               text: _kyc.doe,
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Row(
@@ -176,7 +173,6 @@ class _KycDetailPageState extends State<KycDetailPage> {
                   onPressed: () async {
                     await approved();
                   },
-                  child: Text('Approve'),
                   style: ButtonStyle(
                     backgroundColor:
                         MaterialStateProperty.all<Color>(Colors.green),
@@ -186,18 +182,18 @@ class _KycDetailPageState extends State<KycDetailPage> {
                       ),
                     ),
                     textStyle: MaterialStateProperty.all<TextStyle>(
-                      TextStyle(fontSize: 18),
+                      const TextStyle(fontSize: 18),
                     ),
                   ),
+                  child: const Text('Approve'),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 50,
                 ),
                 ElevatedButton(
                   onPressed: () async {
                     await rejected();
                   },
-                  child: Text('Reject'),
                   style: ButtonStyle(
                     backgroundColor:
                         MaterialStateProperty.all<Color>(Colors.red),
@@ -207,9 +203,10 @@ class _KycDetailPageState extends State<KycDetailPage> {
                       ),
                     ),
                     textStyle: MaterialStateProperty.all<TextStyle>(
-                      TextStyle(fontSize: 18),
+                      const TextStyle(fontSize: 18),
                     ),
                   ),
+                  child: const Text('Reject'),
                 ),
               ],
             )

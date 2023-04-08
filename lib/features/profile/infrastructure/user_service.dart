@@ -1,18 +1,17 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:parking_app/core/presentation/bottom_nav.dart';
 import 'package:parking_app/core/shared/config.dart';
 import 'package:parking_app/features/admin/presentation/admin_home.dart';
-import 'package:parking_app/features/home/presentation/home_page.dart';
 import 'package:parking_app/features/profile/application/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:toast/toast.dart';
 
 import '../../../core/shared/error_handling.dart';
-import '../domain/user.dart';
 
 class UserService {
   Future<void> loginUser({
@@ -31,7 +30,7 @@ class UserService {
           'Content-Type': 'application/json; charset=UTF-8',
         },
       );
-      // ignore: use_build_context_synchronously
+
       httpErrorHandle(
           response: res,
           context: context,
@@ -48,13 +47,13 @@ class UserService {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => AdminHome(),
+                    builder: (context) => const AdminHome(),
                   ));
             } else {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => HomePage(),
+                    builder: (context) => const NavBar(),
                   ));
             }
           }
@@ -97,7 +96,6 @@ class UserService {
           },
         );
 
-        // ignore: use_build_context_synchronously
         var userProvider = Provider.of<CurrentUser>(context, listen: false);
         userProvider.setUser(userRes.body);
       }
@@ -111,7 +109,6 @@ class UserService {
       SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
       await sharedPreferences.remove('x-auth-token');
-      // ignore: use_build_context_synchronously
       return;
     } catch (e) {
       // showSnackBar(context, e.toString());

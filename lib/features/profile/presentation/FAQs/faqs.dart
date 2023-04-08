@@ -4,7 +4,6 @@ import 'package:parking_app/features/profile/presentation/FAQs/widgets/question_
 import 'package:parking_app/features/profile/presentation/support/support.dart';
 
 import '../../../../core/presentation/theme/app_color.dart';
-import '../../../../core/presentation/theme/text_style.dart';
 
 class FAQs extends StatefulWidget {
   const FAQs({super.key});
@@ -20,7 +19,7 @@ class _FAQsState extends State<FAQs> {
       child: Scaffold(
         body: Stack(
           children: [
-            Container(
+            const SizedBox(
               width: double.infinity,
               height: double.infinity,
             ),
@@ -38,10 +37,10 @@ class _FAQsState extends State<FAQs> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           GestureDetector(
-                            child: Icon(Icons.arrow_back),
+                            child: const Icon(Icons.arrow_back),
                             onTap: () => Navigator.pop(context),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15,
                           ),
                           Text(
@@ -101,14 +100,14 @@ class _FAQsState extends State<FAQs> {
                           color: AppColor.primary,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
-                      QuestionPanel(text: 'How to use Pick&Park ?'),
-                      QuestionPanel(text: 'Offers'),
-                      QuestionPanel(text: 'Vehicle Details'),
-                      QuestionPanel(text: 'Loyalty & Rewards'),
-                      QuestionPanel(text: 'How to park your vehicle?')
+                      const QuestionPanel(text: 'How to use Pick&Park ?'),
+                      const QuestionPanel(text: 'Offers'),
+                      const QuestionPanel(text: 'Vehicle Details'),
+                      const QuestionPanel(text: 'Loyalty & Rewards'),
+                      const QuestionPanel(text: 'How to park your vehicle?')
                     ],
                   ),
                 ),

@@ -27,6 +27,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController contactController = TextEditingController();
   TextEditingController addressController = TextEditingController();
+  // ignore: unused_field
   bool _isNotValidate = false;
 
   // signUp() {
@@ -57,6 +58,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         "password": passwordController.text,
         "contact": contactController.text,
         "address": addressController.text,
+        "role": "user",
       };
       var response = await http.post(
         Uri.parse(registration),

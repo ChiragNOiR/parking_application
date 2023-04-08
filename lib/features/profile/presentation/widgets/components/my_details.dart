@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:parking_app/features/profile/application/user_provider.dart';
 import 'package:parking_app/features/profile/presentation/widgets/components/widgets/profile_detail_template.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../core/presentation/theme/text_style.dart';
-import '../profile_detail.dart';
 import '../profile_picture.dart';
-import '../wallet.dart';
 
 class MyDetails extends StatefulWidget {
   const MyDetails({Key? key}) : super(key: key);
@@ -37,7 +31,7 @@ class _MyDetailsState extends State<MyDetails> {
       child: Scaffold(
           body: Stack(
         children: [
-          Container(
+          const SizedBox(
             width: double.infinity,
             height: double.infinity,
           ),
@@ -45,7 +39,7 @@ class _MyDetailsState extends State<MyDetails> {
             child: Container(
               width: double.infinity,
               height: 180,
-              color: Color(0xFFE8F4F9),
+              color: const Color(0xFFE8F4F9),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -56,11 +50,11 @@ class _MyDetailsState extends State<MyDetails> {
                       children: [
                         GestureDetector(
                           onTap: () => Navigator.pop(context),
-                          child: Icon(
+                          child: const Icon(
                             Icons.arrow_back,
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Text(
                           'My Profile',
                           style: AppStyle.profileHeading,
@@ -68,10 +62,10 @@ class _MyDetailsState extends State<MyDetails> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 90,
                   ),
-                  ProfilePicture(),
+                  const ProfilePicture(),
                 ],
               ),
             ),

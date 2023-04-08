@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:parking_app/features/reservation/domain/reservation_model.dart';
-import 'package:provider/provider.dart';
 
 class ReservationProvider extends ChangeNotifier {
   ReservationModel _currentReservation =

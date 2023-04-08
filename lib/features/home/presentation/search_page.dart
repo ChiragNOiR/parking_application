@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -6,7 +8,6 @@ import 'package:parking_app/core/presentation/theme/app_color.dart';
 
 import '../../../core/shared/config.dart';
 import '../../explore/domain/location_model.dart';
-import '../../reservation/presentation/populat_list_page.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -52,19 +53,19 @@ class _SearchScreenState extends State<SearchScreen> {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back,
             color: AppColor.black,
           ),
         ),
-        title: Container(
+        title: SizedBox(
           height: 50,
           child: TextField(
             controller: _searchController,
             onSubmitted: _search,
             decoration: InputDecoration(
               hintText: 'Search',
-              prefixIcon: Icon(Icons.search),
+              prefixIcon: const Icon(Icons.search),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(35),
               ),

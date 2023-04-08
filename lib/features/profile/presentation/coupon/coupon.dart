@@ -3,9 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:parking_app/core/presentation/theme/app_color.dart';
 import 'package:parking_app/features/profile/presentation/coupon/widgets/couponTOC.dart';
 import 'package:parking_app/features/profile/presentation/coupon/widgets/needHelpCoupon.dart';
-import 'package:parking_app/features/profile/presentation/support/support.dart';
-
-import '../../../../core/presentation/theme/text_style.dart';
 
 class Coupon extends StatefulWidget {
   const Coupon({super.key});
@@ -21,7 +18,7 @@ class _CouponState extends State<Coupon> {
       child: Scaffold(
         body: Stack(
           children: [
-            Container(
+            const SizedBox(
               width: double.infinity,
               height: double.infinity,
             ),

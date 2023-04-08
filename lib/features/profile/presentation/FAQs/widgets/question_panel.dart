@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:parking_app/core/presentation/theme/app_color.dart';
 
@@ -33,7 +31,7 @@ class QuestionPanel extends StatelessWidget {
             )),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         )
       ],

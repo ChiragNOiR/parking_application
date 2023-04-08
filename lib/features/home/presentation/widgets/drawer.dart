@@ -36,7 +36,7 @@ class NavDrawer extends StatelessWidget {
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => History(),
+                builder: (context) => const History(),
               ),
             ),
           ),
@@ -47,7 +47,7 @@ class NavDrawer extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => PrivacyPolicy(),
+                  builder: (context) => const PrivacyPolicy(),
                 ),
               );
             },

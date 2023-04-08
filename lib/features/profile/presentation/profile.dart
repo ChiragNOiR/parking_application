@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:parking_app/core/presentation/theme/text_style.dart';
-import 'package:parking_app/core/shared/divider_text.dart';
 import 'package:parking_app/features/profile/presentation/FAQs/faqs.dart';
 import 'package:parking_app/features/profile/presentation/kyc/kyc.dart';
-import 'package:parking_app/features/profile/presentation/my_vehicle/my_vehicle.dart';
 import 'package:parking_app/features/profile/presentation/my_vehicle/vehicle.dart';
 import 'package:parking_app/features/profile/presentation/privacy_policy/privacy_policy.dart';
 import 'package:parking_app/features/profile/presentation/coupon/coupon.dart';
 import 'package:parking_app/features/profile/presentation/support/support.dart';
 import 'package:parking_app/features/profile/presentation/widgets/components/my_details.dart';
 import 'package:parking_app/features/profile/presentation/widgets/profile_detail.dart';
-import 'package:parking_app/features/profile/presentation/widgets/profile_picture.dart';
 import 'package:parking_app/features/profile/presentation/widgets/wallet.dart';
 import 'package:provider/provider.dart';
 
 import '../application/user_provider.dart';
 
 class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
+
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
@@ -30,7 +29,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         body: Consumer(builder: (context, value, child) {
           return Stack(
             children: [
-              Container(
+              const SizedBox(
                 width: double.infinity,
                 height: double.infinity,
               ),
@@ -69,7 +68,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => MyDetails()));
+                                          builder: (context) =>
+                                              const MyDetails()));
                                 },
                                 backgroundColor: const Color(0xFF11D195),
                                 label: const Text('Profile'),
@@ -79,9 +79,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ),
                       Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 30, vertical: 25),
-                        child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 30, vertical: 25),
+                        child: SizedBox(
                           height: 110,
                           width: 100,
                           child: Center(

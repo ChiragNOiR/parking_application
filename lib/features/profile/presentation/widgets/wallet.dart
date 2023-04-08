@@ -7,7 +7,7 @@ class ProfileWallet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(
+      leading: const Icon(
         Icons.wallet,
         color: Colors.white,
         size: 30,
@@ -25,7 +25,7 @@ class ProfileWallet extends StatelessWidget {
         style: GoogleFonts.roboto(
           fontSize: 10,
           fontWeight: FontWeight.w500,
-          color: Color(0xFFD9D1D1),
+          color: const Color(0xFFD9D1D1),
         ),
       ),
       trailing: Text(

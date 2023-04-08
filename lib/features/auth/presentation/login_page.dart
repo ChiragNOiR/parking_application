@@ -1,22 +1,12 @@
-import 'dart:convert';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:parking_app/features/profile/domain/user.dart';
 import 'package:parking_app/features/profile/infrastructure/user_service.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:parking_app/core/presentation/bottom_nav.dart';
 import 'package:parking_app/core/presentation/theme/text_style.dart';
 import 'package:parking_app/features/auth/presentation/create_account_page.dart';
 import 'package:parking_app/features/auth/presentation/widgets/auth_button.dart';
 import 'package:parking_app/features/auth/presentation/widgets/text_field.dart';
-import 'package:parking_app/features/home/presentation/home_page.dart';
-
-import '../../../core/shared/config.dart';
-import '../../profile/application/user_provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

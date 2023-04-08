@@ -18,7 +18,7 @@ class VehicleDetailTemplate extends StatelessWidget {
                 style: GoogleFonts.roboto(
                   fontSize: 13,
                   fontWeight: FontWeight.w500,
-                  color: Color(0xFF9A9494),
+                  color: const Color(0xFF9A9494),
                 ),
               ),
               const TextSpan(text: ' '),
@@ -27,13 +27,13 @@ class VehicleDetailTemplate extends StatelessWidget {
                 style: GoogleFonts.roboto(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
-                  color: Color(0xFF6B6464),
+                  color: const Color(0xFF6B6464),
                 ),
               )
             ],
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
       ],

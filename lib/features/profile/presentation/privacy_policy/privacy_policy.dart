@@ -4,8 +4,6 @@ import 'package:parking_app/core/presentation/theme/app_color.dart';
 import 'package:parking_app/features/profile/presentation/privacy_policy/pp_text.dart';
 import 'package:parking_app/features/profile/presentation/support/support.dart';
 
-import '../../../../core/presentation/theme/text_style.dart';
-
 class PrivacyPolicy extends StatefulWidget {
   const PrivacyPolicy({super.key});
 
@@ -20,7 +18,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
       child: Scaffold(
         body: Stack(
           children: [
-            Container(
+            const SizedBox(
               width: double.infinity,
               height: double.infinity,
             ),

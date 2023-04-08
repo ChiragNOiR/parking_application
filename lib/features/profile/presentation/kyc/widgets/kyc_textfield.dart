@@ -37,20 +37,20 @@ class KYCTextField extends StatelessWidget {
           maxLength: maxLength,
           decoration: InputDecoration(
             labelText: labelText,
-            labelStyle: TextStyle(
+            labelStyle: const TextStyle(
               color: AppColor.grey,
               fontWeight: FontWeight.w500,
               fontSize: 15,
             ),
             helperText: helperText,
-            enabledBorder: UnderlineInputBorder(
+            enabledBorder: const UnderlineInputBorder(
               borderSide: BorderSide(
                 color: AppColor.primary,
               ),
             ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         )
       ],

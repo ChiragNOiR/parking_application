@@ -1,18 +1,8 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:parking_app/features/reservation/presentation/bookings_confrim_page.dart';
-import 'package:timezone/timezone.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:parking_app/core/presentation/theme/app_color.dart';
-import 'package:parking_app/core/shared/config.dart';
 import 'package:parking_app/features/explore/domain/location_model.dart';
-import 'package:http/http.dart' as http;
-import 'package:parking_app/features/profile/application/user_provider.dart';
-import 'package:parking_app/features/reservation/domain/reservation_model.dart';
-import 'package:provider/provider.dart';
 
 class PopularListPage extends StatefulWidget {
   const PopularListPage({super.key, required this.location});
@@ -65,7 +55,7 @@ class _PopularListPageState extends State<PopularListPage> {
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          icon: Icon(Icons.arrow_back),
+                          icon: const Icon(Icons.arrow_back),
                           color: Colors.white,
                         ),
                       ),
@@ -73,7 +63,7 @@ class _PopularListPageState extends State<PopularListPage> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Padding(
@@ -88,12 +78,12 @@ class _PopularListPageState extends State<PopularListPage> {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.location_on_outlined,
                           color: AppColor.primary,
                         ),
@@ -107,7 +97,7 @@ class _PopularListPageState extends State<PopularListPage> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     Text(
@@ -117,7 +107,7 @@ class _PopularListPageState extends State<PopularListPage> {
                         letterSpacing: 1,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     RichText(
@@ -139,7 +129,7 @@ class _PopularListPageState extends State<PopularListPage> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Row(
@@ -164,10 +154,10 @@ class _PopularListPageState extends State<PopularListPage> {
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 180,
                         ),
-                        Text(
+                        const Text(
                           'Open Now',
                           style: TextStyle(
                             color: Colors.green,
@@ -176,7 +166,7 @@ class _PopularListPageState extends State<PopularListPage> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     RichText(
