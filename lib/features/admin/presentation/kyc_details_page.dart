@@ -56,14 +56,6 @@ class _KycDetailPageState extends State<KycDetailPage> {
     } else {
       // alertDialog(context, 'Something went wrong');
     }
-    // if (jsonResponse['status'] != null && jsonResponse['status']) {
-    //   setState(() {
-    //     _kyc.status = statusController.text;
-    //   });
-    //   Navigator.pop(context);
-    // } else {
-    //   print('error');
-    // }
   }
 
   Future<void> rejected() async {
@@ -163,6 +155,23 @@ class _KycDetailPageState extends State<KycDetailPage> {
               title: 'Date of Expiry',
               text: _kyc.doe,
             ),
+            SizedBox(
+              height: 20,
+            ),
+            Center(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(35),
+                  color: Colors.grey[300],
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(_kyc.licensePhoto!),
+                  ),
+                ),
+                height: 220,
+                width: 370,
+              ),
+            ),
             const SizedBox(
               height: 30,
             ),
@@ -209,7 +218,10 @@ class _KycDetailPageState extends State<KycDetailPage> {
                   child: const Text('Reject'),
                 ),
               ],
-            )
+            ),
+            const SizedBox(
+              height: 30,
+            ),
           ],
         ),
       ),

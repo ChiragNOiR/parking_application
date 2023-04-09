@@ -63,9 +63,6 @@ class _HistoryState extends State<History> {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 30,
-            ),
             FutureBuilder(
               future: getBookingHistory(),
               builder: (context, snapshot) {
@@ -75,7 +72,7 @@ class _HistoryState extends State<History> {
                   return Center(child: Text('Error: ${snapshot.error}'));
                 } else {
                   final historyMap = snapshot.data!;
-                  return Container(
+                  return SizedBox(
                     height: MediaQuery.of(context).size.height * 0.7,
                     child: ListView.builder(
                       reverse: true,

@@ -16,7 +16,6 @@ class _PopularListPageState extends State<PopularListPage> {
   late LocationModel _loc;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _loc = widget.location;
   }

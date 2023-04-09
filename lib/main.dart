@@ -31,6 +31,7 @@ void main() async {
         //   create: (context) => KycProvider(),
         // )
       ],
+      // ignore: missing_required_param
       child: const MyApp(),
     ),
   );

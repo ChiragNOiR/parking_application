@@ -7,6 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:parking_app/core/presentation/bottom_nav.dart';
+import 'package:parking_app/features/res_history/presentation/history.dart';
 import 'package:parking_app/features/reservation/presentation/widgets/time_box_design.dart';
 import 'package:provider/provider.dart';
 
@@ -32,12 +34,19 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
       Completer<GoogleMapController>();
   late String searchAddr;
   late LocationModel _loc;
+  late CameraPosition _kGooglePlex;
+
   @override
   void initState() {
     super.initState();
     _loc = widget.location;
 
     _selectedDate = DateTime.now();
+
+    _kGooglePlex = CameraPosition(
+      target: LatLng(double.parse(_loc.lat!), double.parse(_loc.long!)),
+      zoom: 15,
+    );
   }
 
   reserveParking() async {
@@ -55,16 +64,13 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
       "endTime": selectedEndTime.toString(),
       "date": _selectedDate.toString(),
     };
-    print(regBody);
     try {
       final res = await http.post(
         Uri.parse(setReservation),
         body: jsonEncode(regBody),
         headers: {"Content-Type": "application/json"},
       );
-      print(res.body);
       var jsonResponse = jsonDecode(res.body);
-      print(jsonResponse['success']);
 
       if (jsonResponse['status']) {
         // ignore: use_build_context_synchronously
@@ -262,26 +268,6 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
       });
     }
   }
-
-  _selectDate(BuildContext context) async {
-    final DateTime? selected = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime.now(),
-      // lastDate: DateTime(DateTime.now().year, DateTime.now().month + 1, 0),
-      lastDate: DateTime.now(),
-    );
-    if (selected != null && selected != _selectedDate) {
-      setState(() {
-        _selectedDate = selected;
-      });
-    }
-  }
-
-  static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 10,
-  );
 
   // ignore: non_constant_identifier_names
   SetTimePage(BuildContext context) {
@@ -536,6 +522,12 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
                     backgroundColor: AppColor.primary,
                     onPressed: () {
                       reserveParking();
+
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => History(),
+                          ));
                     },
                   ),
                 ),

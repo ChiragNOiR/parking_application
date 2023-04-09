@@ -1,12 +1,16 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+
 import 'package:parking_app/features/home/presentation/home_page.dart';
 import 'package:parking_app/features/profile/presentation/profile.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 
 import '../../features/res_history/presentation/history.dart';
 
 class NavBar extends StatefulWidget {
-  const NavBar({super.key});
+  const NavBar({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<NavBar> createState() => _NavBarState();
@@ -17,6 +21,7 @@ class _NavBarState extends State<NavBar> {
   double gap = 10;
 
   int _index = 0;
+
   // List<Color> colors = [Colors.purple, Colors.pink, Colors.grey, Colors.teal];
 
   List<Text> text = [
@@ -34,7 +39,7 @@ class _NavBarState extends State<NavBar> {
   final List pages = [
     const HomePage(),
     const History(),
-    ProfileScreen(),
+    const ProfileScreen(),
   ];
   @override
   Widget build(BuildContext context) {

@@ -37,50 +37,6 @@ class _VehicleState extends State<Vehicle> {
       throw Exception('Failed to load Vehicle Data: $e');
     }
   }
-  // late User user;
-  // late List<VehicleModel> list = [];
-  // Future<List<VehicleModel>> getVechileDetails() async {
-  //   try {
-  //     final id = Provider.of<CurrentUser>(context).user.userId;
-  //     print(id);
-  //     final response =
-  //         // await http.get(Uri.parse('$getVehicleData/${user.userId}'));
-  //         // await http.get(Uri.parse(getVehicleData));
-  //         await http.get(Uri.parse('$getVehicleData/$id'));
-  //     print(response);
-  //     if (response.statusCode == 200) {
-  //       final List<dynamic> jsonList = jsonDecode(response.body);
-  //       return jsonList.map((json) => VehicleModel.fromJson(json)).toList();
-  //     } else {
-  //       throw Exception('Failed to load Vehicle Data');
-  //     }
-  //   } catch (e) {
-  //     print(e);
-  //     throw Exception('Failed to load Vehicle Data: $e');
-  //   }
-  // }
-  // late User user;
-  // late Map<String, VehicleModel> map = {};
-  // Future<Map<String, VehicleModel>> getVechileDetails() async {
-  //   try {
-  //     final id = Provider.of<CurrentUser>(context).user.userId;
-  //     final response =
-  //         // await http.get(Uri.parse('$getVehicleData/${user.userId}'));
-  //         await http.get(Uri.parse('$getVehicleData/$id'));
-
-  //     if (response.statusCode == 200) {
-  //       final List<dynamic> jsonList = jsonDecode(response.body);
-  //       map = Map.fromIterable(jsonList,
-  //           key: (json) => json['id'],
-  //           value: (json) => VehicleModel.fromJson(json));
-  //       return map;
-  //     } else {
-  //       throw Exception('Failed to load Vehicle Data');
-  //     }
-  //   } catch (e) {
-  //     throw Exception('Failed to load Vehicle Data: $e');
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -181,11 +137,11 @@ class _VehicleState extends State<Vehicle> {
                                       children: [
                                         VehicleDetailTemplate(
                                           title: "Company",
-                                          text: vehicle.company,
+                                          text: vehicle.company.toUpperCase(),
                                         ),
                                         VehicleDetailTemplate(
                                           title: 'Model',
-                                          text: vehicle.model,
+                                          text: vehicle.model.toUpperCase(),
                                         ),
                                         VehicleDetailTemplate(
                                           title: 'Year',

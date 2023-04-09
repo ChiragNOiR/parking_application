@@ -8,11 +8,13 @@ class VehicleTextField extends StatelessWidget {
       required this.labelText,
       this.helperText,
       this.maxLength,
-      this.controller});
+      this.controller,
+      this.validate});
   final String labelText;
   final String? helperText;
   final int? maxLength;
   final TextEditingController? controller;
+  final String? Function(String?)? validate;
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +22,7 @@ class VehicleTextField extends StatelessWidget {
       children: [
         TextFormField(
           controller: controller,
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please fill up all details';
-            }
-            return null;
-          },
+          validator: validate,
           cursorColor: AppColor.primary,
           // initialValue: '',
           maxLength: maxLength,

@@ -14,6 +14,7 @@ class KYCModel {
   String doe;
   String status;
   String profile;
+  String? licensePhoto;
 
   KYCModel(
     this.id,
@@ -30,24 +31,27 @@ class KYCModel {
     this.doe,
     this.status,
     this.profile,
+    this.licensePhoto,
   );
 
   factory KYCModel.fromJson(Map<String, dynamic> json) {
     return KYCModel(
-        (json['_id']),
-        (json['userId']),
-        (json['fullName']),
-        (json['address']),
-        (json['dateOfBirth']),
-        (json['licenseOffice']),
-        (json['licenseNumber']),
-        (json['citizenshipNumber']),
-        (json['category']),
-        (json['contact']),
-        (json['dateOfIssue']),
-        (json['dateOfExpiry']),
-        (json['status']),
-        (json['profile']));
+      (json['_id']),
+      (json['userId']),
+      (json['fullName']),
+      (json['address']),
+      (json['dateOfBirth']),
+      (json['licenseOffice']),
+      (json['licenseNumber']),
+      (json['citizenshipNumber']),
+      (json['category']),
+      (json['contact']),
+      (json['dateOfIssue']),
+      (json['dateOfExpiry']),
+      (json['status']),
+      (json['profile']),
+      (json['licensePhoto']),
+    );
   }
 
   Map<String, dynamic> toJson() => {
@@ -64,6 +68,7 @@ class KYCModel {
         'dateOfIssue': doi,
         'dateOfExpiry': doe,
         'status': status,
-        'profile': profile
+        'profile': profile,
+        'licensePhoto': licensePhoto,
       };
 }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:parking_app/core/presentation/theme/app_color.dart';
 import 'package:parking_app/features/explore/presentation/explore_screens/explore_adventure.dart';
@@ -10,7 +12,12 @@ import 'package:parking_app/features/home/presentation/widgets/drawer.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/shared/divider_text.dart';
+import '../../../../core/shared/config.dart';
 import '../../../core/shared/parking_list.dart';
+import '../../explore/domain/location_model.dart';
+import 'package:http/http.dart' as http;
+
+import '../../reservation/presentation/populat_list_page.dart';
 
 class HomePage extends StatefulWidget {
   // final token;
@@ -25,6 +32,21 @@ class _HomePageState extends State<HomePage> {
 
   late String email;
   late String title;
+
+  late List<LocationModel> list = [];
+  Future<List<LocationModel>> getNearbyList() async {
+    try {
+      final response = await http.get(Uri.parse(getNearby));
+      if (response.statusCode == 200) {
+        final List<dynamic> jsonList = jsonDecode(response.body);
+        return jsonList.map((json) => LocationModel.fromJson(json)).toList();
+      } else {
+        throw Exception('Failed to load pandits');
+      }
+    } catch (e) {
+      throw Exception('Failed to load pandits: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,22 +122,46 @@ class _HomePageState extends State<HomePage> {
                     color: const Color(0xFF11D195),
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: ListView.builder(
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      return Column(
-                        children: <Widget>[
-                          ParkingListTile(
-                            image:
-                                Image.asset('assets/images/parking_logo.png'),
-                            title: 'Park Hero',
-                            subtitle: '00 Slots Available',
-                            trailing: '500 m',
-                          ),
-                        ],
-                      );
-                    },
-                  ),
+                  child: FutureBuilder<List<LocationModel>>(
+                      future: getNearbyList(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        } else if (snapshot.hasError) {
+                          return Center(
+                              child: Text('Error: ${snapshot.error}'));
+                        } else {
+                          final list = snapshot.data!;
+                          return ListView.builder(
+                            itemCount: list.length,
+                            itemBuilder: (context, index) {
+                              LocationModel location = list[index];
+                              return Column(
+                                children: <Widget>[
+                                  GestureDetector(
+                                    onTap: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => PopularListPage(
+                                              location: location),
+                                        )),
+                                    child: ParkingListTile(
+                                      image: Image.asset(
+                                          'assets/images/parking_logo.png'),
+                                      title: location.title,
+                                      subtitle:
+                                          '${location.slots} Slots Available',
+                                      trailing: '${location.distance} Km',
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
+                      }),
                 ),
               ),
               const SizedBox(
@@ -127,31 +173,6 @@ class _HomePageState extends State<HomePage> {
               ),
               SizedBox(
                 height: 410,
-                // child: ListView.builder(
-                //   // shrinkWrap: true,
-                //   itemCount: 4,
-                //   scrollDirection: Axis.vertical,
-                //   itemBuilder: (context, index) {
-                //     return Row(
-                //       children: [
-                //         SizedBox(
-                //           width: 20,
-                //         ),
-                //         const ExploreList(
-                //           imageData:
-                //               'https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg',
-                //         ),
-                //         SizedBox(
-                //           width: 20,
-                //         ),
-                //         const ExploreList(
-                //           imageData:
-                //               'https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg',
-                //         )
-                //       ],
-                //     );
-                //   },
-                // ),
                 child: GridView.count(
                   crossAxisCount: 2,
                   children: List.generate(

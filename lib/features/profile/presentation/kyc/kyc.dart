@@ -195,6 +195,25 @@ class _KYCState extends State<KYC> {
                                       ),
                                     ),
                                   ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text('Document Details'),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(35),
+                                      color: Colors.grey[300],
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: NetworkImage(kyc.licensePhoto!),
+                                      ),
+                                    ),
+                                    height: 200,
+                                    width: 400,
+                                  )
                                 ],
                               ),
                             );

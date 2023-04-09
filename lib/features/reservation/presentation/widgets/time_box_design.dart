@@ -9,7 +9,8 @@ class TimeBox extends StatelessWidget {
       height: 10,
       width: 10,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50), color: Color(0xFFD9D9D9)),
+          borderRadius: BorderRadius.circular(50),
+          color: const Color(0xFFD9D9D9)),
     );
   }
 }
