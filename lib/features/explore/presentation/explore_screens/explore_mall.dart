@@ -47,7 +47,7 @@ class _ExploreMallState extends State<ExploreMall> {
                 children: [
                   Image.network(
                     fit: BoxFit.cover,
-                    'https://thehimalayantimes.com/uploads/imported_images/wp-content/uploads/2017/12/Pashupatinath-temple.jpg',
+                    'https://english.khabarhub.com/wp-content/uploads/2019/08/No-Parking-1.jpg',
                     width: 600,
                   ),
                   Padding(

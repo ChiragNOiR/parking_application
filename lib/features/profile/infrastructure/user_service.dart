@@ -5,11 +5,14 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:parking_app/core/presentation/bottom_nav.dart';
+import 'package:parking_app/core/presentation/theme/app_color.dart';
 import 'package:parking_app/core/shared/config.dart';
+import 'package:parking_app/core/shared/toast.dart';
 import 'package:parking_app/features/admin/presentation/admin_home.dart';
 import 'package:parking_app/features/profile/application/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../core/shared/error_handling.dart';
 
@@ -18,6 +21,7 @@ class UserService {
     required BuildContext context,
     required String userEmail,
     required String userPassword,
+    bool toast = true,
   }) async {
     try {
       http.Response res = await http.post(
@@ -32,35 +36,39 @@ class UserService {
       );
 
       httpErrorHandle(
-          response: res,
-          context: context,
-          onSuccess: () async {
-            SharedPreferences prefs = await SharedPreferences.getInstance();
-            Provider.of<CurrentUser>(context, listen: false).setUser(res.body);
-            await prefs.setString(
-                'x-auth-token', jsonDecode(res.body)['token']);
+        response: res,
+        context: context,
+        onSuccess: () async {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          Provider.of<CurrentUser>(context, listen: false).setUser(res.body);
+          await prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
 
-            final user = context.read<CurrentUser>().user;
+          final user = context.read<CurrentUser>().user;
 
-            // context.read<NavigationProvider>().selectedIndex = 0;
-            if (user.role == "admin") {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AdminHome(),
-                  ));
-            } else {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const NavBar(),
-                  ));
-            }
+          if (user.role == "admin") {
+            AlertDialogToast.showToast(
+                "Logging ${Provider.of<CurrentUser>(context, listen: false).user.fullName}",
+                AppColor.primary);
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AdminHome(),
+                ));
+          } else {
+            AlertDialogToast.showToast(
+                "Logging ${Provider.of<CurrentUser>(context, listen: false).user.fullName}",
+                AppColor.primary);
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const NavBar(),
+              ),
+            );
           }
-          //onSuccess: () {},
-          );
+        },
+      );
     } catch (e) {
-      // showSnackBar(context, e.toString());
+      AlertDialogToast.showToast("Something Went Wrong!! ", AppColor.danger);
     }
   }
 
@@ -100,7 +108,7 @@ class UserService {
         userProvider.setUser(userRes.body);
       }
     } catch (e) {
-      // showSnackBar(context, e.toString());
+      AlertDialogToast.showToast("Something Went Wrong!!", AppColor.danger);
     }
   }
 
@@ -111,7 +119,7 @@ class UserService {
       await sharedPreferences.remove('x-auth-token');
       return;
     } catch (e) {
-      // showSnackBar(context, e.toString());
+      AlertDialogToast.showToast("Something Went Wrong!!", AppColor.danger);
     }
   }
 }

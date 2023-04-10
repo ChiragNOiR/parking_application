@@ -18,3 +18,4 @@ const statusKyc = '$url/kycStatus';
 const getBookingDetails = '$url/getReservation';
 const getNearby = '$url/getRandom';
 const uploadLicense = '$url/uploadLicense';
+const reservationCancelation = '$url/cancelRes';

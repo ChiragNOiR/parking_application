@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:parking_app/core/shared/toast.dart';
 import 'package:provider/provider.dart';
 
 import 'package:parking_app/core/presentation/theme/app_color.dart';
@@ -38,7 +39,8 @@ class _KycDetailPageState extends State<KycDetailPage> {
 
   Future<void> approved() async {
     var regBody = {
-      "status": "approved",
+      'contact': _kyc.contact,
+      'status': 'approved',
     };
     final id = Provider.of<CurrentUser>(context, listen: false).user.userId;
     var response = await http.post(
@@ -47,20 +49,23 @@ class _KycDetailPageState extends State<KycDetailPage> {
       body: jsonEncode(regBody),
     );
     var jsonResponse = jsonDecode(response.body);
-    print(jsonResponse['success']);
 
     if (jsonResponse['status']) {
       // ignore: use_build_context_synchronously
       Navigator.pop(context);
-      // alertDialog(context, 'Registered Successfully');
+      AlertDialogToast.showToast(
+        "KYC Approved",
+        AppColor.primary,
+      );
     } else {
-      // alertDialog(context, 'Something went wrong');
+      AlertDialogToast.showToast("Something Went Wrong!!", AppColor.danger);
     }
   }
 
   Future<void> rejected() async {
     var regBody = {
-      "status": "rejected",
+      'contact': _kyc.contact,
+      'status': 'rejected',
     };
     final id = Provider.of<CurrentUser>(context, listen: false).user.userId;
     var response = await http.post(
@@ -70,14 +75,15 @@ class _KycDetailPageState extends State<KycDetailPage> {
     );
     var jsonResponse = jsonDecode(response.body);
 
-    print(jsonResponse['success']);
-
     if (jsonResponse['status']) {
       // ignore: use_build_context_synchronously
+      AlertDialogToast.showToast(
+        "KYC Rejected",
+        AppColor.danger,
+      );
       Navigator.pop(context);
-      // alertDialog(context, 'Registered Successfully');
     } else {
-      // alertDialog(context, 'Something went wrong');
+      AlertDialogToast.showToast("Something Went Wrong!!", AppColor.danger);
     }
   }
 
@@ -113,7 +119,7 @@ class _KycDetailPageState extends State<KycDetailPage> {
             ),
             KycText(
               title: 'User ID',
-              text: _kyc.id,
+              text: _kyc.userId,
             ),
             KycText(
               title: 'Full Name',

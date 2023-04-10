@@ -8,6 +8,7 @@ class HistoryModel {
   String startTime;
   String endTime;
   String date;
+  String? status;
 
   HistoryModel(
     this.userId,
@@ -18,6 +19,7 @@ class HistoryModel {
     this.startTime,
     this.endTime,
     this.date,
+    this.status,
   );
 
   factory HistoryModel.fromJson(Map<String, dynamic> json) {
@@ -30,6 +32,7 @@ class HistoryModel {
       (json['startTime']),
       (json['endTime']),
       (json['date']),
+      (json['status']),
     );
   }
 
@@ -42,5 +45,6 @@ class HistoryModel {
         'startTime': startTime,
         'endTime': endTime,
         'date': date,
+        'status': status,
       };
 }

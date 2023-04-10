@@ -33,7 +33,6 @@ class _ApprovedRequestState extends State<ApprovedRequest> {
         throw Exception('Failed to load KYC Data');
       }
     } catch (e) {
-      print(e);
       throw Exception('Failed to load KYC Data: $e');
     }
   }
@@ -101,7 +100,7 @@ class _ApprovedRequestState extends State<ApprovedRequest> {
                               ],
                             );
                           } else {
-                            return SizedBox();
+                            return const SizedBox();
                           }
                         });
                   }

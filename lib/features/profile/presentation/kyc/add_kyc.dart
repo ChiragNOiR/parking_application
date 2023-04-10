@@ -7,7 +7,9 @@ import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:parking_app/core/presentation/theme/app_color.dart';
 import 'package:parking_app/core/shared/config.dart';
+import 'package:parking_app/core/shared/toast.dart';
 import 'package:parking_app/features/profile/presentation/kyc/widgets/kyc_textfield.dart';
 import 'package:provider/provider.dart';
 
@@ -166,6 +168,9 @@ class _AddKYCState extends State<AddKYC> {
                               if (_formKey.currentState!.validate())
                                 {
                                   registerKyc(),
+                                  AlertDialogToast.showToast(
+                                      "Kyc has been sent for verification",
+                                      AppColor.connectionLost)
                                 }
                             },
                             backgroundColor: const Color(0xFF11D195),

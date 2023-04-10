@@ -75,10 +75,14 @@ class _HistoryState extends State<History> {
                   return SizedBox(
                     height: MediaQuery.of(context).size.height * 0.7,
                     child: ListView.builder(
-                      reverse: true,
+                      reverse: false,
                       itemCount: historyMap.length,
                       itemBuilder: (context, index) {
                         HistoryModel his = historyMap[index];
+
+                        if (his.status == "canceled") {
+                          return SizedBox.shrink();
+                        }
 
                         // get the booking date from the HistoryModel object
                         DateTime bookingDate = DateTime.parse(his.date);
@@ -95,6 +99,7 @@ class _HistoryState extends State<History> {
                         String input = his.startTime;
                         RegExp pattern = RegExp('[a-zA-Z\\(\\)]');
                         String output = input.replaceAll(pattern, '');
+                        DateTime myDate = DateTime.now();
                         return Stack(
                           alignment: Alignment.center,
                           children: [
@@ -116,12 +121,15 @@ class _HistoryState extends State<History> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Parked On",
+                                        DateTime.now().day == myDate.day
+                                            ? "Parking on"
+                                            : "Parked on",
                                         style: GoogleFonts.poppins(
                                           fontSize: 14,
                                         ),
                                       ),
                                       RichText(
+                                        maxLines: 2,
                                         text: TextSpan(
                                           text: DateFormat('d MMMM, ')
                                               .format(DateTime.parse(his.date)),

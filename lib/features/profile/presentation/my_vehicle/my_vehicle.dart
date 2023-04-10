@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:parking_app/core/presentation/theme/app_color.dart';
+import 'package:parking_app/core/shared/toast.dart';
 import 'package:parking_app/features/profile/application/user_provider.dart';
 import 'package:parking_app/features/profile/presentation/my_vehicle/widgets/vehicle_textfield.dart';
 import 'package:provider/provider.dart';
@@ -120,7 +121,12 @@ class _MyVehicleState extends State<MyVehicle> {
                           FloatingActionButton.extended(
                             onPressed: () => {
                               if (_formKey.currentState!.validate())
-                                {registerVehicle()}
+                                {
+                                  registerVehicle(),
+                                  AlertDialogToast.showToast(
+                                      "Vehicle Added Successfully",
+                                      AppColor.primary)
+                                }
                             },
                             backgroundColor: const Color(0xFF11D195),
                             label: const Text('Add'),

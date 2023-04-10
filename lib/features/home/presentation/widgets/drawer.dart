@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:parking_app/core/presentation/theme/text_style.dart';
 import 'package:parking_app/features/auth/presentation/login_page.dart';
+import 'package:parking_app/features/home/presentation/drawer_nav/settings.dart';
 import 'package:parking_app/features/home/presentation/widgets/components/drawer_header_slider.dart';
 import 'package:parking_app/features/home/presentation/widgets/components/drawer_list.dart';
+import 'package:parking_app/features/home/presentation/drawer_nav/my_doc.dart';
 import 'package:parking_app/features/profile/application/user_provider.dart';
 import 'package:parking_app/features/profile/infrastructure/user_service.dart';
 import 'package:parking_app/features/profile/presentation/privacy_policy/privacy_policy.dart';
@@ -63,12 +65,26 @@ class NavDrawer extends StatelessWidget {
           DrawerListTile(
             leading: Icons.newspaper,
             title: 'My Documents',
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const MyDoc(),
+                ),
+              );
+            },
           ),
           DrawerListTile(
             leading: Icons.settings,
             title: 'Settings',
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SettingsPage(),
+                ),
+              );
+            },
           ),
           const SizedBox(
             height: 80,

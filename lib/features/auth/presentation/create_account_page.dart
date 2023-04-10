@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:parking_app/core/presentation/theme/app_color.dart';
 import 'package:parking_app/core/presentation/theme/text_style.dart';
+import 'package:parking_app/core/shared/toast.dart';
 import 'package:parking_app/features/auth/presentation/widgets/auth_button.dart';
 import 'package:parking_app/features/auth/presentation/widgets/text_field.dart';
 
@@ -30,22 +31,6 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   // ignore: unused_field
   bool _isNotValidate = false;
 
-  // signUp() {
-  //   print('Test');
-  //   // String uid = _conUserId.text;
-  //   String uName = fullNameController.text;
-  //   String uEmail = emailController.text;
-  //   String uPassword = passwordController.text;
-  //   String uConfirmPassword = confirmPasswordController.text;
-
-  //   if (_formKey.currentState!.validate()) {
-  //     if (uPassword != uConfirmPassword) {
-  //       alertDialog(context, 'Password Mismatched! Please Try Again');
-  //     } else {
-  //       _formKey.currentState!.save();
-  //     }
-  //   }
-  // }
   void registerUser() async {
     if (emailController.text.isNotEmpty &&
         passwordController.text.isNotEmpty &&
@@ -73,9 +58,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
       if (jsonResponse['status']) {
         // ignore: use_build_context_synchronously
         Navigator.pop(context);
-        // alertDialog(context, 'Registered Successfully');
+        AlertDialogToast.showToast(
+            "User Registered. Please Login", AppColor.connectionLost);
       } else {
-        // alertDialog(context, 'Something went wrong');
+        AlertDialogToast.showToast("Something Went Wrong!!", AppColor.danger);
       }
     } else {
       setState(() {
@@ -243,7 +229,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                     child: AuthButton(
                       text: 'Sign Up',
                       onTap: () => {
-                        if (_formKey.currentState!.validate()) {registerUser()}
+                        if (_formKey.currentState!.validate())
+                          {
+                            registerUser(),
+                          }
                       },
                     ),
                   )

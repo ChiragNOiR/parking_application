@@ -46,7 +46,6 @@ class _AdminHomeState extends State<AdminHome> {
         throw Exception('Failed to load KYC Data');
       }
     } catch (e) {
-      print('$e error');
       throw Exception('Failed to load KYC Data: $e');
     }
   }

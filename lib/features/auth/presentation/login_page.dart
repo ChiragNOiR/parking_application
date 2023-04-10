@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:parking_app/features/auth/presentation/widgets/forgot_pass.dart';
 import 'package:parking_app/features/profile/infrastructure/user_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -127,6 +128,13 @@ class _LoginPageState extends State<LoginPage> {
                       TextSpan(
                         text: 'Forgotten Password?\n',
                         style: AppStyle.loginpageh3,
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const ForgotPass(),
+                                ),
+                              ),
                         children: <InlineSpan>[
                           const WidgetSpan(
                             child: Padding(

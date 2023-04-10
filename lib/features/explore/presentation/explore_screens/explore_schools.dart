@@ -47,7 +47,7 @@ class _ExploreSchoolState extends State<ExploreSchool> {
                 children: [
                   Image.network(
                     fit: BoxFit.cover,
-                    'https://thehimalayantimes.com/uploads/imported_images/wp-content/uploads/2017/12/Pashupatinath-temple.jpg',
+                    'https://www.theindependentbd.com/assets/news_images/parking-problem.jpg',
                     width: 600,
                   ),
                   Padding(

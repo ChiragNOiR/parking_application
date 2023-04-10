@@ -1,10 +1,20 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:parking_app/core/shared/config.dart';
+import 'package:parking_app/core/shared/toast.dart';
+import 'package:parking_app/features/profile/application/user_provider.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:parking_app/features/res_history/domain/history_model.dart';
+import 'package:parking_app/features/res_history/presentation/history.dart';
 import 'package:parking_app/features/res_history/presentation/widgets/text_format.dart';
+import 'package:provider/provider.dart';
+
+import '../../../core/presentation/theme/app_color.dart';
 
 class SeeDetails extends StatefulWidget {
   const SeeDetails({
@@ -24,6 +34,27 @@ class _SeeDetailsState extends State<SeeDetails> {
   void initState() {
     super.initState();
     _his = widget.history;
+  }
+
+  Future<void> cancelRes() async {
+    var regBody = {'location': _his.location, 'status': 'canceled'};
+    final id = Provider.of<CurrentUser>(context, listen: false).user.userId;
+
+    var response = await http.post(
+      Uri.parse("$reservationCancelation/$id/canceled"),
+      headers: {"Content-Type": "application/json"},
+      body: jsonEncode(regBody),
+    );
+    var jsonResponse = jsonDecode(response.body);
+    print(jsonResponse['success']);
+
+    if (jsonResponse['status']) {
+      // ignore: use_build_context_synchronously
+      Navigator.pop(context);
+      // alertDialog(context, 'Registered Successfully');
+    } else {
+      // alertDialog(context, 'Something went wrong');
+    }
   }
 
   @override
@@ -94,7 +125,7 @@ class _SeeDetailsState extends State<SeeDetails> {
               margin: const EdgeInsets.all(10),
               elevation: 1,
               child: Container(
-                height: 280,
+                height: 300,
                 padding: const EdgeInsets.symmetric(
                   horizontal: 10,
                 ),
@@ -140,7 +171,11 @@ class _SeeDetailsState extends State<SeeDetails> {
                   child: FloatingActionButton.extended(
                     heroTag: "cancelButton",
                     backgroundColor: Colors.red,
-                    onPressed: () {},
+                    onPressed: () async {
+                      await cancelRes();
+                      AlertDialogToast.showToast(
+                          "Slot Canceled", AppColor.danger);
+                    },
                     label: Text(
                       'Cancel Reservation',
                       style: GoogleFonts.poppins(

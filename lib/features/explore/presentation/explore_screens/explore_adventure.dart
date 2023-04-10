@@ -47,7 +47,7 @@ class _ExploreAdventureState extends State<ExploreAdventure> {
                 children: [
                   Image.network(
                     fit: BoxFit.cover,
-                    'https://thehimalayantimes.com/uploads/imported_images/wp-content/uploads/2017/12/Pashupatinath-temple.jpg',
+                    'https://res.cloudinary.com/dhqrq8v9p/image/upload/v1681142705/Capture-_VypuIU7im-transformed_ptswcc.png',
                     width: 600,
                   ),
                   Padding(

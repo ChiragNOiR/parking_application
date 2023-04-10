@@ -8,6 +8,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:parking_app/core/presentation/bottom_nav.dart';
+import 'package:parking_app/core/shared/toast.dart';
 import 'package:parking_app/features/res_history/presentation/history.dart';
 import 'package:parking_app/features/reservation/presentation/widgets/time_box_design.dart';
 import 'package:provider/provider.dart';
@@ -63,6 +64,7 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
       "startTime": selectedStartTime.toString(),
       "endTime": selectedEndTime.toString(),
       "date": _selectedDate.toString(),
+      "status": "ongoing",
     };
     try {
       final res = await http.post(
@@ -521,13 +523,9 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
                     ),
                     backgroundColor: AppColor.primary,
                     onPressed: () {
+                      AlertDialogToast.showToast(
+                          "Slot Booked", AppColor.connectionLost);
                       reserveParking();
-
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => History(),
-                          ));
                     },
                   ),
                 ),

@@ -31,7 +31,6 @@ class _RejectedRequestState extends State<RejectedRequest> {
         throw Exception('Failed to load KYC Data');
       }
     } catch (e) {
-      print(e);
       throw Exception('Failed to load KYC Data: $e');
     }
   }
