@@ -301,236 +301,238 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
           ),
         ),
       ),
-      body: Container(
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(50),
-            topRight: Radius.circular(50),
+      body: SingleChildScrollView(
+        child: Container(
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(50),
+              topRight: Radius.circular(50),
+            ),
           ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    'Parking Detail',
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  Text(
-                    formatter.format(_selectedDate!),
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                      color: AppColor.danger,
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 300,
-                width: double.infinity,
-                child: Stack(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Positioned(
-                      top: 50,
-                      left: 30,
-                      child: Text(
-                        'ENTER',
-                        style: GoogleFonts.roboto(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                        ),
+                    Text(
+                      'Parking Detail',
+                      style: GoogleFonts.poppins(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
-                    Positioned(
-                      top: 80,
-                      left: 20,
-                      child: FloatingActionButton.extended(
-                        heroTag: "enter",
-                        label: Text(
-                          "${selectedStartTime.hour}:${selectedStartTime.minute} ${selectedStartTime.hour < 12 ? "AM" : "PM"}",
-                          style: GoogleFonts.poppins(
-                            color: AppColor.danger,
-                          ),
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _selectStartTime(context);
-                          });
-                        },
-                        backgroundColor: const Color(0xFFF8EFEF),
+                    Text(
+                      formatter.format(_selectedDate!),
+                      style: GoogleFonts.poppins(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        color: AppColor.danger,
                       ),
-                    ),
-                    const Positioned(
-                      top: 58,
-                      left: 100,
-                      child: TimeBox(),
-                    ),
-                    const Positioned(
-                      top: 58,
-                      left: 130,
-                      child: TimeBox(),
-                    ),
-                    const Positioned(
-                      top: 58,
-                      left: 160,
-                      child: TimeBox(),
-                    ),
-                    const Positioned(
-                      top: 58,
-                      left: 190,
-                      child: TimeBox(),
-                    ),
-                    const Positioned(
-                      top: 90,
-                      left: 190,
-                      child: TimeBox(),
-                    ),
-                    const Positioned(
-                      top: 123,
-                      left: 190,
-                      child: TimeBox(),
-                    ),
-                    const Positioned(
-                      top: 153,
-                      left: 190,
-                      child: TimeBox(),
-                    ),
-                    const Positioned(
-                      top: 183,
-                      left: 190,
-                      child: TimeBox(),
-                    ),
-                    const Positioned(
-                      top: 183,
-                      left: 220,
-                      child: TimeBox(),
-                    ),
-                    const Positioned(
-                      top: 183,
-                      left: 250,
-                      child: TimeBox(),
-                    ),
-                    const Positioned(
-                      top: 183,
-                      left: 280,
-                      child: TimeBox(),
-                    ),
-                    Positioned(
-                      top: 177,
-                      left: 300,
-                      child: Text(
-                        'EXIT',
-                        style: GoogleFonts.roboto(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      top: 210,
-                      left: 270,
-                      child: FloatingActionButton.extended(
-                        heroTag: "exit",
-                        label: Text(
-                          "${selectedEndTime.hour}:${selectedEndTime.minute} ${selectedEndTime.hour < 12 ? "AM" : "PM"}",
-                          style: GoogleFonts.poppins(
-                            color: AppColor.danger,
-                          ),
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _selectEndTime(context);
-                          });
-                        },
-                        backgroundColor: const Color(0xFFF8EFEF),
-                      ),
-                    ),
+                    )
                   ],
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 30,
-                  vertical: 10,
-                ),
-                child: RichText(
-                  text: TextSpan(
-                    text: 'Note:\n',
-                    style: GoogleFonts.roboto(
-                      color: AppColor.primary,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text:
-                            '1. Parking is not allowed in any place that is not specifically striped or signed for parking.\n',
-                        style: GoogleFonts.sourceCodePro(
-                          fontSize: 15,
-                          color: Colors.grey[600],
+                SizedBox(
+                  height: 300,
+                  width: double.infinity,
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        top: 50,
+                        left: 30,
+                        child: Text(
+                          'ENTER',
+                          style: GoogleFonts.roboto(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
-                      TextSpan(
-                        text:
-                            '\n2. Please follow all the traffic rules and regulations.\n',
-                        style: GoogleFonts.sourceCodePro(
-                          fontSize: 15,
-                          color: Colors.grey[600],
+                      Positioned(
+                        top: 80,
+                        left: 20,
+                        child: FloatingActionButton.extended(
+                          heroTag: "enter",
+                          label: Text(
+                            "${selectedStartTime.hour}:${selectedStartTime.minute} ${selectedStartTime.hour < 12 ? "AM" : "PM"}",
+                            style: GoogleFonts.poppins(
+                              color: AppColor.danger,
+                            ),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _selectStartTime(context);
+                            });
+                          },
+                          backgroundColor: const Color(0xFFF8EFEF),
                         ),
                       ),
-                      TextSpan(
-                        text:
-                            '\n3. The Electric Vehicle will be given seperated chargable spaces of Level II Electric Vehicle Charging Stations,',
-                        style: GoogleFonts.sourceCodePro(
-                          fontSize: 15,
-                          color: Colors.grey[600],
+                      const Positioned(
+                        top: 58,
+                        left: 100,
+                        child: TimeBox(),
+                      ),
+                      const Positioned(
+                        top: 58,
+                        left: 130,
+                        child: TimeBox(),
+                      ),
+                      const Positioned(
+                        top: 58,
+                        left: 160,
+                        child: TimeBox(),
+                      ),
+                      const Positioned(
+                        top: 58,
+                        left: 190,
+                        child: TimeBox(),
+                      ),
+                      const Positioned(
+                        top: 90,
+                        left: 190,
+                        child: TimeBox(),
+                      ),
+                      const Positioned(
+                        top: 123,
+                        left: 190,
+                        child: TimeBox(),
+                      ),
+                      const Positioned(
+                        top: 153,
+                        left: 190,
+                        child: TimeBox(),
+                      ),
+                      const Positioned(
+                        top: 183,
+                        left: 190,
+                        child: TimeBox(),
+                      ),
+                      const Positioned(
+                        top: 183,
+                        left: 220,
+                        child: TimeBox(),
+                      ),
+                      const Positioned(
+                        top: 183,
+                        left: 250,
+                        child: TimeBox(),
+                      ),
+                      const Positioned(
+                        top: 183,
+                        left: 280,
+                        child: TimeBox(),
+                      ),
+                      Positioned(
+                        top: 177,
+                        left: 300,
+                        child: Text(
+                          'EXIT',
+                          style: GoogleFonts.roboto(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
-                      TextSpan(
-                        text: 'Extra Charges Applied.',
-                        style: GoogleFonts.sourceCodePro(
-                          fontSize: 15,
-                          color: Colors.red.shade300,
+                      Positioned(
+                        top: 210,
+                        left: 270,
+                        child: FloatingActionButton.extended(
+                          heroTag: "exit",
+                          label: Text(
+                            "${selectedEndTime.hour}:${selectedEndTime.minute} ${selectedEndTime.hour < 12 ? "AM" : "PM"}",
+                            style: GoogleFonts.poppins(
+                              color: AppColor.danger,
+                            ),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _selectEndTime(context);
+                            });
+                          },
+                          backgroundColor: const Color(0xFFF8EFEF),
                         ),
                       ),
                     ],
                   ),
                 ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 35, vertical: 15),
-                child: SizedBox(
-                  width: 300,
-                  child: FloatingActionButton.extended(
-                    label: Text(
-                      'RESERVE YOUR SPACE',
-                      style: GoogleFonts.poppins(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w800,
-                        fontSize: 12,
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 30,
+                    vertical: 10,
+                  ),
+                  child: RichText(
+                    text: TextSpan(
+                      text: 'Note:\n',
+                      style: GoogleFonts.roboto(
+                        color: AppColor.primary,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
                       ),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text:
+                              '1. Parking is not allowed in any place that is not specifically striped or signed for parking.\n',
+                          style: GoogleFonts.sourceCodePro(
+                            fontSize: 15,
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                        TextSpan(
+                          text:
+                              '\n2. Please follow all the traffic rules and regulations.\n',
+                          style: GoogleFonts.sourceCodePro(
+                            fontSize: 15,
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                        TextSpan(
+                          text:
+                              '\n3. The Electric Vehicle will be given seperated chargable spaces of Level II Electric Vehicle Charging Stations,',
+                          style: GoogleFonts.sourceCodePro(
+                            fontSize: 15,
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                        TextSpan(
+                          text: 'Extra Charges Applied.',
+                          style: GoogleFonts.sourceCodePro(
+                            fontSize: 15,
+                            color: Colors.red.shade300,
+                          ),
+                        ),
+                      ],
                     ),
-                    backgroundColor: AppColor.primary,
-                    onPressed: () {
-                      AlertDialogToast.showToast(
-                          "Slot Booked", AppColor.connectionLost);
-                      reserveParking();
-                    },
                   ),
                 ),
-              )
-            ],
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 35, vertical: 15),
+                  child: SizedBox(
+                    width: 300,
+                    child: FloatingActionButton.extended(
+                      label: Text(
+                        'RESERVE YOUR SPACE',
+                        style: GoogleFonts.poppins(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w800,
+                          fontSize: 12,
+                        ),
+                      ),
+                      backgroundColor: AppColor.primary,
+                      onPressed: () {
+                        AlertDialogToast.showToast(
+                            "Slot Booked", AppColor.connectionLost);
+                        reserveParking();
+                      },
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
