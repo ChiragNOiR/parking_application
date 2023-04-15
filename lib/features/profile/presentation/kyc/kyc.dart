@@ -118,6 +118,11 @@ class _KYCState extends State<KYC> {
                       return const Center(child: CircularProgressIndicator());
                     } else if (snapshot.hasError) {
                       return Center(child: Text('Error: ${snapshot.error}'));
+                    } else if (snapshot.data == null ||
+                        snapshot.data!.isEmpty) {
+                      return const Center(
+                          child: Text(
+                              'No KYC data available.\nAdd KYC information to use wallet feature.'));
                     } else {
                       final kycMap = snapshot.data!;
                       return ListView.builder(

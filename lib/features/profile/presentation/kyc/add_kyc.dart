@@ -83,11 +83,19 @@ class _AddKYCState extends State<AddKYC> {
 
       if (jsonResponse['status']) {
         Navigator.pop(context);
+        AlertDialogToast.showToast(
+            "KYC Verification SENT!", AppColor.connectionLost);
       } else {
-        print('error');
+        AlertDialogToast.showToast(
+          "KYC Verification ERROR!",
+          AppColor.danger,
+        );
       }
     } else {
-      print('hh');
+      AlertDialogToast.showToast(
+        "Something went wrong!",
+        AppColor.danger,
+      );
       setState(() {
         _isNotValidate = true;
       });
@@ -120,8 +128,15 @@ class _AddKYCState extends State<AddKYC> {
         );
 
         final jsonResponse = jsonDecode(response.body);
+        AlertDialogToast.showToast(
+          "License Uploaded!",
+          AppColor.primary,
+        );
       } catch (e) {
-        print('dd');
+        AlertDialogToast.showToast(
+          "Something went wrong!",
+          AppColor.danger,
+        );
       }
     }
   }

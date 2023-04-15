@@ -35,19 +35,36 @@ class _SearchScreenState extends State<SearchScreen> {
     }
   }
 
-  void _search(String query) async {
-    final response = await http.get(Uri.parse('$searchLocationAPI/$query'));
-    final jsonResponse = json.decode(response.body);
+  // void _search(String query) async {
+  //   final response = await http.get(Uri.parse('$searchLocationAPI/$query'));
+  //   final jsonResponse = json.decode(response.body);
 
-    setState(() {
-      _searchResults = jsonResponse['success'];
-    });
+  //   setState(() {
+  //     _searchResults = jsonResponse['success'];
+  //   });
+  // }
+  void _search(String query) async {
+    if (query.isNotEmpty) {
+      // Check if the query is not empty
+      final response = await http.get(Uri.parse('$searchLocationAPI/$query'));
+      final jsonResponse = json.decode(response.body);
+
+      setState(() {
+        _searchResults = jsonResponse['success'];
+      });
+    } else {
+      setState(() {
+        _searchResults =
+            []; // Set search results to empty list if query is empty
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 90,
         elevation: 0,
         leading: GestureDetector(
           onTap: () {
@@ -59,7 +76,7 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
         ),
         title: SizedBox(
-          height: 50,
+          height: 60,
           child: TextField(
             controller: _searchController,
             onSubmitted: _search,
@@ -73,22 +90,19 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
         ),
       ),
-      body: ListView.builder(
-        itemCount: _searchResults.length,
-        itemBuilder: (BuildContext context, int index) {
-          return GestureDetector(
-            // onTap: () => Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //       builder: (context) => PopularListPage(location: location),
-            //     )),
-            child: ListTile(
-              title: Text(_searchResults[index]['title']),
-              subtitle: Text(_searchResults[index]['description']),
+      body: _searchResults.isEmpty && _searchController.text.isEmpty
+          ? Center(child: Text('Search your desired location to park.'))
+          : ListView.builder(
+              itemCount: _searchResults.length,
+              itemBuilder: (BuildContext context, int index) {
+                return GestureDetector(
+                  child: ListTile(
+                    title: Text(_searchResults[index]['title']),
+                    subtitle: Text(_searchResults[index]['description']),
+                  ),
+                );
+              },
             ),
-          );
-        },
-      ),
     );
   }
 }

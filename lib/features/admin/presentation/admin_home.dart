@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:parking_app/core/presentation/theme/app_color.dart';
 import 'package:parking_app/core/presentation/theme/text_style.dart';
 import 'package:parking_app/features/admin/presentation/drawer_pages/accepted_kyc.dart';
@@ -56,10 +57,12 @@ class _AdminHomeState extends State<AdminHome> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black,
-          title: Text(
-            'Home',
-            style: AppStyle.profileHeading,
-          ),
+          title: Text('Home',
+              style: GoogleFonts.roboto(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+              )),
         ),
         drawer: Drawer(
           backgroundColor: Colors.grey,

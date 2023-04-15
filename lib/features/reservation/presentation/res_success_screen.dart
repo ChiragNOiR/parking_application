@@ -66,6 +66,7 @@ class _ReservationSuccessState extends State<ReservationSuccess> {
                     child: SizedBox(
                       height: 40,
                       child: FloatingActionButton.extended(
+                        heroTag: "close",
                         onPressed: () {},
                         label: Text(
                           'CLOSE',
@@ -102,7 +103,7 @@ class _ReservationSuccessState extends State<ReservationSuccess> {
                 children: [
                   const TextStyleRes(
                     heading: 'Parking ID',
-                    text: 'DADWADWADWAD',
+                    text: '643a8389fcd6626e9b983dd0',
                   ),
                   const TextStyleRes(
                     heading: 'Vehicle',
@@ -113,7 +114,7 @@ class _ReservationSuccessState extends State<ReservationSuccess> {
                     children: const [
                       TextStyleRes(
                         heading: 'Payment',
-                        text: 'Rs. 60 (Cash)',
+                        text: 'Rs. 30 (Cash)',
                       ),
                       TextStyleRes(
                         heading: 'Parking Spot',
@@ -200,7 +201,7 @@ class _ReservationSuccessState extends State<ReservationSuccess> {
                               top: 20,
                               right: 5,
                               child: Text(
-                                '11:30 AM'.toUpperCase(),
+                                '12:30 PM'.toUpperCase(),
                                 style: GoogleFonts.reemKufi(
                                   fontSize: 32,
                                   color: Colors.black,
@@ -225,7 +226,7 @@ class _ReservationSuccessState extends State<ReservationSuccess> {
                     width: 400,
                     child: Center(
                       child: Text(
-                        'Kathmandu',
+                        'Bhaktapur Durbar Square\n Durbar Square, Bhaktapur',
                         style: GoogleFonts.roboto(
                           fontSize: 16,
                           color: Color(0xFF706F6E),

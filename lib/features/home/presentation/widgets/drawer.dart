@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parking_app/core/presentation/theme/text_style.dart';
+import 'package:parking_app/core/shared/toast.dart';
 import 'package:parking_app/features/auth/presentation/login_page.dart';
 import 'package:parking_app/features/home/presentation/drawer_nav/settings.dart';
 import 'package:parking_app/features/home/presentation/widgets/components/drawer_header_slider.dart';
@@ -106,6 +107,7 @@ class NavDrawer extends StatelessWidget {
                   await UserService().logOut(context);
                   // ignore: use_build_context_synchronously
                   context.read<CurrentUser>().logout();
+                  AlertDialogToast.showToast('Logging Out', Colors.red);
                   // ignore: use_build_context_synchronously
                   Navigator.pushReplacement(
                       context,
