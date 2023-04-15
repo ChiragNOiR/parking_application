@@ -10,6 +10,7 @@ import 'package:intl/intl.dart';
 import 'package:parking_app/core/presentation/bottom_nav.dart';
 import 'package:parking_app/core/shared/toast.dart';
 import 'package:parking_app/features/res_history/presentation/history.dart';
+import 'package:parking_app/features/reservation/presentation/res_success_screen.dart';
 import 'package:parking_app/features/reservation/presentation/widgets/time_box_design.dart';
 import 'package:provider/provider.dart';
 
@@ -76,13 +77,18 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
 
       if (jsonResponse['status']) {
         // ignore: use_build_context_synchronously
-        Navigator.pop(context);
-        // alertDialog(context, 'Registered Successfully');
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ReservationSuccess(),
+          ),
+        );
+        AlertDialogToast.showToast("Slot Booked", AppColor.connectionLost);
       } else {
-        // alertDialog(context, 'Something went wrong');
+        AlertDialogToast.showToast("Something Went Wrong!! ", AppColor.danger);
       }
     } catch (e) {
-      print(e);
+      rethrow;
     }
   }
 
@@ -524,8 +530,6 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
                       ),
                       backgroundColor: AppColor.primary,
                       onPressed: () {
-                        AlertDialogToast.showToast(
-                            "Slot Booked", AppColor.connectionLost);
                         reserveParking();
                       },
                     ),
