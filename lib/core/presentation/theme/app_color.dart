@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class AppColor {
   AppColor._();
 
+//static data that can be called from any class to define the colour
   static const Color primary = Color(0xff11D195);
   static const Color danger = Color(0xffEF1010);
   static const Color black = Color(0xFF151D19);

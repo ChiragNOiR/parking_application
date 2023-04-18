@@ -21,6 +21,7 @@ class History extends StatefulWidget {
 
 class _HistoryState extends State<History> {
   late List<HistoryModel> list = [];
+  //get method to get data from API
   Future<List<HistoryModel>> getBookingHistory() async {
     try {
       final id = Provider.of<CurrentUser>(context).user.userId;
@@ -34,7 +35,6 @@ class _HistoryState extends State<History> {
         throw Exception('Failed to load History Data');
       }
     } catch (e) {
-      print(e);
       throw Exception('Failed to load Vehicle Data: $e');
     }
   }
@@ -81,7 +81,7 @@ class _HistoryState extends State<History> {
                         HistoryModel his = historyMap[index];
 
                         if (his.status == "canceled") {
-                          return SizedBox.shrink();
+                          return const SizedBox.shrink();
                         }
 
                         // get the booking date from the HistoryModel object
@@ -121,6 +121,7 @@ class _HistoryState extends State<History> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
+                                        //condition to display multiple text
                                         DateTime.now().day == myDate.day
                                             ? "Parking on"
                                             : "Parked on",

@@ -16,6 +16,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../core/shared/error_handling.dart';
 
+//post method for user login and http error handeling methods
 class UserService {
   Future<void> loginUser({
     required BuildContext context,
@@ -35,6 +36,7 @@ class UserService {
         },
       );
 
+//error handeling
       httpErrorHandle(
         response: res,
         context: context,
@@ -45,6 +47,7 @@ class UserService {
 
           final user = context.read<CurrentUser>().user;
 
+//condition to display different pages for different roles
           if (user.role == "admin") {
             AlertDialogToast.showToast(
                 "Logging ${Provider.of<CurrentUser>(context, listen: false).user.fullName}",
@@ -72,6 +75,7 @@ class UserService {
     }
   }
 
+//method to get user data from backend
   Future<void> getUserData(
     BuildContext context,
   ) async {
@@ -112,6 +116,7 @@ class UserService {
     }
   }
 
+//method to void token and logout
   Future<void> logOut(BuildContext context) async {
     try {
       SharedPreferences sharedPreferences =

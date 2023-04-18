@@ -30,6 +30,7 @@ class _AdminHomeState extends State<AdminHome> {
     super.initState();
   }
 
+//get method to get kyc details of each users
   late List<KYCModel> kyc = [];
   Future<List<KYCModel>> getKyc() async {
     try {

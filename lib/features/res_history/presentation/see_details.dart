@@ -36,6 +36,7 @@ class _SeeDetailsState extends State<SeeDetails> {
     _his = widget.history;
   }
 
+//post method to set status to canceled for the reserved location.
   Future<void> cancelRes() async {
     var regBody = {'location': _his.location, 'status': 'canceled'};
     final id = Provider.of<CurrentUser>(context, listen: false).user.userId;
@@ -46,7 +47,6 @@ class _SeeDetailsState extends State<SeeDetails> {
       body: jsonEncode(regBody),
     );
     var jsonResponse = jsonDecode(response.body);
-    print(jsonResponse['success']);
 
     if (jsonResponse['status']) {
       // ignore: use_build_context_synchronously

@@ -35,6 +35,7 @@ class _SearchScreenState extends State<SearchScreen> {
     }
   }
 
+//method to get search data
   void _search(String query) async {
     if (query.isNotEmpty) {
       // Check if the query is not empty

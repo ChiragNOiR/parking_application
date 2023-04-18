@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:parking_app/core/presentation/theme/app_color.dart';
 
+//static data textstyle
 class AppStyle {
   static TextStyle splashscreenh1 = GoogleFonts.poppins(
     fontSize: 50.0,

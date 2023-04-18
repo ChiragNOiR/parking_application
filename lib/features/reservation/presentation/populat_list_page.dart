@@ -17,9 +17,11 @@ class _PopularListPageState extends State<PopularListPage> {
   @override
   void initState() {
     super.initState();
-    _loc = widget.location;
+    _loc = widget
+        .location; //storing the location data in _loc while the page is opened
   }
 
+//setting time of the day to objects
   TimeOfDay selectedStartTime = TimeOfDay.now();
   TimeOfDay selectedEndTime = TimeOfDay.now();
 
@@ -37,6 +39,7 @@ class _PopularListPageState extends State<PopularListPage> {
                 color: Colors.grey,
                 child: Stack(
                   children: [
+                    //used to get image from "URL"
                     Image.network(
                       _loc.cover!,
                       fit: BoxFit.fill,
@@ -205,6 +208,7 @@ class _PopularListPageState extends State<PopularListPage> {
                           ),
                           backgroundColor: AppColor.primary,
                           onPressed: () {
+                            //navigation to booking confirm page
                             Navigator.push(
                               context,
                               MaterialPageRoute(

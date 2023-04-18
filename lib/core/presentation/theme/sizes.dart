@@ -1,6 +1,7 @@
 class Sizes {
   const Sizes._();
 
+//static data sizes
   static const double s5 = 5.0;
   static const double s10 = 10.0;
   static const double s11 = 11.0;

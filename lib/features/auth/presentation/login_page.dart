@@ -24,6 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   late SharedPreferences prefs;
   final UserService userService = UserService();
 
+//login method to pass context, email, and password to service
   void loginUser() {
     userService.loginUser(
         context: context,

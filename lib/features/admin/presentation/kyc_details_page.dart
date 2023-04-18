@@ -37,6 +37,7 @@ class _KycDetailPageState extends State<KycDetailPage> {
     _kyc = widget.kycModel;
   }
 
+//approved method to change statu to approved while the API is hit
   Future<void> approved() async {
     var regBody = {
       'contact': _kyc.contact,
@@ -61,6 +62,8 @@ class _KycDetailPageState extends State<KycDetailPage> {
       AlertDialogToast.showToast("Something Went Wrong!!", AppColor.danger);
     }
   }
+
+//approved method to change statu to rejected while the API is hit
 
   Future<void> rejected() async {
     var regBody = {

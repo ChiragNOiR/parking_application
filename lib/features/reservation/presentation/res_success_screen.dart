@@ -23,6 +23,8 @@ class ReservationSuccess extends StatefulWidget {
 
 class _ReservationSuccessState extends State<ReservationSuccess> {
   late List<HistoryModel> list = [];
+
+//get method to get reservation data of the user
   Future<List<HistoryModel>> getBookingHistory() async {
     try {
       final id = Provider.of<CurrentUser>(context).user.userId;

@@ -11,25 +11,26 @@ import 'app.dart';
 void main() async {
   runApp(
     MultiProvider(
+      //need to be run while using mutiple provider in a same app
       providers: [
         ChangeNotifierProvider(
-          create: (context) => CurrentUser(),
+          create: (context) => CurrentUser(), //provider of user
         ),
         ChangeNotifierProvider(
-          create: (context) => ExploreImageProvider(),
+          create: (context) =>
+              ExploreImageProvider(), //provider of image explore
         ),
         ChangeNotifierProvider(
-          create: (context) => TempleImageProvider(),
+          create: (context) =>
+              TempleImageProvider(), // provider of image temple
         ),
         ChangeNotifierProvider(
-          create: (context) => VehicleProvider(),
+          create: (context) => VehicleProvider(), //provider of image vehicle
         ),
         ChangeNotifierProvider(
-          create: (context) => ReservationProvider(),
+          create: (context) =>
+              ReservationProvider(), //provider of image reservation
         ),
-        // ChangeNotifierProvider(
-        //   create: (context) => KycProvider(),
-        // )
       ],
       // ignore: missing_required_param
       child: const MyApp(),

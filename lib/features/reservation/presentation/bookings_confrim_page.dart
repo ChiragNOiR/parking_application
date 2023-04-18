@@ -32,8 +32,8 @@ class BookingConfirmPage extends StatefulWidget {
 }
 
 class _BookingConfirmPageState extends State<BookingConfirmPage> {
-  final Completer<GoogleMapController> mapController =
-      Completer<GoogleMapController>();
+  final Completer<GoogleMapController> mapController = Completer<
+      GoogleMapController>(); // map controller to store map details in controller
   late String searchAddr;
   late LocationModel _loc;
   late CameraPosition _kGooglePlex;
@@ -51,6 +51,7 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
     );
   }
 
+//post method to send the reservation data to backend and to DB
   reserveParking() async {
     var regBody = {
       "userId": Provider.of<CurrentUser>(context, listen: false).user.userId,
@@ -69,6 +70,7 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
     };
     try {
       final res = await http.post(
+        //http method to post data in regbody
         Uri.parse(setReservation),
         body: jsonEncode(regBody),
         headers: {"Content-Type": "application/json"},
@@ -135,20 +137,6 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  // GestureDetector(
-                  //   onTap: () {
-                  //     setState(() {
-                  //       _selectedDate = DateTime.now();
-                  //     });
-                  //   },
-                  //   child: Text(
-                  //     'Clear',
-                  //     style: GoogleFonts.poppins(
-                  //       color: Colors.blue.shade400,
-                  //       fontWeight: FontWeight.w400,
-                  //     ),
-                  //   ),
-                  // ),
                 ],
               ),
               const SizedBox(
@@ -157,18 +145,7 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  // Text(
-                  //   'Select Date: ',
-                  //   style: GoogleFonts.poppins(
-                  //     color: AppColor.primary,
-                  //     fontSize: 16,
-                  //     fontWeight: FontWeight.w500,
-                  //     letterSpacing: 1,
-                  //   ),
-                  // ),
                   GestureDetector(
-                    // onTap: () => _selectDate(context),
-
                     child: Text(
                       formatter.format(_selectedDate!),
                       style: GoogleFonts.poppins(
@@ -251,6 +228,7 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
     );
   }
 
+//start time method to select time
   _selectStartTime(BuildContext context) async {
     final TimeOfDay? startTimeOfDay = await showTimePicker(
       context: context,
@@ -264,6 +242,7 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
     }
   }
 
+//end time method to select time
   _selectEndTime(BuildContext context) async {
     final TimeOfDay? endTimeOfDay = await showTimePicker(
       context: context,

@@ -43,6 +43,7 @@ class SplashScreen extends StatelessWidget {
                         height: 55,
                         child: FloatingActionButton.extended(
                           onPressed: () {
+                            //navigation to login page
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(

@@ -31,6 +31,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   // ignore: unused_field
   bool _isNotValidate = false;
 
+//method to post users data to the API
   void registerUser() async {
     if (emailController.text.isNotEmpty &&
         passwordController.text.isNotEmpty &&

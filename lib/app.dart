@@ -45,10 +45,8 @@ class _MyAppState extends State<MyApp> {
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
               ))),
-      // home: Provider.of<CurrentUser>(context).user.token.isNotEmpty
-      //     ? const HomePage()
-      //     : const SplashScreen(),
 
+      // adding condition whhere the role of the user is compared to show different screens.
       home: Provider.of<CurrentUser>(context).user.token.isNotEmpty
           ? (Provider.of<CurrentUser>(context).user.role == "user"
               ? const NavBar()

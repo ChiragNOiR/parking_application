@@ -34,6 +34,8 @@ class _HomePageState extends State<HomePage> {
   late String title;
 
   late List<LocationModel> list = [];
+
+  //get method to get nearby details
   Future<List<LocationModel>> getNearbyList() async {
     try {
       final response = await http.get(Uri.parse(getNearby));

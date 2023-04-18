@@ -22,8 +22,6 @@ class _NavBarState extends State<NavBar> {
 
   int _index = 0;
 
-  // List<Color> colors = [Colors.purple, Colors.pink, Colors.grey, Colors.teal];
-
   List<Text> text = [
     const Text(
       'Home',
@@ -43,27 +41,6 @@ class _NavBarState extends State<NavBar> {
   ];
   @override
   Widget build(BuildContext context) {
-    // return Scaffold(
-    //   body: PageView.builder(
-    //     itemCount: 3,
-    //     controller: controller,
-    //     onPageChanged: (value) {
-    //       setState(() {
-    //         _index = value;
-    //       });
-    //     },
-    //     itemBuilder: (context, index) {
-    //       return Container(
-    //         color: colors[index],
-    //         child: Center(
-    //           child: text[index],
-    //         ),
-    //       );
-    //     },
-    //   ),
-    //   bottomNavigationBar: SafeArea(),
-    // );
-
     return Scaffold(
       body: Center(
         child: pages.elementAt(_index),
@@ -96,22 +73,6 @@ class _NavBarState extends State<NavBar> {
           ),
         ],
       ),
-      // NavBar: const NavBar(
-      //   items: [
-      //     NavBarItem(
-      //       label: 'Home',
-      //       icon: Icon(Icons.home_outlined),
-      //     ),
-      //     NavBarItem(
-      //       label: 'Bookings',
-      //       icon: Icon(Icons.arrow_circle_down_outlined),
-      //     ),
-      //     NavBarItem(
-      //       label: 'Profile',
-      //       icon: Icon(Icons.face),
-      //     ),
-      //   ],
-      // ),
     );
   }
 }
