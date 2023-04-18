@@ -35,14 +35,6 @@ class _SearchScreenState extends State<SearchScreen> {
     }
   }
 
-  // void _search(String query) async {
-  //   final response = await http.get(Uri.parse('$searchLocationAPI/$query'));
-  //   final jsonResponse = json.decode(response.body);
-
-  //   setState(() {
-  //     _searchResults = jsonResponse['success'];
-  //   });
-  // }
   void _search(String query) async {
     if (query.isNotEmpty) {
       // Check if the query is not empty
@@ -91,7 +83,7 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
       ),
       body: _searchResults.isEmpty && _searchController.text.isEmpty
-          ? Center(child: Text('Search your desired location to park.'))
+          ? const Center(child: Text('Search your desired location to park.'))
           : ListView.builder(
               itemCount: _searchResults.length,
               itemBuilder: (BuildContext context, int index) {

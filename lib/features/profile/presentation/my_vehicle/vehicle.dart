@@ -167,43 +167,6 @@ class _VehicleState extends State<Vehicle> {
                     }
                   },
                 ),
-                // child: Padding(
-                //   padding:
-                //       const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                //   child: SingleChildScrollView(
-                //     child:
-                //         // VehicleModel vehicle = snapshot.data!;
-                //         Column(
-                //       crossAxisAlignment: CrossAxisAlignment.start,
-                //       children: [
-                //         VehicleDetailTemplate(
-                //           title: 'Company',
-                //           text: '',
-                //         ),
-                //         VehicleDetailTemplate(
-                //           title: 'Model',
-                //           text: '',
-                //         ),
-                //         VehicleDetailTemplate(
-                //           title: 'Year',
-                //           text: '',
-                //         ),
-                //         VehicleDetailTemplate(
-                //           title: 'Color',
-                //           text: '',
-                //         ),
-                //         VehicleDetailTemplate(
-                //           title: 'License Number',
-                //           text: '',
-                //         ),
-                //         VehicleDetailTemplate(
-                //           title: 'Registered State / Zone',
-                //           text: '',
-                //         ),
-                //       ],
-                //     ),
-                //   ),
-                // ),
               ),
             ),
           ],

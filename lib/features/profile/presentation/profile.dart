@@ -79,7 +79,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.3,
+                        width: MediaQuery.of(context).size.width * 0.2,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 25),

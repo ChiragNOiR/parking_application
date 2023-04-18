@@ -65,54 +65,81 @@ class _AdminHomeState extends State<AdminHome> {
               )),
         ),
         drawer: Drawer(
-          backgroundColor: Colors.grey,
+          backgroundColor: Colors.white,
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
               DrawerHeader(
                 decoration: const BoxDecoration(
-                  color: AppColor.primary,
+                  color: Colors.black,
                 ),
-                child: Text(
-                  'Admin Panel',
-                  style: AppStyle.profileHeading,
+                child: Text('Admin Panel',
+                    style: GoogleFonts.roboto(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    )),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: ListTile(
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(
+                      width: 2,
+                      color: AppColor.primary,
+                    ),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  title: const Text('Approved Requests'),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ApprovedRequest(),
+                        ));
+                  },
                 ),
               ),
-              ListTile(
-                title: const Text('Approved Requests'),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ApprovedRequest(),
-                      ));
-                },
-              ),
-              ListTile(
-                title: const Text('Rejected Requests'),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const RejectedRequest(),
-                      ));
-                },
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: ListTile(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      width: 2,
+                      color: AppColor.danger,
+                    ),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  title: const Text('Rejected Requests'),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const RejectedRequest(),
+                        ));
+                  },
+                ),
               ),
               const SizedBox(
-                height: 350,
+                height: 330,
               ),
-              FloatingActionButton.extended(
-                onPressed: () async {
-                  await UserService().logOut(context);
-                  // ignore: use_build_context_synchronously
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LoginPage(),
-                      ));
-                },
-                label: const Text('logout'),
-                backgroundColor: AppColor.danger,
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: FloatingActionButton.extended(
+                  onPressed: () async {
+                    await UserService().logOut(context);
+                    // ignore: use_build_context_synchronously
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginPage(),
+                        ));
+                  },
+                  label: const Text('logout'),
+                  backgroundColor: AppColor.danger,
+                ),
               ),
             ],
           ),
