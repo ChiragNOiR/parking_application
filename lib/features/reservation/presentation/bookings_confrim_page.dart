@@ -81,9 +81,7 @@ class _BookingConfirmPageState extends State<BookingConfirmPage> {
         // ignore: use_build_context_synchronously
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(
-            builder: (context) => const ReservationSuccess(),
-          ),
+          MaterialPageRoute(builder: (context) => const NavBar()),
         );
         AlertDialogToast.showToast("Slot Booked", AppColor.connectionLost);
       } else {

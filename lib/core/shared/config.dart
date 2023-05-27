@@ -19,3 +19,5 @@ const getBookingDetails = '$url/getReservation';
 const getNearby = '$url/getRandom';
 const uploadLicense = '$url/uploadLicense';
 const reservationCancelation = '$url/cancelRes';
+const forgotPass = '$url/forgetPass';
+const updatePass = '$url/updatePass';
